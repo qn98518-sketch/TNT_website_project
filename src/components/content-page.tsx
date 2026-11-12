@@ -63,11 +63,13 @@ export function CatalogPage({
   description,
   kind,
   entries,
+  highlightedTitle,
 }: {
   title: string;
   eyebrow: string;
   description: string;
   kind: "project" | "article" | "guide";
+  highlightedTitle?: string;
   entries: readonly {
     slug: string;
     title: string;
@@ -75,6 +77,13 @@ export function CatalogPage({
     topic: ContentTopic;
     href: string;
     publishedAt?: string;
+    dateLabel?: string;
+    industry?: string;
+    image?: string;
+    imageAlt?: string;
+    sourceLabel?: string;
+    readingTime?: string;
+    preview?: readonly string[];
   }[];
 }) {
   return (
@@ -82,7 +91,7 @@ export function CatalogPage({
       <EditorialHero
         description={description}
         eyebrow={eyebrow}
-        highlightedTitle="Nội dung có cơ sở."
+        highlightedTitle={highlightedTitle ?? "Nội dung có cơ sở."}
         title={title}
       />
       <section className="section">

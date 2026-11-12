@@ -2,7 +2,7 @@
 
 **Reviewed:** 11 November 2026  
 **Compared:** Current Next.js routes and shared components against
-[`../../../Demo html/TNT_Website.HTML.html`](../../../Demo%20html/TNT_Website.HTML.html),
+[`../../Demo html/TNT_Website.HTML.html`](../../Demo%20html/TNT_Website.HTML.html),
 constrained by [`WEBSITE_BRIEF.md`](./WEBSITE_BRIEF.md) and
 [`DEADLINE.md`](./DEADLINE.md).
 
@@ -231,6 +231,12 @@ Recommended implementation:
   Vietnamese wrapping at responsive breakpoints.
 - Keep sample/review notices that are present in the demo visible with their
   associated local fixture content.
+- Use varied, topic-relevant images from `../../doc/ss/new_images/` across the
+  site; avoid repeating one image for unrelated sections.
+- Keep Blog cards in two desktop columns and one narrow-mobile column. Confirm
+  image height, card copy, and links do not overlap the search/filter area.
+- Check subtle section-reveal and card/image-hover motion, including reduced
+  motion preferences and a no-animation fallback.
 
 ## Content fidelity and public-release rules
 
@@ -257,7 +263,7 @@ Recommended implementation:
   approved-content, and design-system guidance.
 - [`DEADLINE.md`](./DEADLINE.md) — authoritative route list,
   deadline notes, and case-study removal request.
-- [`../../../Demo html/TNT_Website.HTML.html`](../../../Demo%20html/TNT_Website.HTML.html) —
+- [`../../Demo html/TNT_Website.HTML.html`](../../Demo%20html/TNT_Website.HTML.html) —
   source of truth for user-facing demo content, visuals, and interactions.
 - [`src/app/globals.css`](../src/app/globals.css) — shared design system and
   responsive layouts.

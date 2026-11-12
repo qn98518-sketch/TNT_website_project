@@ -31,11 +31,24 @@ function createLocalRepository<T extends { status: "approved" | "pending-review"
         ) ?? null
       );
     },
+    async listForPreview() {
+      return records;
+    },
+    async findForPreviewBySlug(slug) {
+      return (
+        records.find(
+          (record) =>
+            "slug" in record &&
+            record.slug === slug,
+        ) ?? null
+      );
+    },
   };
 }
 
 export interface FaqRepository {
   listPublished(): Promise<readonly FaqRecord[]>;
+  listForPreview(): Promise<readonly FaqRecord[]>;
 }
 
 export interface ServiceRepository {
@@ -49,6 +62,9 @@ export const guideRepository = createLocalRepository<GuideRecord>(guides);
 export const faqRepository: FaqRepository = {
   async listPublished() {
     return faqs.filter((faq) => faq.status === "approved");
+  },
+  async listForPreview() {
+    return faqs;
   },
 };
 export const serviceRepository = createLocalRepository<ServiceRecord>(services);

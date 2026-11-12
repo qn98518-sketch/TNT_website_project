@@ -117,7 +117,7 @@ The detailed visual differences and per-page acceptance suggestions are in the
   architecture, and approval constraints.
 - [`./DEADLINE.md`](./DEADLINE.md) — authoritative 14 interfaces,
   proposed URLs, due dates, and case-study note.
-- [`../../../Demo html/TNT_Website.HTML.html`](../../../Demo%20html/TNT_Website.HTML.html) —
+- [`../../Demo html/TNT_Website.HTML.html`](../../Demo%20html/TNT_Website.HTML.html) —
   source of truth for user-facing demo content and visual structure; retain
   sample labels and public-release disclosures.
 - [`src/content/models.ts`](../src/content/models.ts) and

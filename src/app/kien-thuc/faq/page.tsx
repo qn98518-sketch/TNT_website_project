@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { FaqBrowser } from "@/components/faq-browser";
 import { EditorialHero } from "@/components/content-page";
+import { Icon } from "@/components/ui/icon";
 import { PageFrame } from "@/components/site-shell";
 import { faqRepository } from "@/content/repositories";
 import { createPageMetadata } from "@/lib/metadata";
@@ -12,32 +14,45 @@ export const metadata = createPageMetadata({
 });
 
 export default async function FaqPage() {
-  const faqs = await faqRepository.listPublished();
+  const faqs = await faqRepository.listForPreview();
 
   return (
     <PageFrame>
       <main>
         <EditorialHero
-          description="Tìm câu trả lời theo từ khóa và chủ đề. Nội dung được trình bày ở mức định hướng; phạm vi thực tế cần TNT xác nhận."
-          eyebrow="CÂU HỎI THƯỜNG GẶP"
-          highlightedTitle="Làm rõ trước khi bắt đầu."
-          title="Cùng tìm câu trả lời."
+          description="Tìm câu trả lời theo nhóm chủ đề hoặc từ khóa."
+          eyebrow="FAQ"
+          highlightedTitle="thường gặp."
+          title="Những câu hỏi"
         />
         <section className="section faq-section">
           <div className="container faq-page-layout">
             <div>
-              <span className="eyebrow">HỖ TRỢ TRAO ĐỔI</span>
+              <span className="eyebrow">FAQ TNT</span>
               <h2 className="section-title">
-                Câu hỏi theo
+                Bạn đang quan tâm
                 <br />
-                <span>chủ đề quan tâm.</span>
+                <span>vấn đề nào?</span>
               </h2>
               <p>
-                Câu trả lời về năng lực và dịch vụ cụ thể sẽ được xác nhận theo
-                yêu cầu của từng doanh nghiệp.
+                Các câu hỏi được nhóm theo nội dung quan tâm để bạn dễ tìm kiếm.
               </p>
             </div>
             <FaqBrowser items={faqs} />
+          </div>
+        </section>
+        <section className="section knowledge-cta-section">
+          <div className="container knowledge-cta">
+            <div>
+              <span className="eyebrow eyebrow-light">TRAO ĐỔI CÙNG TNT</span>
+              <h2>Có câu hỏi về giải pháp ERP?</h2>
+              <p>
+                Chuyển từ việc tìm hiểu kiến thức sang trao đổi bài toán doanh nghiệp.
+              </p>
+            </div>
+            <Link className="button button-primary" href="/dich-vu/erp">
+              Nhận tư vấn ERP <Icon name="arrowRight" size={16} />
+            </Link>
           </div>
         </section>
       </main>

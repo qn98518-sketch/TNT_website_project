@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Icon } from "@/components/ui/icon";
 import type { ContentTopic } from "@/content/models";
@@ -12,7 +13,13 @@ export interface CatalogEntry {
   topic: ContentTopic;
   href: string;
   publishedAt?: string;
+  dateLabel?: string;
   industry?: string;
+  image?: string;
+  imageAlt?: string;
+  sourceLabel?: string;
+  readingTime?: string;
+  preview?: readonly string[];
 }
 
 const topics: readonly ContentTopic[] = [
@@ -143,24 +150,71 @@ export function CatalogBrowser({ entries, kind }: Props) {
       </p>
 
       {result.length > 0 ? (
-        <div className="catalog-grid">
+        <div
+          className={
+            kind === "article" ? "catalog-grid catalog-grid-article" : "catalog-grid"
+          }
+        >
           {result.map((entry) => (
-            <article className="catalog-card" key={entry.slug}>
-              <span className="catalog-tag">{entry.topic}</span>
-              {entry.industry && (
-                <span className="catalog-tag catalog-industry">
-                  {entry.industry}
-                </span>
+            <article className={`catalog-card catalog-card-${kind}`} key={entry.slug}>
+              {entry.image && (
+                <Link
+                  aria-label={entry.title}
+                  className="catalog-card-image"
+                  href={entry.href}
+                  tabIndex={-1}
+                >
+                  <Image
+                    alt={entry.imageAlt ?? ""}
+                    fill
+                    sizes={
+                      kind === "article"
+                        ? "(max-width: 760px) 100vw, 50vw"
+                        : "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"
+                    }
+                    src={entry.image}
+                  />
+                </Link>
               )}
-              <h2>{entry.title}</h2>
-              {entry.publishedAt && (
-                <time dateTime={entry.publishedAt}>{entry.publishedAt}</time>
+              <div className="catalog-card-content">
+                <div className="catalog-card-tags">
+                  <span className="catalog-tag">{entry.topic}</span>
+                  {entry.industry && (
+                    <span className="catalog-tag catalog-industry">
+                      {entry.industry}
+                    </span>
+                  )}
+                </div>
+                <h2>{entry.title}</h2>
+                {entry.publishedAt && (
+                  <p className="catalog-meta">
+                    <time dateTime={entry.publishedAt}>
+                      {entry.dateLabel ?? entry.publishedAt}
+                    </time>
+                    {entry.readingTime && <span>{entry.readingTime}</span>}
+                  </p>
+                )}
+                {entry.sourceLabel && (
+                  <span className="review-label">{entry.sourceLabel}</span>
+                )}
+                <p>{entry.summary}</p>
+                <Link className="text-link" href={entry.href}>
+                  {kind === "guide"
+                    ? "Xem nội dung tham khảo"
+                    : kind === "article"
+                      ? "Đọc bài viết"
+                      : "Xem câu chuyện dự án"}
+                  <Icon name="arrowRight" size={16} />
+                </Link>
+              </div>
+              {entry.preview && (
+                <div className="catalog-card-preview" id={`guide-${entry.slug}`}>
+                  <strong>Nội dung tham khảo</strong>
+                  <ul>
+                    {entry.preview.map((line) => <li key={line}>{line}</li>)}
+                  </ul>
+                </div>
               )}
-              <p>{entry.summary}</p>
-              <Link className="text-link" href={entry.href}>
-                {kind === "guide" ? "Xem tài liệu" : "Tìm hiểu thêm"}
-                <Icon name={kind === "guide" ? "download" : "arrowRight"} size={16} />
-              </Link>
             </article>
           ))}
         </div>

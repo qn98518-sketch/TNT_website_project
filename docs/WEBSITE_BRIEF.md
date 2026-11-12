@@ -9,7 +9,7 @@
 The latest user direction supersedes earlier instructions that treated the HTML
 as only loose inspiration or kept the Blog, Projects, and Guides empty. Rebuild
 the complete user-facing website to match exactly, page by page, the supplied
-[`../../../Demo html/TNT_Website.HTML.html`](../../../Demo%20html/TNT_Website.HTML.html)
+[`../../Demo html/TNT_Website.HTML.html`](../../Demo%20html/TNT_Website.HTML.html)
 including page order, navigation, logo treatment, section count and sequence,
 Vietnamese copy, imagery, icon placement, colors, spacing, card details, forms,
 and visible interactions. At the same viewport, the Next.js page should be
@@ -197,6 +197,27 @@ rather than silently displaying another case.
 
 ## 5. Shared site experience and visual direction
 
+### Image variety, Blog grid, and motion update — 12 November 2026
+
+- Use the supplied image collection at `../../doc/ss/new_images/` as the first
+  source for page photography. Review each file and choose varied, relevant
+  images across food processing, glass and wood factories, software/technology,
+  education, cloud/security, and team collaboration. Avoid repeating one image
+  across several page heroes or assigning an image to an unrelated topic.
+- Keep the Blog listing at **two cards per row on desktop**, matching the
+  requested reference. At narrow mobile widths, use one column. Keep image
+  frames consistent, crop with `object-fit: cover`, and size them so images do
+  not dominate the search/filter controls or push card text into overlap.
+- Add subtle motion to make the site feel polished: short fade/slide-in reveals
+  for sections, restrained image/card hover transitions, and clear focus
+  transitions. Use CSS or existing client behavior; do not add a heavy
+  animation dependency for simple effects.
+- Respect `prefers-reduced-motion`, keep content visible if animation is
+  disabled, avoid continuous or distracting motion, and prevent layout shifts.
+
+Use [`GPT_VISUAL_UPDATE_PROMPT.md`](./GPT_VISUAL_UPDATE_PROMPT.md) as the
+implementation prompt for this focused image, Blog-grid, and animation pass.
+
 ### Global layout
 
 - Shared header with TNT wordmark, primary navigation, service and knowledge dropdowns, language control when translations are ready, and a prominent contact CTA.
@@ -331,16 +352,16 @@ This is a boundary guide, not a requirement to create an empty file for every it
 
 | Folder / file | What it contains | Use in the build |
 |---|---|---|
-| `../../../Demo html/TNT_Website.HTML.html` | Main Vietnamese demo with 14 pages, complete copy, interactions, styling, and 21 embedded image assets. | Exact source of truth for user-facing page structure, copy, visual details, local content records, and interaction requirements. Rebuild in Next.js rather than shipping as-is. |
-| `../../../Demo html/vi.json`, `../../../Demo html/en.json` | Generic ABC Company strings, including authentication and e-commerce examples. | Treat only as a translation-format sample. Replace all values with approved TNT copy. |
-| `../../../Demo html/i18n-demo.html` | Standalone language-switch example (Vietnamese, English, Japanese), interpolation, pluralization, local preference storage. | Reference only for the idea of language switching; it is not wired into the TNT website. |
-| `../../../Demo html/index.html`, `../../../Demo html/code.js` | Minimal `data-i18n` sample that fetches `/locales/{lang}.json`. | Demonstration snippet only; its expected locale path does not match the current file layout. |
-| `../../../doc/pages guideline i think/trang chủ.pdf` | One-page visual guide for the home page. | Visual reference for hierarchy, hero, proof points, service cards, projects, insights, and contact form. |
-| `../../../doc/pages guideline i think/about us.pdf` | One-page visual guide for the About page. | Visual reference for the company story, team, capability block, and contact section. |
-| `../../../doc/pages guideline i think/landing page.pdf` | One-page food-processing/ERP landing-page guide. | Visual reference for the industry hero, assessment form, workflow diagram, fit framework, and FAQ. |
-| `../../../doc/ss/*.png` | 18 screenshot references for headers, project cards, service modules, process sections, team/industry images, and other page regions. Some filenames contain OCR errors. | Use as supplementary layout references; verify each image visually instead of relying on its filename. |
-| `../../../doc/TNT- DỰ ÁN TIÊU BIỂU.docx` | Detailed Vietnamese seafood-processing ERP case-study draft. It explicitly says the customer/project/results are simulated, not a verified TNT project. | Use as a case-study content template only. Keep it labeled as a mock example or replace it with an approved real case before public use. |
-| `../../../doc/ss/rename_ocr.sh`, `../../../doc/ss/rename_vie.sh` | Local OCR-based image-renaming helpers. | Not website code or content; do not include in the deployed application. |
+| `../../Demo html/TNT_Website.HTML.html` | Main Vietnamese demo with 14 pages, complete copy, interactions, styling, and 21 embedded image assets. | Exact source of truth for user-facing page structure, copy, visual details, local content records, and interaction requirements. Rebuild in Next.js rather than shipping as-is. |
+| `../../Demo html/vi.json`, `../../Demo html/en.json` | Generic ABC Company strings, including authentication and e-commerce examples. | Treat only as a translation-format sample. Replace all values with approved TNT copy. |
+| `../../Demo html/i18n-demo.html` | Standalone language-switch example (Vietnamese, English, Japanese), interpolation, pluralization, local preference storage. | Reference only for the idea of language switching; it is not wired into the TNT website. |
+| `../../Demo html/index.html`, `../../Demo html/code.js` | Minimal `data-i18n` sample that fetches `/locales/{lang}.json`. | Demonstration snippet only; its expected locale path does not match the current file layout. |
+| `../../doc/pages guideline i think/trang chủ.pdf` | One-page visual guide for the home page. | Visual reference for hierarchy, hero, proof points, service cards, projects, insights, and contact form. |
+| `../../doc/pages guideline i think/about us.pdf` | One-page visual guide for the About page. | Visual reference for the company story, team, capability block, and contact section. |
+| `../../doc/pages guideline i think/landing page.pdf` | One-page food-processing/ERP landing-page guide. | Visual reference for the industry hero, assessment form, workflow diagram, fit framework, and FAQ. |
+| `../../doc/ss/*.png` | 18 screenshot references for headers, project cards, service modules, process sections, team/industry images, and other page regions. Some filenames contain OCR errors. | Use as supplementary layout references; verify each image visually instead of relying on its filename. |
+| `../../doc/TNT- DỰ ÁN TIÊU BIỂU.docx` | Detailed Vietnamese seafood-processing ERP case-study draft. It explicitly says the customer/project/results are simulated, not a verified TNT project. | Use as a case-study content template only. Keep it labeled as a mock example or replace it with an approved real case before public use. |
+| `../../doc/ss/rename_ocr.sh`, `../../doc/ss/rename_vie.sh` | Local OCR-based image-renaming helpers. | Not website code or content; do not include in the deployed application. |
 | `../` | Next.js application scaffold. | Application source, routes, and assets are maintained in this directory. |
 
 ## 9. Editorial and launch checks

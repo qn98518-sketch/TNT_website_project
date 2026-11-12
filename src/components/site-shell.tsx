@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteHeader } from "@/components/site-header";
 import { Icon } from "@/components/ui/icon";
+import { ScrollReveal } from "@/components/scroll-reveal";
 
 const navigation = [
   { href: "/ve-tnt", label: "Về TNT" },
@@ -60,6 +61,7 @@ export function PageFrame({ children }: { children: React.ReactNode }) {
     <>
       <SiteHeader />
       {children}
+      <ScrollReveal />
       <SiteFooter />
     </>
   );

@@ -12,7 +12,7 @@ type Props = {
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const project = await projectRepository.findPublishedBySlug(slug);
+  const project = await projectRepository.findForPreviewBySlug(slug);
   if (!project) return { title: "Không tìm thấy dự án" };
 
   return createPageMetadata({
@@ -24,10 +24,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ProjectDetailPage({ params }: Props) {
   const { slug } = await params;
-  const project = await projectRepository.findPublishedBySlug(slug);
+  const project = await projectRepository.findForPreviewBySlug(slug);
   if (!project) notFound();
-  const publishedProjects = await projectRepository.listPublished();
-  const relatedProjects = publishedProjects.filter((candidate) =>
+  const previewProjects = await projectRepository.listForPreview();
+  const relatedProjects = previewProjects.filter((candidate) =>
     project.relatedProjectSlugs?.includes(candidate.slug),
   );
 
@@ -40,25 +40,45 @@ export default async function ProjectDetailPage({ params }: Props) {
               <span className="eyebrow eyebrow-light">
                 {project.topic} <span className="eyebrow-rule" />
               </span>
-              <h1>{project.title}</h1>
+              <h1>{project.detailTitle ?? project.title}</h1>
               <p>{project.summary}</p>
+              {project.sourceLabel && (
+                <span className="review-label">{project.sourceLabel}</span>
+              )}
             </div>
+            {project.image && (
+              <div className="project-detail-hero-image">
+                <Image
+                  alt={project.imageAlt ?? ""}
+                  fill
+                  priority
+                  sizes="(max-width: 760px) 100vw, 48vw"
+                  src={project.image}
+                />
+              </div>
+            )}
           </div>
         </section>
         <section className="section">
           <div className="container project-detail-grid">
             <article>
               <span className="eyebrow">BỐI CẢNH</span>
-              <h2>{project.industry}</h2>
+              <h2>{project.challengeTitle ?? project.industry}</h2>
               <p>{project.challenge}</p>
             </article>
             <article>
-              <span className="eyebrow">CÁCH TIẾP CẬN</span>
-              <p>{project.approach}</p>
+              <span className="eyebrow">{project.solutionTitle ?? "CÁCH TIẾP CẬN"}</span>
+              <p>{project.solution ?? project.approach}</p>
             </article>
             <article>
-              <span className="eyebrow">KẾT QUẢ ĐƯỢC XÁC NHẬN</span>
+              <span className="eyebrow">KẾT QUẢ CẦN XÁC NHẬN</span>
               <p>{project.outcome}</p>
+            </article>
+            <article>
+              <span className="eyebrow">THÔNG TIN DỰ ÁN</span>
+              <p><strong>Khách hàng:</strong> {project.client ?? "Thông tin đang được xác nhận."}</p>
+              <p><strong>Phạm vi:</strong> {project.scope ?? "Phạm vi đang được xác nhận."}</p>
+              <p><strong>Dịch vụ:</strong> {project.service ?? project.topic}</p>
             </article>
           </div>
         </section>

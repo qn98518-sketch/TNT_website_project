@@ -11,6 +11,7 @@ type Props = {
 export function FaqBrowser({ items }: Props) {
   const [query, setQuery] = useState("");
   const [topic, setTopic] = useState<ContentTopic | "all">("all");
+  const topics = ["all", ...Array.from(new Set(items.map((item) => item.topic)))] as const;
   const result = useMemo(() => {
     const needle = query.trim().toLocaleLowerCase("vi");
     return items.filter((item) => {
@@ -37,23 +38,6 @@ export function FaqBrowser({ items }: Props) {
             value={query}
           />
         </label>
-        <label className="catalog-topic">
-          <span className="visually-hidden">Lọc câu hỏi theo chủ đề</span>
-          <Icon name="settings" size={17} />
-          <select
-            onChange={(event) =>
-              setTopic(event.target.value as ContentTopic | "all")
-            }
-            value={topic}
-          >
-            <option value="all">Tất cả chủ đề</option>
-            {Array.from(new Set(items.map((item) => item.topic))).map((item) => (
-              <option key={item} value={item}>
-                {item}
-              </option>
-            ))}
-          </select>
-        </label>
         <button
           className="catalog-reset"
           onClick={() => {
@@ -65,8 +49,21 @@ export function FaqBrowser({ items }: Props) {
           Xóa bộ lọc
         </button>
       </div>
+      <div aria-label="Lọc câu hỏi theo chủ đề" className="faq-tabs" role="group">
+        {topics.map((item) => (
+          <button
+            aria-pressed={topic === item}
+            className={topic === item ? "is-selected" : undefined}
+            key={item}
+            onClick={() => setTopic(item)}
+            type="button"
+          >
+            {item === "all" ? "Tất cả" : item}
+          </button>
+        ))}
+      </div>
       <p aria-live="polite" className="catalog-count">
-        {result.length} câu hỏi
+        {result.length} câu hỏi phù hợp
       </p>
       <div className="faq-list">
         {result.map((item, index) => (

@@ -4,11 +4,54 @@
 **Purpose:** Source-based brief for rebuilding the TNT / Trí Nghĩa Tech website with Next.js.  
 **Primary content language:** Vietnamese. English content is represented by starter files, but is not yet a complete translation of the website.
 
+## Updated implementation direction — 12 November 2026
+
+The latest user direction supersedes earlier instructions that treated the HTML
+as only loose inspiration or kept the Blog, Projects, and Guides empty. Rebuild
+the complete user-facing website to match exactly, page by page, the supplied
+[`../../../Demo html/TNT_Website.HTML.html`](../../../Demo%20html/TNT_Website.HTML.html)
+including page order, navigation, logo treatment, section count and sequence,
+Vietnamese copy, imagery, icon placement, colors, spacing, card details, forms,
+and visible interactions. At the same viewport, the Next.js page should be
+visually indistinguishable from the corresponding demo page except for
+browser-rendering differences. Use the supplied demo as the source of truth for
+what each page contains. Do not redesign, simplify a page into a generic
+template, or omit sections that are present in the demo.
+
+Hard-code every user-facing string and record shown in the demo in the Next.js
+project. Put reusable page copy and typed content records in the existing
+content layer (for example `src/content/local-data.ts`), including Blog and
+article bodies, titles, categories, dates, authors, thumbnails, related
+articles, project cards/details, FAQs, and Guides/resources. The Blog must
+render populated cards and working local search/topic filters; do not ship an
+empty Blog or substitute editorial prompts for the demo articles. Extract and
+serve the demo's embedded image assets locally, matching their crop and
+placement. Keep page components separate from data so a backend can replace the
+local adapter later. Do not add a CMS, database, or content API for this build.
+
+Match the demo's visible user-facing content and sample labels. Values or
+projects the source itself identifies as examples, simulated, or needing
+review must retain that status in the local data and on the page. The deadline
+document's case-study removal note still applies to public release: implement
+the demo structure and hard-coded fixture locally for parity, but do not present
+the simulated case as a verified TNT achievement or publish it as real without
+release approval. Keep the page visually complete if an item must be withheld.
+
+The Next.js App Router, TypeScript, existing global CSS, shared components, and
+Iconsax icon system remain the implementation foundation. Reproduce the demo's
+user-facing design and behavior in those systems rather than embedding the
+HTML as an iframe or shipping its hash-based page switching and reviewer-only
+controls.
+
 ## 1. Project overview
 
 Create a credible, conversion-focused corporate website for TNT (Trí Nghĩa Tech), a technology partner presenting its TNM ERP platform, custom software services, and IT staffing support. The site should explain how TNT understands operating workflows, recommends a practical scope, and supports implementation. The strongest industry-specific story in the materials is food processing; broader manufacturing is also represented.
 
-The current materials are a website prototype and design references, not a production application. Build the production site in **Next.js using the App Router and TypeScript**. Treat the existing HTML as a content and interaction reference. Do not ship its review controls, hash-based page switching, demo notices, or non-submitting forms as production behavior.
+The current materials include the complete target website in HTML form. Build
+the site in **Next.js using the App Router and TypeScript**, porting its
+user-facing copy, sections, imagery, styling, and interactions. Do not embed the
+HTML as the app shell. Replace hash navigation with the Next.js routes below;
+reviewer-only authoring controls need not appear in the production site.
 
 ### Primary website goals
 
@@ -28,7 +71,12 @@ The current materials are a website prototype and design references, not a produ
 
 **Working positioning:** TNT connects technology with day-to-day business operations. The prototype’s recurring idea is **“Fit first. Customize with purpose.”** Vietnamese copy expresses this as prioritizing operational fit and customizing only when there is a clear reason.
 
-Use the supplied copy as a starting point, then obtain TNT approval for factual statements. Keep the tone practical, clear, consultative, and specific to operating workflows. Avoid unsupported promises, invented performance improvements, and claims that a sample project is a confirmed customer success.
+Port the Vietnamese copy in the demo verbatim, including article copy and
+metadata, while making only the route/link adaptations required by Next.js.
+Preserve source sample/review labels. Keep the tone practical, clear,
+consultative, and specific to operating workflows. Do not add claims or
+performance results that are absent from the source; approval to present
+simulated examples as verified public facts remains a launch requirement.
 
 ### Product and service content found in the materials
 
@@ -39,7 +87,11 @@ Use the supplied copy as a starting point, then obtain TNT approval for factual 
 
 ## 3. Sitemap and recommended Next.js routes
 
-Use readable URLs rather than the prototype’s `#/...` routes. Keep page content in reusable data structures so project, article, FAQ, and guide records can be maintained consistently.
+Use readable URLs rather than the prototype’s `#/...` routes. Store the demo's
+page content and records in reusable, typed local data structures. Populate
+those records from the HTML demo so project, article, FAQ, and guide routes have
+content from the first implementation; do not leave collections empty pending
+a CMS or editorial approval cycle.
 
 | Page | Recommended route | Purpose and primary content |
 |---|---|---|
@@ -65,21 +117,35 @@ Use readable URLs rather than the prototype’s `#/...` routes. Keep page conten
 ### 4.1 Home
 
 1. **Hero:** “Kiến tạo công nghệ. Thúc đẩy tăng trưởng.” Introduce TNM ERP, custom software, and IT staffing; primary CTA to discuss a project and secondary CTA to explore solutions.
-2. **Capabilities / proof points:** show experience, team, customers, or project counts only after TNT verifies the exact figures and wording.
-3. **Technology and services:** feature TNM ERP, then cards for software development, custom software, IT staffing, cloud/hosting, and UI/UX/website services. Confirm which services remain current.
+2. **Capabilities / proof points:** reproduce the demo's exact figures, labels,
+   and layout in the local fixture. Keep sample/review status in the data and
+   verify all figures before presenting them as public facts.
+3. **Technology and services:** reproduce the TNM ERP panel and all five service
+   tiles shown in the demo, using its exact copy, icons, images, and layout.
 4. **Why TNT:** operational understanding, technical capability, delivery process, and long-term partnership.
 5. **Four-step delivery process:** receive request, analyze and advise, implement/develop, hand over and support.
-6. **Project showcase:** interactive project tabs/cards, image, short description, and link to the relevant case study.
-7. **Insights:** three featured article cards.
+6. **Project showcase:** recreate the demo's selectable project tabs/cards,
+   images, descriptions, and detail links with hard-coded local records.
+7. **Insights:** render the demo's three featured article cards from the
+   populated article data.
 8. **Contact:** general enquiry form with contact details and an honest submission state.
 
 ### 4.2 About TNT
 
-Present the company, its operational focus, TNM platform, and software/staffing services. Explain the food-processing specialization and the “Fit first. Customize with purpose.” approach. Include capability indicators and leadership profiles only when figures, names, titles, headshots, and publication rights are approved. Close with contact details and an enquiry form.
+Recreate the demo's complete About page, including its company story, operational
+focus, TNM platform, software/staffing services, food-processing specialization,
+“Fit first. Customize with purpose.” approach, capability indicators, leadership
+profiles, images, CTAs, and enquiry form. Use hard-coded local demo records and
+preserve the source's sample/review labels. Verify sensitive facts and image
+rights before public release.
 
 ### 4.3 Food-processing solution
 
-Use a conversion-focused hero and short assessment form. Explain challenges around raw materials and inventory, production progress, yield/loss and costs, quality, and lot traceability. Show a before/target workflow from fragmented data to connected materials, warehouse, production, quality, finished goods, and reporting. Explain **Ready / Extend / Out of scope** as a transparent scoping method. Add TNT’s proposed assessment and implementation steps, one approved example, FAQs, and a final CTA.
+Recreate the demo's conversion-focused hero and form, all industry challenges,
+the complete before/target workflow, **Ready / Extend / Out of scope** fit
+method, assessment and implementation steps, example content, FAQs, and final
+CTA. Keep exact demo copy and local data, including its source sample/review
+labels.
 
 ### 4.4 Services overview
 
@@ -87,26 +153,46 @@ Introduce ERP, software development, and IT staffing as the three core service g
 
 ### 4.5 ERP
 
-Move from fragmented data, weak inventory visibility, unclear production progress, and slow reporting to a connected management view. List TNM modules only after capability validation. Explain how configuration and extensions are assessed, show the food-processing path and approved manufacturing case studies, answer common implementation questions, and collect an ERP-specific enquiry.
+Recreate the demo's fragmented-data, inventory, production, and reporting story;
+include its TNM module list, fit assessment, food-processing path, project/FAQ
+sections, and enquiry form using the exact local demo copy. Preserve the demo's
+own sample/review labels and do not add capability claims beyond its content.
 
 ### 4.6 Software development
 
-Address new system development, extension of an existing system, or help delivering a defined project. Potential work includes custom software, web/mobile applications, integrations, data migration, and AI applications, pending confirmation. Explain the proposed six stages—discovery, analysis, design, development, testing, and handover—and use verified project examples. The lead form should capture project type and anticipated timing.
+Recreate the demo's software development/Outsourcing needs, service scope,
+capabilities, six delivery stages, project examples, imagery, and lead form from
+local fixture data. Preserve the exact source copy and any sample/review labels.
 
 ### 4.7 IT staffing / Body Shop
 
-Explain when a business may need added delivery capacity, specialist skills, or temporary team flexibility. Cover developer, QA/tester, and business analyst roles. Show the proposed sequence: understand the need, suggest profiles, evaluate, and start collaboration. Describe onsite, remote, or hybrid options only as confirmed commercial offerings. The form captures role and headcount.
+Recreate the demo's Body Shop situations, roles, work arrangements, staffing
+steps, team/project context, and form from local fixture data. Preserve its
+wording and sample/review labels; verify commercial details before public
+release.
 
 ### 4.8 Projects and project detail
 
-The listing should support keyword search and service/industry filters, show result counts and a useful empty state, and provide a reset action. The detail template should include project context, challenge, solution, scope, approved evidence or metrics, image gallery, related projects, and a relevant CTA. Unknown slugs must return a real not-found page rather than silently displaying another case.
+Populate the listing from the demo's hard-coded project records and reproduce
+its search/filter controls, result counts, featured layout, and cards. The detail
+template should include the demo's project context, challenge, solution,
+scope, evidence, metrics, gallery, related projects, and CTA. Keep simulated
+records labeled as samples. Unknown slugs must return a real not-found page
+rather than silently displaying another case.
 
 ### 4.9 Knowledge, blog, article, resources, and FAQ
 
 - **Knowledge overview:** feature articles, topic groupings, recent content, and links to available resources.
-- **Blog:** featured article plus keyword and topic filters for ERP, production, Outsourcing, and Body Shop. Include result counts, empty state, and reset.
-- **Article:** title, category, publication date, summary, body sections, related reading, and a relevant service CTA. Publish dates and copy must be editorially approved.
-- **Resources:** search and topic filters, with working downloads and clear file descriptions. Current “view demo” materials are placeholders, not real resources.
+- **Blog:** recreate the demo's featured article, populated image-led cards,
+  keyword and topic filters, result counts, and reset behavior. Seed the local
+  data with every article shown in the demo; the empty state is only for a
+  genuine no-results search.
+- **Article:** hard-code the demo's titles, categories, dates, summaries, body
+  sections, related reading, images, and service CTAs in local records. Preserve
+  any sample/review labels included in the source.
+- **Resources:** recreate the demo's resource cards, categories, descriptions,
+  and visible actions. Use real local files where supplied; do not make a
+  non-working download look like a live resource.
 - **FAQ:** searchable and filterable by ERP, Outsourcing, Body Shop, and general topics. Use keyboard-accessible expandable answers and a contact CTA.
 
 ## 5. Shared site experience and visual direction
@@ -135,12 +221,16 @@ The visual review toolbar in the prototype is for reviewers and must not appear 
 - Use Next.js routes and `next/link` for navigation; use in-page anchors for section jumps and form focus.
 - Dropdowns open and close by click and keyboard, close on Escape/outside click/navigation, and expose appropriate expanded/current states. Mobile navigation must expose its state to assistive technology.
 - Home project tabs update the selected project title, description, image, and detail link.
-- Project, blog, and resource lists support their stated filters/search; show a result count, empty state, and reset controls.
+- Project, Blog, and resource lists are populated from the hard-coded demo
+  records and support their stated filters/search, result counts, and reset
+  controls. Show an empty state only when a user's search has no matches.
 - FAQ search and topic tabs filter questions; answers expand/collapse accessibly.
 - Forms use native labels, required states, appropriate input types, validation, consent where needed, loading/success/error feedback, and server-side validation.
 - Prototype forms intentionally prevent real submission and storage. The production site must connect to an approved TNT inbox, CRM, or other lead destination. Never show a success message unless the request has actually been accepted for delivery.
 - Keep form variants configurable by page rather than duplicating unrelated markup. Preserve useful page/source context with each submitted enquiry.
-- Resource cards must link to real approved files. Do not open a demo dialog in production.
+- Resource cards must reproduce the demo's visual treatment and local records.
+  Link each action to a supplied file or useful local detail view; do not make a
+  fake download look live.
 
 ### Form fields represented in the prototype
 
@@ -222,7 +312,7 @@ This is a boundary guide, not a requirement to create an empty file for every it
 ### Data and backend integration seams
 
 - Define shared TypeScript models for `Project`, `Article`, `Resource`, `FAQ`, `TeamMember`, and `Service`. Validate records at the content boundary. Page components should receive these models and should not depend on raw API/database shapes.
-- Provide repository interfaces such as `ProjectRepository`, `ArticleRepository`, `ResourceRepository`, and `FaqRepository`. Start with local, approved content modules. Later, add a database/CMS implementation behind the same interface so the page and card components do not need to change.
+- Provide repository interfaces such as `ProjectRepository`, `ArticleRepository`, `ResourceRepository`, and `FaqRepository`. Start with populated local demo-fixture modules. A future backend may replace the local adapter behind the same interface so page and card components do not need to change. Do not add a CMS/database now.
 - Keep data access on the server where possible. Do not import server-only code, credentials, or private environment variables into client components. Add only non-secret configuration to `NEXT_PUBLIC_*` variables; document required private values in `.env.example` without real secrets.
 - Give all enquiry forms one typed lead contract and submit to `POST /api/leads`. Include a `sourcePage` and a discriminated `inquiryType` so the future CRM/email adapter can route ERP, software, staffing, and food-processing leads correctly. Keep page-specific fields in a validated payload rather than creating unrelated form submission formats.
 - Make `src/app/api/leads/route.ts` validate the request and delegate to a `LeadProvider` interface in `src/server/integrations/`. The first implementation may return a clearly stated “not configured” response; a future adapter can send to the approved CRM, email service, or backend without changing the form UI. Never return success unless the provider accepted the lead.
@@ -241,16 +331,16 @@ This is a boundary guide, not a requirement to create an empty file for every it
 
 | Folder / file | What it contains | Use in the build |
 |---|---|---|
-| `../../Demo html/TNT_Website.HTML.html` | Main Vietnamese prototype with 14 pages, page copy, interactions, styling, and 21 embedded image assets. | Primary source for page structure, copy direction, visual tokens, and interaction requirements. Rebuild in Next.js rather than shipping as-is. |
-| `../../Demo html/vi.json`, `../../Demo html/en.json` | Generic ABC Company strings, including authentication and e-commerce examples. | Treat only as a translation-format sample. Replace all values with approved TNT copy. |
-| `../../Demo html/i18n-demo.html` | Standalone language-switch example (Vietnamese, English, Japanese), interpolation, pluralization, local preference storage. | Reference only for the idea of language switching; it is not wired into the TNT website. |
-| `../../Demo html/index.html`, `../../Demo html/code.js` | Minimal `data-i18n` sample that fetches `/locales/{lang}.json`. | Demonstration snippet only; its expected locale path does not match the current file layout. |
-| `../../doc/pages guideline i think/trang chủ.pdf` | One-page visual guide for the home page. | Visual reference for hierarchy, hero, proof points, service cards, projects, insights, and contact form. |
-| `../../doc/pages guideline i think/about us.pdf` | One-page visual guide for the About page. | Visual reference for the company story, team, capability block, and contact section. |
-| `../../doc/pages guideline i think/landing page.pdf` | One-page food-processing/ERP landing-page guide. | Visual reference for the industry hero, assessment form, workflow diagram, fit framework, and FAQ. |
-| `../../doc/ss/*.png` | 18 screenshot references for headers, project cards, service modules, process sections, team/industry images, and other page regions. Some filenames contain OCR errors. | Use as supplementary layout references; verify each image visually instead of relying on its filename. |
-| `../../doc/TNT- DỰ ÁN TIÊU BIỂU.docx` | Detailed Vietnamese seafood-processing ERP case-study draft. It explicitly says the customer/project/results are simulated, not a verified TNT project. | Use as a case-study content template only. Keep it labeled as a mock example or replace it with an approved real case before public use. |
-| `../../doc/ss/rename_ocr.sh`, `../../doc/ss/rename_vie.sh` | Local OCR-based image-renaming helpers. | Not website code or content; do not include in the deployed application. |
+| `../../../Demo html/TNT_Website.HTML.html` | Main Vietnamese demo with 14 pages, complete copy, interactions, styling, and 21 embedded image assets. | Exact source of truth for user-facing page structure, copy, visual details, local content records, and interaction requirements. Rebuild in Next.js rather than shipping as-is. |
+| `../../../Demo html/vi.json`, `../../../Demo html/en.json` | Generic ABC Company strings, including authentication and e-commerce examples. | Treat only as a translation-format sample. Replace all values with approved TNT copy. |
+| `../../../Demo html/i18n-demo.html` | Standalone language-switch example (Vietnamese, English, Japanese), interpolation, pluralization, local preference storage. | Reference only for the idea of language switching; it is not wired into the TNT website. |
+| `../../../Demo html/index.html`, `../../../Demo html/code.js` | Minimal `data-i18n` sample that fetches `/locales/{lang}.json`. | Demonstration snippet only; its expected locale path does not match the current file layout. |
+| `../../../doc/pages guideline i think/trang chủ.pdf` | One-page visual guide for the home page. | Visual reference for hierarchy, hero, proof points, service cards, projects, insights, and contact form. |
+| `../../../doc/pages guideline i think/about us.pdf` | One-page visual guide for the About page. | Visual reference for the company story, team, capability block, and contact section. |
+| `../../../doc/pages guideline i think/landing page.pdf` | One-page food-processing/ERP landing-page guide. | Visual reference for the industry hero, assessment form, workflow diagram, fit framework, and FAQ. |
+| `../../../doc/ss/*.png` | 18 screenshot references for headers, project cards, service modules, process sections, team/industry images, and other page regions. Some filenames contain OCR errors. | Use as supplementary layout references; verify each image visually instead of relying on its filename. |
+| `../../../doc/TNT- DỰ ÁN TIÊU BIỂU.docx` | Detailed Vietnamese seafood-processing ERP case-study draft. It explicitly says the customer/project/results are simulated, not a verified TNT project. | Use as a case-study content template only. Keep it labeled as a mock example or replace it with an approved real case before public use. |
+| `../../../doc/ss/rename_ocr.sh`, `../../../doc/ss/rename_vie.sh` | Local OCR-based image-renaming helpers. | Not website code or content; do not include in the deployed application. |
 | `../` | Next.js application scaffold. | Application source, routes, and assets are maintained in this directory. |
 
 ## 9. Editorial and launch checks
@@ -263,7 +353,10 @@ The source materials contain explicit placeholders and conflicting or unverified
 - Obtain permission to identify KALA or any other customer, publish project images, describe scope, and share outcome metrics. The prototype marks project information as requiring TNT review and says no verified KALA result figures have been supplied.
 - Confirm whether the wood-manufacturing, Japan recruitment, e-learning, and AI/assessment examples are real publishable work or visual/content mockups. The HTML flags several as examples needing review.
 - The seafood-processing Word draft must not be presented as a real customer case. It explicitly labels itself a simulated scenario and says not to publish it as a verified achievement.
-- Replace sample article dates/copy and all “demo,” “view simulation,” and placeholder download states with approved editorial content and working resources.
+- Keep the demo's article dates/copy and visible “demo” or “view simulation”
+  labels in local fixture data for parity. Before public launch, confirm those
+  details and connect resource actions to actual supplied files or local detail
+  pages; never make a fake download appear functional.
 - Confirm the current TNM module list, software-development scope, IT staffing models, and all FAQ answers.
 - Approve privacy notice, consent wording, enquiry routing, and data handling before enabling live forms.
 - Confirm whether English is required at launch and provide complete reviewed translations; the current dictionaries are generic sample content.
@@ -274,15 +367,24 @@ The source materials contain explicit placeholders and conflicting or unverified
 2. Scaffold the Next.js App Router site and implement the shared layout, responsive navigation, footer, typography, and design tokens.
 3. Build Home, About, and the food-processing landing page using the shared section and form components.
 4. Build service pages, project listing/detail, and their filters and dynamic content records.
-5. Build knowledge, blog/article, resources, and FAQ pages with real approved content.
+5. Build Knowledge, Blog/article, resources, and FAQ pages from the complete
+   hard-coded demo content and match the demo layouts and interactions.
 6. Connect and configure lead forms, localized copy if needed, metadata, and approved downloadable resources.
-7. Complete content and responsive review before launch; remove all prototype review indicators and demo-only states.
+7. Compare all 14 routes against the demo at matching viewport sizes. Remove
+   reviewer-only controls and hash routing, but retain user-facing sample/demo
+   labels and reproduce the demo's content and interactions.
 
 ## 11. Launch acceptance criteria
 
-- All 14 routes in the sitemap resolve to their own complete, responsive page and use a shared visual system.
+- All 14 routes in the sitemap resolve and match their corresponding demo
+  page's content, section order, navigation, imagery, icons, spacing, and
+  interactions at matching viewport sizes. All demo image assets are served
+  locally and every Blog/article record is populated in the hard-coded data.
 - Navigation, in-page CTAs, project tabs, search/filter controls, empty states, FAQ controls, and real resource links work as described.
-- Every public factual claim, logo/photo, customer name, case study, metric, article, and contact detail has been approved by TNT.
+- All demo text and records are present in local data. Preserve the source's
+  sample/review labels, and obtain release approval before presenting any
+  simulated project, metric, customer result, identity, image, or contact detail
+  as verified public information.
 - Forms validate and deliver enquiries to the approved destination, with accurate success/error states and approved consent copy.
 - Vietnamese content is complete; any enabled English experience is fully translated, including metadata and form states.
 - The production site contains no reviewer toolbar, non-working demo downloads, simulated success submission, generic ABC strings, or unpublished sample claims.

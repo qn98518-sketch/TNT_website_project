@@ -27,8 +27,9 @@ npm run build
 ## Routes
 
 The route list follows the deadline source in [`docs/DEADLINE.md`](./docs/DEADLINE.md).
-Dynamic project and article detail pages return not-found unless their records
-are published in the local repository.
+The implementation target is a complete Next.js recreation of the user-facing
+demo, with local hard-coded data for its blog, articles, projects, guides, and
+other repeated content.
 
 | Page | Route |
 |---|---|
@@ -65,30 +66,34 @@ Project and source Markdown documents are organized in [`docs/`](./docs/):
   comparison against the HTML prototype and visual QA notes.
 
 The PDF, image, and other source references remain in the workspace `doc/` and
-`Demo html/` directories. The HTML prototype is a visual and interaction
-reference, not production content.
+`Demo html/` directories. The HTML demo is the source of truth for user-facing
+content and visual structure. See the revised implementation direction in
+[`docs/DEMO_COMPARISON_GAP_REVIEW.md`](./docs/DEMO_COMPARISON_GAP_REVIEW.md).
 
 ## Content and data
 
 - Typed content models are in `src/content/models.ts`.
-- Vietnamese page copy and approved service/FAQ records are in
+- Vietnamese page copy and demo-parity fixture records belong in
   `src/content/local-data.ts`.
 - Repository interfaces and the local adapter are in
-  `src/content/repositories.ts`. Replace the adapter with a CMS or database
-  implementation while preserving the repository contracts; page components
-  should not access provider-specific data directly.
-- Project, article, and guide collections intentionally start empty. Search
-  and filters remain usable, empty states explain that publication is pending,
-  and unknown or unpublished detail slugs return not-found.
-- Extracted prototype images in `src/content/reference-assets/` are reference
-  only and are not served by the site. Obtain content and usage approval before
-  moving any asset into `public/`.
+  `src/content/repositories.ts`. Keep content separate from page components so
+  a backend can replace the local adapter later; this build uses static local
+  data and does not add a CMS, database, or content API.
+- Populate the Blog and article routes with all demo records, full article
+  copy, metadata, and related content. Populate project, guide/resource, and
+  FAQ records to match the demo. Do not leave these collections empty or use
+  editorial prompts in place of demo content.
+- Use the demo's supplied imagery and reproduce its page-specific visual
+  details. Retain visible sample/review labels for unverified content. The
+  deadline's case-study removal note remains a public-release constraint; do
+  not present the simulated example as verified TNT work.
 
-Do not publish unverified company metrics, contact details, leadership
-identities, customer names or outcomes, article authors or dates, or
-downloadable resources. The seafood-processing case draft is simulated and must
-not be presented as a real customer project. See the [content review](./docs/WEBSITE_REVIEW.md)
-for approval-dependent items.
+Preserve the demo copy and local fixture data, including its source labels.
+Unverified company metrics, contact details, leadership identities, customer
+names or outcomes, article authors or dates, and simulated project details must
+not be represented as verified facts. Do not present the seafood-processing
+case draft as a real customer project. See the [content review](./docs/WEBSITE_REVIEW.md)
+for public-release boundaries.
 
 ## Lead form and delivery
 

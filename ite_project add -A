@@ -1,0 +1,75 @@
+ docs/DEMO_COMPARISON_GAP_REVIEW.md         |   10 [32m+[m[31m-[m
+ docs/GPT_VISUAL_UPDATE_PROMPT.md           |   53 [32m++[m
+ docs/WEBSITE_BRIEF.md                      |   43 [32m+[m[31m-[m
+ docs/WEBSITE_REVIEW.md                     |    2 [32m+[m[31m-[m
+ eslint.config.mjs                          |    3 [32m+[m[31m-[m
+ package.json                               |    2 [32m+[m[31m-[m
+ public/demo/blog-cloud.webp                |  Bin [31m0[m -> [32m6874[m bytes
+ public/demo/blog-security.webp             |  Bin [31m0[m -> [32m6376[m bytes
+ public/demo/blog-tech.webp                 |  Bin [31m0[m -> [32m25882[m bytes
+ public/demo/consulting-team.webp           |  Bin [31m0[m -> [32m20190[m bytes
+ public/demo/factory-food.webp              |  Bin [31m0[m -> [32m29114[m bytes
+ public/demo/factory-glass.webp             |  Bin [31m0[m -> [32m38908[m bytes
+ public/demo/factory-kala.webp              |  Bin [31m0[m -> [32m63740[m bytes
+ public/demo/factory-worker.webp            |  Bin [31m0[m -> [32m52096[m bytes
+ public/demo/leader-1.webp                  |  Bin [31m0[m -> [32m9164[m bytes
+ public/demo/leader-2.webp                  |  Bin [31m0[m -> [32m6580[m bytes
+ public/demo/leader-3.webp                  |  Bin [31m0[m -> [32m10166[m bytes
+ public/demo/leader-4.webp                  |  Bin [31m0[m -> [32m7442[m bytes
+ public/demo/leader-5.webp                  |  Bin [31m0[m -> [32m6976[m bytes
+ public/demo/pdf-about-consult.webp         |  Bin [31m0[m -> [32m23334[m bytes
+ public/demo/pdf-about-factory.webp         |  Bin [31m0[m -> [32m32926[m bytes
+ public/demo/pdf-about-worker.webp          |  Bin [31m0[m -> [32m78646[m bytes
+ public/demo/pdf-food-laptop.webp           |  Bin [31m0[m -> [32m28938[m bytes
+ public/demo/pdf-food-worker.webp           |  Bin [31m0[m -> [32m47624[m bytes
+ public/demo/pdf-home-glass.webp            |  Bin [31m0[m -> [32m86386[m bytes
+ public/demo/pdf-home-laptop.webp           |  Bin [31m0[m -> [32m20416[m bytes
+ public/demo/tech-blue.webp                 |  Bin [31m0[m -> [32m68302[m bytes
+ public/images/ai_usage.webp                |  Bin [31m0[m -> [32m139012[m bytes
+ public/images/business_technology.webp     |  Bin [31m0[m -> [32m231528[m bytes
+ public/images/cloud_computing.webp         |  Bin [31m0[m -> [32m87954[m bytes
+ public/images/computer-dashboard.webp      |  Bin [31m0[m -> [32m27462[m bytes
+ public/images/computer-laptop.webp         |  Bin [31m0[m -> [32m34088[m bytes
+ public/images/cyber_shield.webp            |  Bin [31m0[m -> [32m51040[m bytes
+ public/images/education.webp               |  Bin [31m0[m -> [32m143550[m bytes
+ public/images/food_process_factory.webp    |  Bin [31m0[m -> [32m104764[m bytes
+ public/images/glass_factory.webp           |  Bin [31m0[m -> [32m182562[m bytes
+ public/images/head_homepage.webp           |  Bin [31m0[m -> [32m55970[m bytes
+ public/images/heading_homepage.webp        |  Bin [31m0[m -> [32m50344[m bytes
+ public/images/nguyen_huu_chu.webp          |  Bin [31m0[m -> [32m37432[m bytes
+ public/images/person_1.webp                |  Bin [31m0[m -> [32m9302[m bytes
+ public/images/person_2.webp                |  Bin [31m0[m -> [32m7456[m bytes
+ public/images/person_3.webp                |  Bin [31m0[m -> [32m10372[m bytes
+ public/images/person_4.webp                |  Bin [31m0[m -> [32m7710[m bytes
+ public/images/person_5.webp                |  Bin [31m0[m -> [32m7634[m bytes
+ public/images/solution.webp                |  Bin [31m0[m -> [32m67456[m bytes
+ public/images/tran_nong_lam.webp           |  Bin [31m0[m -> [32m48404[m bytes
+ public/images/tran_thi_hanh.webp           |  Bin [31m0[m -> [32m36438[m bytes
+ public/images/trinh_ba_ngoc.webp           |  Bin [31m0[m -> [32m34442[m bytes
+ public/images/trinh_ngoc_bien.webp         |  Bin [31m0[m -> [32m69724[m bytes
+ public/images/wood_factory.webp            |  Bin [31m0[m -> [32m276636[m bytes
+ public/images/work_factory.webp            |  Bin [31m0[m -> [32m135494[m bytes
+ src/app/dich-vu/page.tsx                   |  198 [32m++++[m[31m-[m
+ src/app/du-an/[slug]/page.tsx              |   38 [32m+[m[31m-[m
+ src/app/du-an/page.tsx                     |  147 [32m+++[m[31m-[m
+ src/app/giai-phap-nganh-thuc-pham/page.tsx |  191 [32m++[m[31m--[m
+ src/app/globals.css                        | 4013 [32m++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++[m[31m-----------------[m
+ src/app/kien-thuc/blog/[slug]/page.tsx     |  115 [32m++[m[31m-[m
+ src/app/kien-thuc/blog/page.tsx            |  116 [32m++[m[31m-[m
+ src/app/kien-thuc/faq/page.tsx             |   35 [32m+[m[31m-[m
+ src/app/kien-thuc/guides/page.tsx          |   63 [32m+[m[31m-[m
+ src/app/kien-thuc/page.tsx                 |  252 [32m+++++[m[31m-[m
+ src/app/page.tsx                           |  313 [32m+++[m[31m----[m
+ src/app/ve-tnt/page.tsx                    |  203 [32m++[m[31m---[m
+ src/components/catalog-browser.tsx         |   84 [32m+[m[31m-[m
+ src/components/content-page.tsx            |   11 [32m+[m[31m-[m
+ src/components/faq-browser.tsx             |   33 [32m+[m[31m-[m
+ src/components/home-project-showcase.tsx   |   94 [32m++[m
+ src/components/scroll-reveal.tsx           |   36 [32m+[m
+ src/components/service-landing.tsx         |  424 [32m+++++++[m[31m--[m
+ src/components/site-shell.tsx              |    2 [32m+[m
+ src/content/local-data.ts                  | 1185 [32m++++++++++++++++++++++[m[31m---[m
+ src/content/models.ts                      |  165 [32m+++[m[31m-[m
+ src/content/repositories.ts                |   16 [32m+[m
+ tsconfig.json                              |    2 [32m+[m[31m-[m
+ 74 files changed, 6288 insertions(+), 1561 deletions(-)

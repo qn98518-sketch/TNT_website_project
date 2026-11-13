@@ -7,6 +7,7 @@ import { Icon } from "@/components/ui/icon";
 import "./reference-pages.css";
 import "./unified-pages.css";
 import "./wireframe-pages.css";
+import "./hero-banners.css";
 /** Shared navigation and footer, with a matching content style for the other pages. */
 export async function ReferenceFrame({ children, variant }: {
     children: React.ReactNode;

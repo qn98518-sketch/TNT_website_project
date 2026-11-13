@@ -1,0 +1,189 @@
+/*
+ * Responsive page banners (heroes).
+ * Loaded after the reference/unified/wireframe sheets so these rules win the cascade.
+ * Breakpoints: mobile <=760px, tablet 761–1100px, desktop >=1101px.
+ * Type sizes use clamp() floors so the 1920px artboard scale (--u) never shrinks
+ * banner text below a readable size on tablets and small laptops.
+ */
+
+/* ---------------------------------------------------------------- shared */
+.rf-frame :is(.rf-home-hero,.rf-about-hero,.rf-food-hero,.wf-hero) h1 { text-wrap:balance; }
+.rf-frame :is(.rf-home-hero,.rf-about-hero,.rf-food-hero-copy) .rf-button {
+  min-height:clamp(48px,3.3vw,64px);padding:clamp(12px,.8vw,16px) clamp(20px,1.6vw,30px);
+  font-size:clamp(15px,1.05vw,20px);gap:clamp(10px,.8vw,16px);border-radius:clamp(8px,.5vw,10px);
+}
+.rf-frame :is(.rf-home-hero,.rf-about-hero,.rf-food-hero-copy) .rf-button svg { width:clamp(18px,1.2vw,24px);height:clamp(18px,1.2vw,24px); }
+
+/* ------------------------------------------------------------ home (/) */
+.rf-frame .rf-home-hero { height:auto;min-height:clamp(460px,35.3vw,678px);display:flex;overflow:hidden; }
+.rf-frame .rf-home-hero .rf-container { height:auto;padding-block:clamp(40px,3.5vw,72px); }
+.rf-frame .rf-home-hero .rf-eyebrow { font-size:clamp(12px,1vw,19px);letter-spacing:.08em; }
+.rf-frame .rf-home-hero h1 { font-size:clamp(42px,3.55vw,68px);letter-spacing:-.035em;margin-bottom:clamp(18px,1.4vw,28px); }
+.rf-frame .rf-home-hero p { font-size:clamp(17px,1.2vw,23px);line-height:1.55;max-width:clamp(480px,42vw,820px); }
+.rf-frame .rf-home-hero .rf-actions { margin-top:clamp(24px,1.9vw,36px);flex-wrap:wrap; }
+
+/* ----------------------------------------------------------- about (/ve-tnt) */
+.rf-frame .rf-about-hero { min-height:clamp(440px,33.3vw,640px);overflow:hidden; }
+.rf-frame .rf-about-hero>img.tnt-media[data-media-kind] {
+  position:absolute;inset:0 0 0 auto;width:min(74%,1560px);height:100%;max-height:none;aspect-ratio:auto;
+  object-fit:cover;object-position:72% 30%;border-radius:0;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 34%);
+}
+.rf-frame .rf-about-hero-panel { display:flex;align-items:center;min-height:inherit;
+  background:linear-gradient(90deg,var(--brand-navy) 0%,var(--brand-navy) 26%,color-mix(in srgb,var(--brand-navy) 82%,transparent) 44%,color-mix(in srgb,var(--brand-navy) 18%,transparent) 64%,transparent 80%); }
+.rf-frame .rf-about-hero-panel>div {
+  width:min(58%,880px);
+  padding:clamp(40px,4vw,72px) 0 clamp(40px,4vw,72px) max(calc((100% - 1720px) / 2),calc(100 * var(--u)));
+  box-sizing:content-box;
+}
+.rf-frame .rf-about-hero h1 { font-size:clamp(40px,3.55vw,68px);letter-spacing:-.03em; }
+.rf-frame .rf-about-hero .rf-rule { margin:clamp(20px,1.7vw,32px) 0; }
+.rf-frame .rf-about-hero p { width:auto;max-width:clamp(440px,40vw,780px);font-size:clamp(17px,1.25vw,25px);line-height:1.55;margin-bottom:clamp(24px,1.7vw,32px); }
+
+/* ------------------------------------------- food solution landing page */
+.rf-frame .rf-food-hero { min-height:clamp(560px,40vw,780px); }
+.rf-frame .rf-food-hero .rf-eyebrow { font-size:clamp(12px,.95vw,18px);letter-spacing:.04em; }
+.rf-frame .rf-food-hero h1 { font-size:clamp(42px,3.6vw,70px);line-height:1.06;letter-spacing:-.025em;margin:clamp(14px,1.2vw,24px) 0; }
+.rf-frame .rf-food-hero .rf-food-hero-copy h2 { font-size:clamp(20px,1.65vw,32px);line-height:1.25;margin-bottom:clamp(16px,1.2vw,24px); }
+.rf-frame .rf-food-hero .rf-food-hero-copy>p { width:auto;max-width:clamp(440px,33vw,640px);font-size:clamp(16px,1.12vw,21px); }
+.rf-frame .rf-food-hero .rf-actions { margin-top:clamp(22px,1.8vw,34px); }
+/* Lead form: readable floors on smaller desktops. */
+.rf-frame .rf-food-hero .lead-card { padding:clamp(22px,1.6vw,32px);border-radius:clamp(14px,1vw,20px); }
+.rf-frame .rf-food-hero .lead-card h2 { font-size:clamp(22px,1.65vw,32px);line-height:1.2; }
+.rf-frame .rf-food-hero .lead-card-heading>p { font-size:clamp(14px,.9vw,17px);line-height:1.45;margin:clamp(10px,.8vw,15px) 0; }
+.rf-frame .rf-food-hero :is(.form-notice,.consent-label) { font-size:clamp(12px,.68vw,13px);line-height:1.5; }
+.rf-frame .rf-food-hero .form-grid { gap:clamp(12px,.8vw,16px); }
+.rf-frame .rf-food-hero .form-label { font-size:clamp(14px,.9vw,17px); }
+.rf-frame .rf-food-hero .lead-form input:not([type=checkbox]),.rf-frame .rf-food-hero .lead-form select { min-height:clamp(42px,2.3vw,46px);font-size:clamp(14px,.85vw,16px); }
+.rf-frame .rf-food-hero .lead-form .button { min-height:clamp(46px,2.6vw,52px);font-size:clamp(15px,.95vw,18px); }
+
+@media(min-width:1101px) {
+  /* One photograph, placed in the gap between the copy and the form. */
+  .rf-frame .rf-food-scene { inset:0 0 0 30%;width:auto;height:100%;background-position:38% 35%;background-size:cover;
+    mask-image:linear-gradient(90deg,transparent 0%,#000 30%); }
+  .rf-frame .rf-food-scene::before { background:linear-gradient(90deg,color-mix(in srgb,var(--brand-navy) 70%,transparent) 0%,color-mix(in srgb,var(--brand-navy) 25%,transparent) 32%,transparent 55%),linear-gradient(0deg,color-mix(in srgb,var(--brand-navy) 55%,transparent),transparent 30%); }
+  .rf-frame .rf-food-scene::after { content:none; }
+  .rf-frame .rf-food-hero-grid { grid-template-columns:minmax(0,1fr) clamp(380px,28vw,540px);gap:clamp(48px,14vw,340px);
+    padding-top:clamp(40px,3vw,60px);padding-bottom:clamp(48px,3.5vw,72px);align-items:center; }
+  .rf-frame .rf-food-hero .lead-card { align-self:center;margin-top:0; }
+}
+
+/* ------------------------------------- shared wireframe hero (all other pages) */
+.rf-unified .wf-hero .wf-hero-art { inset:0 0 0 auto;width:min(64%,1120px);display:block; }
+/* Compact banners are shorter: narrow the art so the illustration is not cropped. */
+.rf-unified .wf-hero-compact .wf-hero-art { width:min(56%,44vw,800px); }
+.rf-unified .wf-hero .wf-hero-art img {
+  width:100%;height:100%;max-width:none;max-height:none;object-fit:cover;object-position:center 40%;
+  mask-image:linear-gradient(90deg,transparent 0%,#000 36%);mask-composite:add;
+}
+.rf-unified .wf-hero .wf-hero-shade {
+  background:linear-gradient(90deg,var(--brand-navy) 0%,var(--brand-navy) 30%,color-mix(in srgb,var(--brand-navy) 82%,transparent) 44%,color-mix(in srgb,var(--brand-navy) 30%,transparent) 62%,transparent 82%),
+    linear-gradient(0deg,color-mix(in srgb,var(--brand-navy) 45%,transparent),transparent 28%);
+}
+.rf-unified .wf-hero .wf-hero-copy { max-width:clamp(560px,47vw,900px); }
+.rf-unified .wf-hero h1 { font-size:clamp(38px,3.55vw,68px);letter-spacing:-.03em;margin:clamp(14px,1.1vw,20px) 0 clamp(18px,1.3vw,24px); }
+.rf-unified .wf-hero .wf-kicker { font-size:clamp(12px,.85vw,16px); }
+.rf-unified .wf-hero-copy>p { max-width:clamp(480px,38vw,740px);font-size:clamp(16px,1.15vw,21px);line-height:1.6; }
+.rf-unified .wf-hero .rf-button { min-height:clamp(48px,3vw,56px);font-size:clamp(15px,1vw,18px);padding:clamp(12px,.8vw,15px) clamp(20px,1.4vw,26px); }
+
+/* ---------------------------------------------------------------- tablet */
+@media(min-width:761px) and (max-width:1100px) {
+  /* Home: art sits behind the right half, copy keeps a solid backdrop. */
+  .rf-frame .rf-home-hero { min-height:clamp(440px,52vw,540px); }
+  .rf-frame .rf-home-hero:before { width:68%;background-size:cover;background-position:72% center;mask-image:linear-gradient(90deg,transparent,#000 30%); }
+  .rf-frame .rf-home-hero::after { content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--brand-navy) 0%,var(--brand-navy) 34%,color-mix(in srgb,var(--brand-navy) 55%,transparent) 55%,transparent 75%); }
+  .rf-frame .rf-home-hero .rf-container { width:calc(100% - 64px);z-index:1; }
+  .rf-frame .rf-home-hero-copy { max-width:min(60%,560px);padding-left:0; }
+  .rf-frame .rf-home-hero h1 { font-size:clamp(38px,4.6vw,48px); }
+  .rf-frame .rf-home-hero p { font-size:17px; }
+
+  /* About */
+  .rf-frame .rf-about-hero { min-height:clamp(420px,50vw,520px); }
+  .rf-frame .rf-about-hero>img.tnt-media[data-media-kind] { width:72%;object-position:78% center; }
+  .rf-frame .rf-about-hero-panel { background:linear-gradient(90deg,var(--brand-navy) 0%,var(--brand-navy) 34%,color-mix(in srgb,var(--brand-navy) 75%,transparent) 52%,color-mix(in srgb,var(--brand-navy) 15%,transparent) 75%,transparent 90%); }
+  .rf-frame .rf-about-hero-panel>div { width:min(60%,520px);padding-left:32px; }
+  .rf-frame .rf-about-hero h1 { font-size:clamp(36px,4.4vw,46px); }
+
+  /* Food: single column, form below the copy over a dimmed photograph. */
+  .rf-frame .rf-food-hero { min-height:0; }
+  .rf-frame .rf-food-scene { inset:0;width:100%;background-position:center 30%; }
+  .rf-frame .rf-food-scene::after { content:none; }
+  .rf-frame .rf-food-scene::before { background:linear-gradient(90deg,color-mix(in srgb,var(--brand-navy) 94%,transparent) 0%,color-mix(in srgb,var(--brand-navy) 82%,transparent) 50%,color-mix(in srgb,var(--brand-navy) 55%,transparent) 100%),linear-gradient(0deg,var(--brand-navy),transparent 40%); }
+  .rf-frame .rf-food-hero-grid { grid-template-columns:1fr;gap:40px;width:calc(100% - 64px);padding:48px 0 56px; }
+  .rf-frame .rf-food-hero-copy { max-width:680px; }
+  .rf-frame .rf-food-hero h1 { font-size:clamp(40px,5.2vw,54px); }
+  .rf-frame .rf-food-hero .rf-food-hero-copy h2 { font-size:clamp(21px,2.6vw,27px); }
+  .rf-frame .rf-food-hero .rf-food-hero-copy>p { max-width:620px;font-size:17px; }
+  .rf-frame .rf-food-hero .lead-card { max-width:640px;width:100%;margin:0; }
+  .rf-frame .rf-food-hero .form-grid { grid-template-columns:1fr 1fr; }
+
+  /* Shared wireframe hero */
+  .rf-unified .wf-hero .wf-hero-art { width:70%; }
+  .rf-unified .wf-hero .wf-hero-art img { mask-image:linear-gradient(90deg,transparent 0%,#000 40%); }
+  .rf-unified .wf-hero .wf-hero-shade { background:linear-gradient(90deg,var(--brand-navy) 0%,var(--brand-navy) 32%,color-mix(in srgb,var(--brand-navy) 80%,transparent) 52%,color-mix(in srgb,var(--brand-navy) 30%,transparent) 75%,color-mix(in srgb,var(--brand-navy) 10%,transparent)); }
+  .rf-unified .wf-hero-inner { min-height:clamp(420px,50vw,500px); }
+  .rf-unified .wf-hero-compact .wf-hero-inner { min-height:clamp(340px,40vw,400px); }
+  .rf-unified .wf-hero .wf-hero-copy { max-width:min(64%,580px); }
+  .rf-unified .wf-hero h1 { font-size:clamp(36px,4.4vw,46px); }
+  .rf-unified .wf-hero-copy>p { font-size:17px; }
+}
+
+/* Portrait tablet: home artwork reads better as a band under the copy. */
+@media(min-width:761px) and (max-width:900px) {
+  .rf-frame .rf-home-hero { display:block;min-height:0;padding-bottom:min(54vw,460px); }
+  .rf-frame .rf-home-hero:before { inset:auto 0 0;width:100%;height:min(54vw,460px);background-size:cover;background-position:center 60%;mask-image:linear-gradient(180deg,transparent,#000 22%); }
+  .rf-frame .rf-home-hero::after { content:none; }
+  .rf-frame .rf-home-hero .rf-container { padding-block:48px 8px; }
+  .rf-frame .rf-home-hero-copy { max-width:620px; }
+}
+
+/* ---------------------------------------------------------------- mobile */
+@media(max-width:760px) {
+  .rf-frame :is(.rf-home-hero,.rf-about-hero,.rf-food-hero-copy) .rf-button { min-height:46px;padding:12px 18px;font-size:15px;gap:10px; }
+  .rf-frame :is(.rf-home-hero,.rf-about-hero,.rf-food-hero-copy) .rf-button svg { width:18px;height:18px; }
+
+  /* Phones: every banner photo becomes a blurred, dimmed full-bleed backdrop behind the copy. */
+  .rf-frame :is(.rf-home-hero,.rf-about-hero,.rf-food-hero),.rf-unified .wf-hero { position:relative;isolation:isolate;overflow:hidden; }
+
+  /* Home */
+  .rf-frame .rf-home-hero { display:block;min-height:0;padding-bottom:0; }
+  .rf-frame .rf-home-hero:before { inset:-12px;z-index:-2;width:auto;height:auto;background-size:cover;background-position:62% center;filter:blur(3px);mask-image:none; }
+  .rf-frame .rf-home-hero::after { content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,color-mix(in srgb,var(--brand-navy) 86%,transparent),color-mix(in srgb,var(--brand-navy) 72%,transparent) 55%,color-mix(in srgb,var(--brand-navy) 88%,transparent)); }
+  .rf-frame .rf-home-hero .rf-container { padding-block:44px 48px; }
+  .rf-frame .rf-home-hero .rf-eyebrow { font-size:11px; }
+  .rf-frame .rf-home-hero h1 { font-size:clamp(31px,8.6vw,42px);letter-spacing:-.03em;margin-bottom:18px; }
+  .rf-frame .rf-home-hero p { font-size:16px; }
+
+  /* About */
+  .rf-frame .rf-about-hero { display:block;min-height:0; }
+  .rf-frame .rf-about-hero>img.tnt-media[data-media-kind] { position:absolute;inset:-12px;z-index:-2;width:calc(100% + 24px);height:calc(100% + 24px);object-fit:cover;object-position:70% center;filter:blur(3px);mask-image:none; }
+  .rf-frame .rf-about-hero-panel { position:relative;min-height:0;background:linear-gradient(180deg,color-mix(in srgb,var(--brand-navy) 86%,transparent),color-mix(in srgb,var(--brand-navy) 72%,transparent) 55%,color-mix(in srgb,var(--brand-navy) 88%,transparent)); }
+  .rf-frame .rf-about-hero-panel>div { width:100%;padding:44px 18px 48px;box-sizing:border-box; }
+  .rf-frame .rf-about-hero h1 { font-size:clamp(29px,7.8vw,40px); }
+  .rf-frame .rf-about-hero p { max-width:none;font-size:16px; }
+
+  /* Food */
+  .rf-frame .rf-food-mobile-art { display:none; }
+  .rf-frame .rf-food-scene { inset:-12px;width:auto;height:auto;background-position:45% center;filter:blur(3px); }
+  .rf-frame .rf-food-scene::before { background:linear-gradient(180deg,color-mix(in srgb,var(--brand-navy) 88%,transparent),color-mix(in srgb,var(--brand-navy) 74%,transparent) 45%,color-mix(in srgb,var(--brand-navy) 90%,transparent)); }
+  .rf-frame .rf-food-hero-copy::before { content:none; }
+  .rf-frame .rf-food-hero-grid { padding-top:40px;padding-bottom:40px;gap:32px; }
+  .rf-frame .rf-food-hero h1 { font-size:clamp(30px,8.4vw,40px);letter-spacing:-.02em; }
+  .rf-frame .rf-food-hero .rf-food-hero-copy h2 { font-size:clamp(18px,5vw,22px); }
+  .rf-frame .rf-food-hero .rf-eyebrow { font-size:11px; }
+  .rf-frame .rf-food-hero .rf-food-hero-copy>p { max-width:none;font-size:15px; }
+  .rf-frame .rf-food-hero .lead-card h2 { font-size:24px; }
+
+  /* Shared wireframe hero */
+  .rf-unified .wf-hero .wf-hero-art,.rf-unified .wf-hero-compact .wf-hero-art { position:absolute;inset:-12px;z-index:-2;width:auto;height:auto; }
+  .rf-unified .wf-hero .wf-hero-art img { object-position:62% center;filter:blur(3px);mask-image:none; }
+  .rf-unified .wf-hero .wf-hero-shade { display:block;z-index:-1;background:linear-gradient(180deg,color-mix(in srgb,var(--brand-navy) 86%,transparent),color-mix(in srgb,var(--brand-navy) 72%,transparent) 55%,color-mix(in srgb,var(--brand-navy) 88%,transparent)); }
+  .rf-unified .wf-hero-inner,.rf-unified .wf-hero-compact .wf-hero-inner { min-height:0;padding:44px 0 48px; }
+  .rf-unified .wf-hero .wf-hero-copy { max-width:none; }
+  .rf-unified .wf-hero h1 { font-size:clamp(30px,8.4vw,40px);letter-spacing:-.025em;margin:14px 0 16px; }
+  .rf-unified .wf-hero-copy>p { max-width:none;font-size:16px;margin-bottom:24px; }
+  .rf-unified .wf-hero .rf-button { min-height:46px;font-size:15px; }
+}
+@media(max-width:480px) {
+  .rf-frame :is(.rf-home-hero,.rf-food-hero-copy) .rf-actions>.rf-button,.rf-unified .wf-hero .wf-actions>.rf-button { flex:1 1 auto; }
+}

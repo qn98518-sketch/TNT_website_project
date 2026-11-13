@@ -4,12 +4,12 @@ import { serviceRepository } from "@/content/repositories";
 import { createPageMetadata } from "@/lib/metadata";
 import { notFound } from "next/navigation";
 
-export const metadata = createPageMetadata({
+export async function generateMetadata() { return createPageMetadata({
   title: "Outsourcing",
   description:
     "Trao đổi nhu cầu phát triển hoặc mở rộng phần mềm theo mục tiêu và phạm vi cụ thể.",
   path: "/dich-vu/outsourcing",
-});
+}); }
 
 export default async function OutsourcingServicePage() {
   const service = await serviceRepository.findPublishedBySlug("outsourcing");

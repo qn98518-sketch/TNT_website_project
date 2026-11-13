@@ -1,0 +1,1398 @@
+[
+  {
+    "page": "home",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "nx-hero nx-home-hero page-section",
+        "headings": [
+          "Kiến tạo công nghệ. Thúc đẩy tăng trưởng."
+        ],
+        "layouts": [
+          "nx-glass-panel",
+          "nx-glass-panel nx-glass-main"
+        ],
+        "images": [
+          {
+            "class": "nx-hero-photo",
+            "data-bg": "pdf-home-glass"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Năng lực được khẳng định qua từng dự án"
+        ],
+        "layouts": [],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-soft",
+        "headings": [
+          "Công nghệ toàn diện cho doanh nghiệp"
+        ],
+        "layouts": [
+          "nx-erp-feature",
+          "nx-erp-feature-copy",
+          "nx-erp-feature-screen",
+          "nx-erp-mini-grid",
+          "nx-five-grid",
+          "nx-feature-card nx-clickable"
+        ],
+        "images": [
+          {
+            "alt": "Hình laptop TNM ERP theo bản thiết kế khách hàng",
+            "class": "nx-actual-laptop",
+            "data-img": "pdf-home-laptop"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-navy",
+        "headings": [
+          "Vì sao doanh nghiệp chọn TNT?"
+        ],
+        "layouts": [
+          "nx-feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-soft",
+        "headings": [
+          "Từ nhu cầu đến giá trị trong 4 bước đơn giản"
+        ],
+        "layouts": [
+          "nx-steps-four",
+          "nx-process-values"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Giải pháp thực tế, giá trị bền vững"
+        ],
+        "layouts": [
+          "nx-feature-case",
+          "nx-feature-case-img",
+          "nx-feature-case-copy",
+          "nx-case-label",
+          "nx-case-meta",
+          "nx-case-proof"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa dự án nhà máy kính KALA",
+            "data-img": "factory-kala",
+            "id": "nx-project-img"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-soft",
+        "headings": [
+          "Cập nhật xu hướng công nghệ và góc nhìn chuyên gia"
+        ],
+        "layouts": [
+          "nx-editorial-grid"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa bài viết về công nghệ",
+            "data-img": "factory-worker"
+          },
+          {
+            "alt": "Hình minh họa nhà máy",
+            "data-img": "blog-cloud"
+          },
+          {
+            "alt": "Hình minh họa công nghệ",
+            "data-img": "blog-security"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "contact-section page-section",
+        "headings": [
+          "Cùng nhau kiến tạo giải pháp phù hợp cho doanh nghiệp của bạn"
+        ],
+        "layouts": [
+          "contact-section page-section",
+          "container contact-grid",
+          "contact-info",
+          "contact-perks"
+        ],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "about",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "nx-about-hero page-section",
+        "headings": [
+          "Hiểu nghiệp vụ trước. Đề xuất giải pháp sau."
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "class": "nx-about-hero-photo",
+            "data-bg": "pdf-about-worker"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Công nghệ phục vụ nhu cầu vận hành thực tế"
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Dây chuyền sản xuất thực phẩm theo thiết kế khách hàng",
+            "data-img": "pdf-about-factory"
+          },
+          {
+            "alt": "Tư vấn giải pháp CNTT cùng nhà máy thực phẩm",
+            "data-img": "pdf-about-consult"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-navy",
+        "headings": [],
+        "layouts": [
+          "nx-focus-grid"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-soft",
+        "headings": [
+          "FIT FIRST. CUSTOMIZE WITH PURPOSE."
+        ],
+        "layouts": [
+          "nx-method-step"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-soft",
+        "headings": [
+          "Năng lực triển khai"
+        ],
+        "layouts": [],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Đội ngũ lãnh đạo"
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Ảnh minh họa Nguyễn Hữu Chữ",
+            "data-img": "leader-1"
+          },
+          {
+            "alt": "Ảnh minh họa Trần Nông Lâm",
+            "data-img": "leader-2"
+          },
+          {
+            "alt": "Ảnh minh họa Trịnh Ngọc Biên",
+            "data-img": "leader-3"
+          },
+          {
+            "alt": "Ảnh minh họa Trần Thị Hạnh",
+            "data-img": "leader-4"
+          },
+          {
+            "alt": "Ảnh minh họa Trịnh Bá Ngọc",
+            "data-img": "leader-5"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "contact-section page-section",
+        "headings": [
+          "Chia sẻ vấn đề. Cùng xác định giải pháp phù hợp."
+        ],
+        "layouts": [
+          "contact-section page-section",
+          "container contact-grid",
+          "contact-info",
+          "nx-about-contact-line"
+        ],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "food",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "nx-food-hero page-section",
+        "headings": [
+          "Sản xuất bao nhiêu, hao hụt ở đâu, tồn kho thế nào?",
+          "Quản lý nhà máy bằng dữ liệu kết nối, thay vì những file rời rạc."
+        ],
+        "layouts": [
+          "nx-food-hero-filter"
+        ],
+        "images": [
+          {
+            "class": "nx-food-hero-photo",
+            "data-bg": "pdf-food-worker"
+          },
+          {
+            "alt": "Màn hình dashboard TNM ERP trên laptop",
+            "class": "nx-food-laptop-native",
+            "data-img": "pdf-food-laptop"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Nhà máy đang mất kiểm soát ở khâu nào?"
+        ],
+        "layouts": [
+          "nx-four-features",
+          "nx-feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-soft",
+        "headings": [
+          "Từ dữ liệu rời rạc đến vận hành liên thông"
+        ],
+        "layouts": [],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-navy",
+        "headings": [],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Đội ngũ TNT trao đổi cùng chuyên gia tại nhà máy",
+            "data-img": "consulting-team"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Vì sao doanh nghiệp làm việc với TNT?"
+        ],
+        "layouts": [
+          "nx-four-features",
+          "nx-feature-card"
+        ],
+        "images": [
+          {
+            "alt": "Nhà máy kính trong dự án tham khảo của TNT",
+            "data-img": "factory-kala"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section section-soft",
+        "headings": [
+          "Quy trình đánh giá và triển khai"
+        ],
+        "layouts": [
+          "nx-steps-five"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Câu hỏi thường gặp"
+        ],
+        "layouts": [],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "overview",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-split page-section",
+        "headings": [
+          "Giải pháp đúng nhu cầu. Đồng hành cùng tăng trưởng."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "tech-blue"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Công nghệ toàn diện cho doanh nghiệp"
+        ],
+        "layouts": [
+          "service-grid",
+          "service-tile service-tile-featured"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-navy page-section",
+        "headings": [
+          "Hiểu bài toán. Thiết kế giải pháp phù hợp."
+        ],
+        "layouts": [
+          "navy-feature",
+          "value-grid"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Năng lực được thể hiện qua dự án thực tế"
+        ],
+        "layouts": [
+          "project-grid",
+          "meta-label"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa dự án Giải pháp quản lý sản xuất cho nhà máy kính KALA",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa dự án Hệ thống quản trị cho doanh nghiệp sản xuất gỗ",
+            "class": "",
+            "data-img": "factory-glass",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa dự án Website tuyển dụng cho thị trường Nhật Bản",
+            "class": "",
+            "data-img": "tech-blue",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Từ nhu cầu đến giải pháp phù hợp"
+        ],
+        "layouts": [
+          "process-grid",
+          "process-step"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "contact-section page-section",
+        "headings": [
+          "Cùng nhau kiến tạo giải pháp phù hợp"
+        ],
+        "layouts": [
+          "contact-section page-section",
+          "container contact-grid",
+          "contact-info",
+          "contact-perks"
+        ],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "erp",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-split page-section",
+        "headings": [
+          "Kết nối dữ liệu. Kiểm soát vận hành."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "factory-worker"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Doanh nghiệp đang mắc kẹt ở đâu?"
+        ],
+        "layouts": [
+          "features-four",
+          "feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Từ dữ liệu rời rạc đến vận hành liên thông"
+        ],
+        "layouts": [
+          "compare-grid"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Các phân hệ quản trị trên nền tảng TNM"
+        ],
+        "layouts": [
+          "features-four",
+          "feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-navy page-section",
+        "headings": [
+          "Không phải mọi doanh nghiệp đều cần cùng một cấu hình."
+        ],
+        "layouts": [
+          "navy-option-grid"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Đồng hành cùng doanh nghiệp chế biến thực phẩm"
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Dây chuyền chế biến thực phẩm",
+            "class": "",
+            "data-img": "factory-food",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Giải pháp thực tế. Giá trị bền vững."
+        ],
+        "layouts": [
+          "featured-story"
+        ],
+        "images": [
+          {
+            "alt": "Nhà máy sản xuất kính KALA",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Những câu hỏi thường gặp"
+        ],
+        "layouts": [],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "contact-section page-section",
+        "headings": [
+          "Bắt đầu từ bài toán vận hành của bạn"
+        ],
+        "layouts": [
+          "contact-section page-section",
+          "container contact-grid",
+          "contact-info",
+          "contact-perks"
+        ],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "outsourcing",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-split page-section",
+        "headings": [
+          "Từ ý tưởng đến sản phẩm vận hành thực tế."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "tech-blue"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Đúng bài toán. Đúng nguồn lực."
+        ],
+        "layouts": [
+          "features-three",
+          "feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Những hạng mục TNT có thể đồng hành"
+        ],
+        "layouts": [
+          "features-three",
+          "feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-navy page-section",
+        "headings": [
+          "Quy trình rõ ràng. Phối hợp minh bạch."
+        ],
+        "layouts": [
+          "process-grid",
+          "process-step"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Năng lực triển khai gắn với hợp tác thực tế"
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Đội ngũ trao đổi giải pháp tại nhà máy",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Sản phẩm đã triển khai"
+        ],
+        "layouts": [
+          "project-grid",
+          "meta-label"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa dự án Website tuyển dụng cho thị trường Nhật Bản",
+            "class": "",
+            "data-img": "tech-blue",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa dự án Nền tảng đào tạo trực tuyến cho khách hàng quốc tế",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "contact-section page-section",
+        "headings": [
+          "Bạn đang tìm đối tác phát triển phần mềm?"
+        ],
+        "layouts": [
+          "contact-section page-section",
+          "container contact-grid",
+          "contact-info",
+          "contact-perks"
+        ],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "bodyshop",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-split page-section",
+        "headings": [
+          "Đúng chuyên môn. Đúng thời điểm dự án."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "consulting-team"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Mỗi giai đoạn dự án cần nguồn lực phù hợp"
+        ],
+        "layouts": [
+          "features-three",
+          "feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Các vị trí CNTT doanh nghiệp thường cần"
+        ],
+        "layouts": [
+          "features-three",
+          "feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-navy page-section",
+        "headings": [
+          "Tiếp nhận rõ nhu cầu. Phối hợp theo từng bước."
+        ],
+        "layouts": [
+          "process-grid",
+          "process-step"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Linh hoạt theo phương thức hợp tác được thống nhất"
+        ],
+        "layouts": [
+          "features-three",
+          "feature-card"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Đồng hành cùng đội dự án của bạn"
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Hình ảnh đội ngũ trao đổi nghiệp vụ",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "contact-section page-section",
+        "headings": [
+          "Bạn đang cần bổ sung nhân lực CNTT?"
+        ],
+        "layouts": [
+          "contact-section page-section",
+          "container contact-grid",
+          "contact-info",
+          "contact-perks"
+        ],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "projects",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-split page-section",
+        "headings": [
+          "Giải pháp thực tế. Giá trị bền vững."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "factory-kala"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Nhà máy kính KALA: quản lý sản xuất TNM"
+        ],
+        "layouts": [
+          "featured-story"
+        ],
+        "images": [
+          {
+            "alt": "Dự án TNM tại nhà máy kính KALA",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Tìm câu chuyện phù hợp với nhu cầu"
+        ],
+        "layouts": [
+          "filter-panel",
+          "filter-count",
+          "project-grid",
+          "meta-label"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa dự án Giải pháp quản lý sản xuất cho nhà máy kính KALA",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa dự án Hệ thống quản trị cho doanh nghiệp sản xuất gỗ",
+            "class": "",
+            "data-img": "factory-glass",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa dự án Website tuyển dụng cho thị trường Nhật Bản",
+            "class": "",
+            "data-img": "tech-blue",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa dự án Nền tảng đào tạo trực tuyến cho khách hàng quốc tế",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "small-cta",
+        "headings": [
+          "Bạn có bài toán tương tự?"
+        ],
+        "layouts": [],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "project-detail",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-split page-section",
+        "headings": [
+          "Triển khai TNM MES cho nhà máy kính KALA"
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "factory-kala"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [],
+        "layouts": [],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Thông tin sản xuất chưa kết nối xuyên suốt"
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Hoạt động vận hành nhà máy",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Kết nối vận hành với hệ thống TNM"
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Minh họa trao đổi nghiệp vụ tại cơ sở sản xuất",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section section-navy page-section",
+        "headings": [
+          "Kết quả có minh chứng. Giá trị có thể kiểm chứng."
+        ],
+        "layouts": [],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Hình ảnh và màn hình từ quá trình triển khai"
+        ],
+        "layouts": [],
+        "images": [
+          {
+            "alt": "Nhà máy kính",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hoạt động trao đổi giải pháp",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa nhà máy",
+            "class": "",
+            "data-img": "factory-glass",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Những dự án khác"
+        ],
+        "layouts": [
+          "project-grid",
+          "meta-label"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa dự án Hệ thống quản trị cho doanh nghiệp sản xuất gỗ",
+            "class": "",
+            "data-img": "factory-glass",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa dự án Website tuyển dụng cho thị trường Nhật Bản",
+            "class": "",
+            "data-img": "tech-blue",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "small-cta",
+        "headings": [
+          "Trao đổi về giải pháp phù hợp với doanh nghiệp"
+        ],
+        "layouts": [],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "knowledge",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-split page-section",
+        "headings": [
+          "Kiến thức thực tiễn. Góc nhìn từ chuyên gia."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "blog-tech"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Xu hướng & góc nhìn đáng quan tâm"
+        ],
+        "layouts": [
+          "editorial-grid",
+          "feature-article",
+          "feature-article-shade",
+          "article-card",
+          "article-image",
+          "article-copy",
+          "meta-label"
+        ],
+        "images": [
+          {
+            "alt": "Bài viết công nghệ",
+            "class": "",
+            "data-img": "blog-tech",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Những điểm cần chuẩn bị trước khi triển khai ERP",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Từ dữ liệu rời rạc đến vận hành nhà máy minh bạch",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Tìm theo lĩnh vực quan tâm"
+        ],
+        "layouts": [
+          "topics-grid"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Cập nhật kiến thức"
+        ],
+        "layouts": [
+          "article-grid",
+          "article-card",
+          "article-image",
+          "article-copy",
+          "meta-label"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa bài viết ERP giúp doanh nghiệp sản xuất kết nối dữ liệu như thế nào?",
+            "class": "",
+            "data-img": "factory-food",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Những điểm cần chuẩn bị trước khi triển khai ERP",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Từ dữ liệu rời rạc đến vận hành nhà máy minh bạch",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Tài liệu để tìm hiểu sâu hơn"
+        ],
+        "layouts": [
+          "mini-resource-grid",
+          "meta-label"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "small-cta",
+        "headings": [
+          "Có câu hỏi về giải pháp ERP?"
+        ],
+        "layouts": [],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "blog",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-compact page-section",
+        "headings": [
+          "Góc nhìn công nghệ gắn với vận hành."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "blog-tech"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [],
+        "layouts": [
+          "featured-story"
+        ],
+        "images": [
+          {
+            "alt": "Góc nhìn công nghệ và dữ liệu",
+            "class": "",
+            "data-img": "blog-tech",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Khám phá theo chủ đề"
+        ],
+        "layouts": [
+          "filter-panel",
+          "filter-count",
+          "article-grid",
+          "article-card",
+          "article-image",
+          "article-copy",
+          "meta-label"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa bài viết ERP giúp doanh nghiệp sản xuất kết nối dữ liệu như thế nào?",
+            "class": "",
+            "data-img": "factory-food",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Những điểm cần chuẩn bị trước khi triển khai ERP",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Từ dữ liệu rời rạc đến vận hành nhà máy minh bạch",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Outsourcing: khi nào doanh nghiệp nên hợp tác với đối tác phần mềm?",
+            "class": "",
+            "data-img": "tech-blue",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Quản lý kho: những dữ liệu cần theo dõi thường xuyên",
+            "class": "",
+            "data-img": "factory-glass",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Phát triển đội ngũ công nghệ linh hoạt theo dự án",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "small-cta",
+        "headings": [
+          "Bạn đang tìm giải pháp phù hợp cho doanh nghiệp?"
+        ],
+        "layouts": [],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "article",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "article-top page-section",
+        "headings": [
+          "ERP giúp doanh nghiệp sản xuất kết nối dữ liệu như thế nào?"
+        ],
+        "layouts": [
+          "article-top page-section",
+          "article-meta",
+          "article-lede"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "article-photo-wrap",
+        "headings": [],
+        "layouts": [
+          "article-photo-wrap",
+          "article-hero-image"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa bài viết công nghệ",
+            "class": "article-hero-image",
+            "data-img": "blog-tech",
+            "loading": "lazy"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section article-main page-section",
+        "headings": [
+          "Dữ liệu là nền tảng của hoạt động quản trị",
+          "Những điểm nghẽn thường gặp",
+          "Ưu tiên những nghiệp vụ có giá trị rõ ràng",
+          "Bước tiếp theo cho doanh nghiệp"
+        ],
+        "layouts": [
+          "section article-main page-section",
+          "container article-layout",
+          "article-sidebar",
+          "article-body",
+          "article-block",
+          "article-quote",
+          "article-inline-cta"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "section section-soft page-section",
+        "headings": [
+          "Bài viết liên quan"
+        ],
+        "layouts": [
+          "article-grid",
+          "article-card",
+          "article-image",
+          "article-copy",
+          "meta-label"
+        ],
+        "images": [
+          {
+            "alt": "Hình minh họa bài viết Những điểm cần chuẩn bị trước khi triển khai ERP",
+            "class": "",
+            "data-img": "consulting-team",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Từ dữ liệu rời rạc đến vận hành nhà máy minh bạch",
+            "class": "",
+            "data-img": "factory-kala",
+            "loading": "lazy"
+          },
+          {
+            "alt": "Hình minh họa bài viết Outsourcing: khi nào doanh nghiệp nên hợp tác với đối tác phần mềm?",
+            "class": "",
+            "data-img": "tech-blue",
+            "loading": "lazy"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "page": "guides",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-compact page-section",
+        "headings": [
+          "Nguồn tài liệu cho quyết định tốt hơn."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "tech-blue"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Tài liệu chọn lọc theo nhu cầu"
+        ],
+        "layouts": [
+          "filter-panel",
+          "filter-count",
+          "guide-grid",
+          "meta-label"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "small-cta",
+        "headings": [
+          "Cần tài liệu chuyên sâu hơn?"
+        ],
+        "layouts": [],
+        "images": []
+      }
+    ]
+  },
+  {
+    "page": "faq",
+    "sections": [
+      {
+        "tag": "section",
+        "class": "hero hero-compact page-section",
+        "headings": [
+          "Những câu hỏi thường gặp."
+        ],
+        "layouts": [
+          "container hero-layout"
+        ],
+        "images": [
+          {
+            "class": "hero-bg",
+            "data-bg": "tech-blue"
+          }
+        ]
+      },
+      {
+        "tag": "section",
+        "class": "section page-section",
+        "headings": [
+          "Bạn đang quan tâm vấn đề nào?"
+        ],
+        "layouts": [
+          "filter-tabs",
+          "filter-count"
+        ],
+        "images": []
+      },
+      {
+        "tag": "section",
+        "class": "small-cta",
+        "headings": [
+          "Chưa tìm thấy câu trả lời?"
+        ],
+        "layouts": [],
+        "images": []
+      }
+    ]
+  }
+]

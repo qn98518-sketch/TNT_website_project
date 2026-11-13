@@ -1,0 +1,156 @@
+import Link from "next/link";
+import { LeadForm } from "@/components/lead-form";
+import { ReferenceFrame, ReferenceGlyph, ReferenceImage } from "@/components/reference-frame";
+import { Icon, type IconName } from "@/components/ui/icon";
+import { foodSolutionPageContent } from "@/content/local-data";
+import { createPageMetadata } from "@/lib/metadata";
+export const metadata = createPageMetadata({ title: "Giải pháp ngành thực phẩm", description: "Cùng làm rõ nhu cầu quản lý nguyên vật liệu, kho, sản xuất, chất lượng và thành phẩm trong nhà máy thực phẩm.", path: "/giai-phap-nganh-thuc-pham" });
+const challengeIcons: IconName[] = ["box", "chart", "data", "shield"];
+const workflowIcons: IconName[] = ["layer", "box", "activity", "shield", "box", "chart"];
+const fitIcons: IconName[] = ["tickCircle", "layer", "code"];
+const partnershipIcons: IconName[] = ["setting", "data", "scan", "people"];
+export default function FoodSolutionPage() {
+  const content = foodSolutionPageContent;
+  return <ReferenceFrame>
+    <main className="rf-food">
+      <section className="rf-food-hero">
+        <div className="rf-food-scene" aria-hidden="true" />
+        <div className="rf-container rf-food-hero-grid">
+          <div className="rf-food-hero-copy">
+            <span className="rf-eyebrow">GIẢI PHÁP ERP CHO DOANH NGHIỆP CHẾ BIẾN THỰC PHẨM</span>
+            <h1>Sản xuất bao nhiêu,<br />hao hụt ở đâu,<br />tồn kho thế nào?</h1>
+            <h2>Quản lý nhà máy bằng dữ liệu kết nối,<br />thay vì những file rời rạc.</h2>
+            <p>{content.hero.summary}</p>
+            <div className="rf-actions">
+              <Link className="rf-button" href="#food-contact">
+                <Icon name="checklist" /> Đăng ký trao đổi cùng TNT <Icon name="arrowRight" />
+              </Link>
+              <Link className="rf-button rf-outline" href="#food-workflow">
+                <Icon name="activity" /> Xem cách vận hành thực tế</Link>
+            </div>
+          </div>
+          <div className="rf-food-mobile-art" aria-hidden="true">
+            <ReferenceImage src="/images/reference/food-tablet-clear.webp" alt="" />
+          </div>
+          <LeadForm context="food" idPrefix="food-hero-contact" submitLabel="Đăng ký đánh giá nhu cầu" title="Đánh giá nhu cầu ERP cho nhà máy bạn" description="Trao đổi với TNT để xác định chức năng phù hợp, các hạng mục cần điều chỉnh và hướng triển khai dự kiến." />
+        </div>
+      </section>
+      <section className="rf-food-challenges">
+        <div className="rf-container">
+          <h2>Nhà máy đang mất kiểm soát ở khâu nào?</h2>
+          <p>Dữ liệu phân tán giữa mua hàng, kho, sản xuất và chất lượng khiến nhà máy<br />khó nắm được tình hình thực tế, dễ phát sinh sai lệch và ảnh hưởng đến hiệu quả.</p>
+          <div className="rf-food-card-grid">{content.challenges.map((c, i) =>
+            <article key={c.title}>
+              <Icon className="rf-food-challenge-icon" name={challengeIcons[i]} size={64} />
+              <h3>{c.title}</h3>
+              <p>{c.description}</p>
+            </article>)}</div>
+        </div>
+      </section>
+      <section className="rf-food-workflow" id="food-workflow">
+        <div className="rf-container">
+          <h2>Từ dữ liệu rời rạc đến vận hành liên thông</h2>
+          <p>Kết nối dữ liệu xuyên suốt từ nguyên vật liệu đến thành phẩm, giúp nhà máy kiểm soát tốt hơn, làm việc chủ động và minh bạch hơn.</p>
+          <div className="rf-workflow-states">
+            <article>
+              <h3>Hiện trạng phổ biến</h3>
+              <ul>{content.workflowContext.before.map(t =>
+                <li key={t}>
+                  <Icon name="closeCircle" />{t}</li>)}</ul>
+            </article>
+            <Icon name="arrowRight" />
+            <article>
+              <h3>Mô hình quản lý mục tiêu</h3>
+              <ul>{content.workflowContext.after.map(t =>
+                <li key={t}>
+                  <Icon name="tickCircle" />{t}</li>)}</ul>
+            </article>
+          </div>
+          <ol className="rf-workflow-nodes">{content.workflow.map((n, i) =>
+            <li key={n.title}>
+              <Icon name={workflowIcons[i]} />
+              <h3>{n.title}</h3>
+              <p>{n.description}</p>{i < 5 && <Icon className="rf-step-arrow" name="arrowRight" />}</li>)}</ol>
+        </div>
+      </section>
+      <section className="rf-food-fit">
+        <div className="rf-container">
+          <div className="rf-food-fit-copy">
+            <span className="rf-eyebrow">FIT FIRST. CUSTOMIZE WITH PURPOSE.</span>
+            <span className="rf-rule" />
+            <h2>Có phải thay đổi toàn bộ<br />cách nhà máy vận hành?</h2>
+            <p>Không. TNT không bắt đầu bằng việc yêu cầu doanh nghiệp thay đổi hoàn toàn quy trình. Chúng tôi tìm hiểu cách nhà máy đang vận hành, đối chiếu với nền tảng TNM và cùng bạn xác định phần nào có thể sử dụng, phần nào cần điều chỉnh và phần nào chưa nên đầu tư.</p>
+            <ReferenceImage src="/images/reference/tnt-factory-consulting.webp" alt="Chuyên gia TNT cùng quản lý nhà máy trao đổi về giải pháp ERP" />
+          </div>
+          <div className="rf-fit-options">{content.fitStages.map((s, i) =>
+            <article key={s.label}>
+              <span>
+                <Icon name={fitIcons[i]} />
+              </span>
+              <div>
+                <h3>{s.label}</h3>
+                <p>{["Những nghiệp vụ TNM đã có thể áp dụng ngay hoặc chỉ cần cấu hình.", "Những nghiệp vụ cần mở rộng, tích hợp hoặc điều chỉnh để phù hợp với quy trình của nhà máy.", "Những hạng mục chưa nằm trong phạm vi và ngân sách đề xuất, để doanh nghiệp cân nhắc ở giai đoạn phù hợp."][i]}</p>
+              </div>
+              <div>
+                <b>Ví dụ</b>
+                <p>{["Mua hàng, quản lý kho, bán hàng, báo cáo quản trị.", "Định mức và hao hụt, kiểm soát chất lượng, quản lý theo lô.", "Các yêu cầu đặc thù chưa đủ thông tin để đánh giá."][i]}</p>
+              </div>
+            </article>)}<strong className="rf-fit-conclusion">
+              <Icon name="scan" /> Rõ chức năng. Rõ phần cần làm. Rõ phạm vi đầu tư.</strong>
+          </div>
+        </div>
+      </section>
+      <section className="rf-food-partnership">
+        <div className="rf-container">
+          <h2>Vì sao doanh nghiệp làm việc với TNT?</h2>
+          <p>TNT không chỉ cung cấp phần mềm, mà còn là đối tác tư vấn và triển khai giải pháp phù hợp với đặc thù vận hành của từng doanh nghiệp.</p>
+          <div className="rf-food-card-grid">{content.partnership.map((p, i) =>
+            <article key={p.title}>
+              <Icon name={partnershipIcons[i]} />
+              <h3>{p.title}</h3>
+              <p>{p.description}</p>
+            </article>)}</div>
+          <article className="rf-food-project">
+            <ReferenceImage src="/images/work_factory.webp" alt="Nhà máy kính KALA — dự án tham khảo cần xác nhận" />
+            <div>
+              <span className="rf-pill">DỰ ÁN THAM KHẢO</span>
+              <h3>Triển khai giải pháp quản lý sản xuất cho nhà máy kính KALA</h3>
+              <p>TNT đã triển khai nền tảng TNM để quản lý kế hoạch, sản xuất, kho và báo cáo cho nhà máy kính KALA, giúp chuẩn hóa dữ liệu và nâng cao hiệu quả phối hợp giữa các bộ phận.</p>
+              <small className="rf-review">Mẫu minh họa, chưa xác nhận là công việc hoặc kết quả thực tế của TNT.</small>
+              <Link href="/du-an/kala">Xem chi tiết dự án <Icon name="arrowRight" />
+              </Link>
+            </div>
+          </article>
+        </div>
+      </section>
+      <section className="rf-food-implementation">
+        <div className="rf-container">
+          <span className="rf-rule" />
+          <h2>Quy trình đánh giá và triển khai</h2>
+          <p>Quy trình bài bản, minh bạch và bám sát thực tế vận hành của doanh nghiệp.</p>
+          <ol className="rf-food-steps">{content.implementation.map((s, i) =>
+            <li key={s.title}>
+              <ReferenceGlyph name={`implementation-${i}`} />
+              <h3>{s.title}</h3>
+              <p>{s.description}</p>{i < 4 && <Icon className="rf-step-arrow" name="arrowRight" />}</li>)}</ol>
+        </div>
+      </section>
+      <section className="rf-food-faq">
+        <div className="rf-container">
+          <div>
+            <h2>Câu hỏi thường gặp</h2>
+            <div className="rf-faq-list">{content.faqs.map(f =>
+              <details key={f.id}>
+                <summary>{f.question}<span aria-hidden="true">+</span>
+                </summary>
+                <p>{f.answer}</p>
+              </details>)}</div>
+          </div>
+          <div id="food-contact">
+            <LeadForm context="food" idPrefix="food-follow-up-contact" submitLabel="Nhận tư vấn ngay" title="Bắt đầu từ bài toán vận hành của nhà máy bạn." description="Đăng ký tư vấn để đội ngũ TNT cùng bạn đánh giá nhu cầu, gợi ý phạm vi triển khai phù hợp và lộ trình thực hiện." />
+          </div>
+        </div>
+      </section>
+    </main>
+  </ReferenceFrame>;
+}

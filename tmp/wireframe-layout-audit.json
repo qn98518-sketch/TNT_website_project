@@ -1,0 +1,68 @@
+[
+  {
+    "page": "overview",
+    "reference_sections": 6,
+    "implemented_sections": 6,
+    "match": true
+  },
+  {
+    "page": "erp",
+    "reference_sections": 9,
+    "implemented_sections": 9,
+    "match": true
+  },
+  {
+    "page": "outsourcing",
+    "reference_sections": 7,
+    "implemented_sections": 7,
+    "match": true
+  },
+  {
+    "page": "bodyshop",
+    "reference_sections": 7,
+    "implemented_sections": 7,
+    "match": true
+  },
+  {
+    "page": "projects",
+    "reference_sections": 4,
+    "implemented_sections": 4,
+    "match": true
+  },
+  {
+    "page": "project-detail",
+    "reference_sections": 8,
+    "implemented_sections": 8,
+    "match": true
+  },
+  {
+    "page": "knowledge",
+    "reference_sections": 6,
+    "implemented_sections": 6,
+    "match": true
+  },
+  {
+    "page": "blog",
+    "reference_sections": 4,
+    "implemented_sections": 4,
+    "match": true
+  },
+  {
+    "page": "article",
+    "reference_sections": 4,
+    "implemented_sections": 4,
+    "match": true
+  },
+  {
+    "page": "guides",
+    "reference_sections": 3,
+    "implemented_sections": 3,
+    "match": true
+  },
+  {
+    "page": "faq",
+    "reference_sections": 3,
+    "implemented_sections": 3,
+    "match": true
+  }
+]

@@ -1,147 +1,31 @@
-import Image from "next/image";
-import Link from "next/link";
-import { CatalogBrowser } from "@/components/catalog-browser";
-import { Icon } from "@/components/ui/icon";
-import { PageFrame } from "@/components/site-shell";
-import { projectRepository } from "@/content/repositories";
-import { createPageMetadata } from "@/lib/metadata";
+import Link from 'next/link';
+import { getI18n } from '@/i18n/server';
+import { PageFrame } from '@/components/site-shell';
+import { SiteImage } from '@/components/site-image';
+import { CatalogBrowser } from '@/components/catalog-browser';
+import { Icon } from '@/components/ui/icon';
+import { WireframeCta, WireframeHeading, WireframeHero } from '@/components/wireframe-sections';
+import { projectRepository } from '@/content/repositories';
+import { createPageMetadata } from '@/lib/metadata';
+import { projectMedia } from '@/lib/media';
 
-export const metadata = createPageMetadata({
-  title: "Dự án",
-  description:
-    "Khám phá các dự án tham khảo và bài toán doanh nghiệp; nội dung mẫu cần được TNT phê duyệt công bố.",
-  path: "/du-an",
-});
+export async function generateMetadata() { return createPageMetadata({title:'Dự án',description:'Khám phá các dự án tham khảo và bài toán doanh nghiệp; nội dung mẫu cần được TNT phê duyệt công bố.',path:'/du-an'}); }
 
 export default async function ProjectsPage() {
+  const { t } = await getI18n();
   const projects = await projectRepository.listForPreview();
-  const featuredProject = projects[0];
-  if (!featuredProject) {
-    throw new Error("Missing featured project content.");
-  }
-  if (!featuredProject.image || !featuredProject.imageAlt) {
-    throw new Error(`Missing project image for "${featuredProject.slug}".`);
-  }
-
-  return (
-    <PageFrame>
-      <main>
-        <section className="projects-hero">
-          <Image
-            src={featuredProject.image}
-            alt=""
-            fill
-            priority
-            sizes="100vw"
-          />
-          <div className="container projects-hero-inner">
-            <span className="eyebrow eyebrow-light">
-              CÂU CHUYỆN DỰ ÁN <span className="eyebrow-rule" />
-            </span>
-            <h1>
-              Giải pháp thực tế.
-              <br />
-              <span>Giá trị bền vững.</span>
-            </h1>
-            <p>
-              Khám phá cách giới thiệu dự án công nghệ và bài toán doanh nghiệp.
-              KALA và các nội dung minh họa chưa xác nhận đây là dự án TNT đã
-              thực hiện; cần TNT phê duyệt trước khi công bố.
-            </p>
-            <div className="projects-hero-actions">
-              <Link className="button button-primary" href="#project-list">
-                Khám phá dự án <Icon name="arrowDown" size={16} />
-              </Link>
-              <Link className="button button-ghost" href="/dich-vu/erp">
-                Liên hệ tư vấn <Icon name="arrowRight" size={16} />
-              </Link>
-            </div>
-          </div>
-        </section>
-        <section className="section">
-          <div className="container featured-project-layout">
-            <div className="featured-project-image">
-              <Image
-                src={featuredProject.image}
-                alt={featuredProject.imageAlt}
-                fill
-                sizes="(max-width: 760px) 100vw, 52vw"
-              />
-              <span className="sample-label">{featuredProject.sourceLabel}</span>
-            </div>
-            <div className="featured-project-copy">
-              <span className="eyebrow">DỰ ÁN THAM KHẢO · MẪU DEMO</span>
-              <h2>
-                Nhà máy kính KALA:
-                <br />
-                <span>quản lý sản xuất TNM</span>
-              </h2>
-              <p>
-                Dự án được sử dụng để minh họa cấu trúc giới thiệu từ thiết kế
-                trang chủ của TNT.
-              </p>
-              <div className="featured-project-card">
-                <span className="service-proof-meta">
-                  ERP / SẢN XUẤT
-                </span>
-                <h3>{featuredProject.title}</h3>
-                <p>
-                  Giới thiệu bài toán về dữ liệu sản xuất, giải pháp theo dõi
-                  công đoạn và giá trị khi phối hợp giữa các bộ phận.
-                </p>
-                <Link
-                  className="text-link"
-                  href={`/du-an/${featuredProject.slug}`}
-                >
-                  Xem chi tiết dự án <Icon name="arrowRight" size={16} />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="section section-pale" id="project-list">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">DANH SÁCH DỰ ÁN</span>
-              <h2 className="section-title">
-                Tìm câu chuyện
-                <br />
-                <span>phù hợp với nhu cầu</span>
-              </h2>
-              <p className="section-lede">
-                Lọc theo dịch vụ và ngành nghề. Các dự án có thể thuộc nhiều góc
-                nhìn phân loại.
-              </p>
-            </div>
-            <CatalogBrowser
-              entries={projects.map((project) => ({
-                slug: project.slug,
-                title: project.title,
-                summary: project.summary,
-                topic: project.topic,
-                industry: project.industry,
-                href: `/du-an/${project.slug}`,
-                image: project.image,
-                imageAlt: project.imageAlt,
-                sourceLabel: project.sourceLabel,
-              }))}
-              kind="project"
-            />
-          </div>
-        </section>
-
-        <section className="section project-list-cta">
-          <div className="container">
-            <span className="eyebrow">TRAO ĐỔI CÙNG TNT</span>
-            <h2>Bạn có bài toán tương tự?</h2>
-            <p>TNT có thể trao đổi để đánh giá phương án triển khai phù hợp.</p>
-            <Link className="button button-primary" href="/dich-vu/erp">
-              Nhận tư vấn giải pháp <Icon name="arrowRight" size={16} />
-            </Link>
-          </div>
-        </section>
-      </main>
-    </PageFrame>
-  );
+  const featured = projects[0];
+  if (!featured) throw new Error('Missing featured project');
+  return <PageFrame><main className="wf-page">
+    <WireframeHero eyebrow="CÂU CHUYỆN DỰ ÁN" title="Giải pháp thực tế." accent="Giá trị bền vững." description="Khám phá cách giới thiệu dự án công nghệ và bài toán doanh nghiệp. KALA và các nội dung minh họa chưa xác nhận đây là dự án TNT đã thực hiện; cần TNT phê duyệt trước khi công bố." image={projectMedia(featured.slug,featured.image)} action={{href:'#project-list',label:'Khám phá dự án'}} secondary={{href:'/#contact',label:'Liên hệ tư vấn'}} />
+    <section className="wf-section"><div className="container wf-split">
+      <Link className="wf-photo" href={`/du-an/${featured.slug}`}><SiteImage src={projectMedia(featured.slug,featured.image)} alt={t(featured.imageAlt ?? featured.title)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 50vw" /></Link>
+      <div className="wf-split-copy"><span className="wf-kicker">{t('DỰ ÁN THAM KHẢO · MẪU DEMO')}</span><h2>{t('Nhà máy kính KALA:')}<br /><em>{t('quản lý sản xuất TNM')}</em></h2><span className="wf-meta">{t(featured.service)} · {t(featured.industry)}</span><h3>{t(featured.title)}</h3><p>{t(featured.summary)}</p><small className="wf-disclosure">{t(featured.sourceLabel)}</small><Link className="rf-button" href={`/du-an/${featured.slug}`}>{t('Xem chi tiết dự án')}<Icon name="arrowRight" size={18} /></Link></div>
+    </div></section>
+    <section className="wf-section wf-soft" id="project-list"><div className="container">
+      <WireframeHeading eyebrow="DANH SÁCH DỰ ÁN" title="Tìm câu chuyện" accent="phù hợp với nhu cầu" description="Lọc theo dịch vụ và ngành nghề. Các dự án có thể thuộc nhiều góc nhìn phân loại." />
+      <CatalogBrowser kind="project" entries={projects.map(project => ({...project,href:`/du-an/${project.slug}`,image:projectMedia(project.slug,project.image)}))} />
+    </div></section>
+    <WireframeCta title="Bạn có bài toán tương tự?" description="TNT có thể trao đổi để đánh giá phương án triển khai phù hợp." label="Nhận tư vấn giải pháp" />
+  </main></PageFrame>;
 }

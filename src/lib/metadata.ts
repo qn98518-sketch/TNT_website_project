@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getI18n } from "@/i18n/server";
 
 type PageMetadataInput = {
   title: string;
@@ -6,21 +7,22 @@ type PageMetadataInput = {
   path: string;
 };
 
-export function createPageMetadata({
+export async function createPageMetadata({
   title,
   description,
   path,
-}: PageMetadataInput): Metadata {
+}: PageMetadataInput): Promise<Metadata> {
+  const { locale, t } = await getI18n();
   return {
-    title,
-    description,
+    title: t(title),
+    description: t(description),
     alternates: { canonical: path },
     openGraph: {
-      title,
-      description,
+      title: t(title),
+      description: t(description),
       url: path,
-      siteName: "TNT — Trí Nghĩa Tech",
-      locale: "vi_VN",
+      siteName: t("TNT — Trí Nghĩa Tech"),
+      locale: locale === "en" ? "en_US" : "vi_VN",
       type: "website",
     },
   };

@@ -1,336 +1,150 @@
-import Image from "next/image";
+import { getI18n } from "@/i18n/server";
 import Link from "next/link";
 import { LeadForm } from "@/components/lead-form";
-import { PageFrame } from "@/components/site-shell";
+import { ReferenceFrame, ReferenceGlyph, ReferenceImage } from "@/components/reference-frame";
 import { Icon, type IconName } from "@/components/ui/icon";
 import { foodSolutionPageContent } from "@/content/local-data";
 import { createPageMetadata } from "@/lib/metadata";
-
-const challengeIcons: readonly IconName[] = [
-  "box",
-  "activity",
-  "chart",
-  "shield",
-];
-const workflowIcons: readonly IconName[] = [
-  "box",
-  "building",
-  "activity",
-  "tickCircle",
-  "shoppingCart",
-  "chart",
-];
-const implementationIcons: readonly IconName[] = [
-  "search",
-  "diagram",
-  "checklist",
-  "setting",
-  "tickCircle",
-];
-const fitIcons: readonly IconName[] = ["tickCircle", "setting", "closeCircle"];
-const partnershipIcons: readonly IconName[] = ["briefcase", "data", "checklist", "people"];
-
-export const metadata = createPageMetadata({
-  title: "Giải pháp ngành thực phẩm",
-  description:
-    "Cùng làm rõ nhu cầu quản lý nguyên vật liệu, kho, sản xuất, chất lượng và thành phẩm trong nhà máy thực phẩm.",
-  path: "/giai-phap-nganh-thuc-pham",
-});
-
-export default function FoodSolutionPage() {
-  const content = foodSolutionPageContent;
-
-  return (
-    <PageFrame>
-      <main>
-        <section className="food-hero">
-          <div aria-hidden="true" className="food-hero-photo">
-            <Image
-              src={content.hero.image}
-              alt=""
-              fill
-              priority
-              sizes="(max-width: 860px) 100vw, 55vw"
-            />
-          </div>
-          <div className="container food-hero-grid">
-            <div className="food-hero-copy">
-              <span className="eyebrow eyebrow-light">
-                {content.hero.eyebrow} <span className="eyebrow-rule" />
-              </span>
-              <h1>
-                {content.hero.title[0]}
-                <br />
-                {content.hero.title[1]}
-                <br />
-                <span>{content.hero.title[2]}</span>
-              </h1>
-              <p className="food-hero-subtitle">{content.hero.subtitle}</p>
-              <p className="hero-lede">{content.hero.summary}</p>
-              <div className="food-hero-actions">
-                <Link className="button button-primary" href="#food-contact">
-                  Đăng ký trao đổi cùng TNT <Icon name="arrowRight" size={16} />
-                </Link>
-                <Link className="button button-ghost" href="#food-workflow">
-                  Xem cách vận hành thực tế <Icon name="arrowDown" size={16} />
-                </Link>
-              </div>
-              <div className="food-hero-points">
-                <span>Nguyên liệu</span>
-                <i aria-hidden="true"><Icon name="arrowRight" size={15} /></i>
-                <span>Sản xuất</span>
-                <i aria-hidden="true"><Icon name="arrowRight" size={15} /></i>
-                <span>Thành phẩm</span>
-              </div>
-            </div>
-            <LeadForm
-              context="food"
-              idPrefix="food-hero-contact"
-              title="Đánh giá nhu cầu ERP cho nhà máy bạn"
-              description="Trao đổi với TNT để xác định chức năng phù hợp, các hạng mục cần điều chỉnh và hướng triển khai dự kiến."
-            />
-          </div>
-          <div aria-hidden="true" className="hero-bottom-glow" />
-        </section>
-
-        <section className="section">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">BÀI TOÁN THỰC TẾ</span>
-              <h2 className="section-title">
-                Nhà máy đang mất kiểm soát
-                <br />
-                <span>ở khâu nào?</span>
-              </h2>
-              <p className="section-lede">
-                Dữ liệu phân tán có thể khiến doanh nghiệp khó giám sát sản xuất,
-                kiểm soát kho và phản ứng kịp thời.
-              </p>
-            </div>
-            <div className="challenge-grid">
-              {content.challenges.map((challenge, index) => (
-                <article className="challenge-card" key={challenge.title}>
-                  <span aria-hidden="true" className="challenge-icon">
-                    <Icon name={challengeIcons[index] ?? "info"} size={22} />
-                  </span>
-                  <h3>{challenge.title}</h3>
-                  <p>{challenge.description}</p>
-                  <span aria-hidden="true" className="challenge-corner">
-                    <Icon name="arrowUp" size={16} />
-                  </span>
-                </article>
-              ))}
+export async function generateMetadata() { return createPageMetadata({ title: "Giải pháp ngành thực phẩm", description: "Cùng làm rõ nhu cầu quản lý nguyên vật liệu, kho, sản xuất, chất lượng và thành phẩm trong nhà máy thực phẩm.", path: "/giai-phap-nganh-thuc-pham" }); }
+const challengeIcons: IconName[] = ["box", "chart", "data", "shield"];
+const workflowIcons: IconName[] = ["layer", "box", "activity", "shield", "box", "chart"];
+const fitIcons: IconName[] = ["tickCircle", "layer", "code"];
+const partnershipIcons: IconName[] = ["setting", "data", "scan", "people"];
+export default async function FoodSolutionPage() {
+    const { t } = await getI18n();
+    const content = foodSolutionPageContent;
+    return <ReferenceFrame>
+    <main className="rf-food">
+      <section className="rf-food-hero">
+        <div className="rf-food-scene" aria-hidden="true"/>
+        <div className="rf-container rf-food-hero-grid">
+          <div className="rf-food-hero-copy">
+            <span className="rf-eyebrow">{t("GIẢI PHÁP ERP CHO DOANH NGHIỆP CHẾ BIẾN THỰC PHẨM")}</span>
+            <h1>{t("Sản xuất bao nhiêu,")}<br />{t("hao hụt ở đâu,")}<br />{t("tồn kho thế nào?")}</h1>
+            <h2>{t("Quản lý nhà máy bằng dữ liệu kết nối,")}<br />{t("thay vì những file rời rạc.")}</h2>
+            <p>{t(content.hero.summary)}</p>
+            <div className="rf-actions">
+              <Link className="rf-button" href="#food-contact">
+                <Icon name="checklist"/>{t(" Đăng ký trao đổi cùng TNT ")}<Icon name="arrowRight"/>
+              </Link>
+              <Link className="rf-button rf-outline" href="#food-workflow">
+                <Icon name="activity"/>{t(" Xem cách vận hành thực tế")}</Link>
             </div>
           </div>
-        </section>
-
-        <section className="section section-pale workflow-section" id="food-workflow">
-          <div className="container">
-            <div className="workflow-heading">
-              <div>
-                <span className="eyebrow">LUỒNG VẬN HÀNH</span>
-                <h2 className="section-title">
-                  Từ dữ liệu rời rạc
-                  <br />
-                  <span>đến vận hành liên thông</span>
-                </h2>
-              </div>
-              <p className="section-lede">
-                Kết nối dữ liệu xuyên suốt từ nguyên vật liệu đến thành phẩm,
-                giúp nhà máy chủ động và minh bạch hơn.
-              </p>
-            </div>
-            <div className="workflow-board">
-              <div className="workflow-state workflow-state-before">
-                <span className="workflow-state-label">HIỆN TRẠNG PHỔ BIẾN</span>
-                <ul className="workflow-context-list">
-                  {content.workflowContext.before.map((item) => (
-                    <li key={item}><Icon name="closeCircle" size={16} />{item}</li>
-                  ))}
-                </ul>
-              </div>
-              <div aria-hidden="true" className="workflow-transition">
-                <span><Icon name="arrowRight" size={25} /></span>
-                <small>LUỒNG DỮ LIỆU<br />KẾT NỐI</small>
-              </div>
-              <div className="workflow-state workflow-state-after">
-                <span className="workflow-state-label">MÔ HÌNH QUẢN LÝ MỤC TIÊU</span>
-                <ul className="workflow-context-list workflow-context-list-after">
-                  {content.workflowContext.after.map((item) => (
-                    <li key={item}><Icon name="tickCircle" size={16} />{item}</li>
-                  ))}
-                </ul>
-                <div className="workflow-nodes">
-                  {content.workflow.map((node, index) => (
-                    <div className="workflow-node" key={node.title}>
-                      <span aria-hidden="true" className="workflow-node-icon">
-                        <Icon name={workflowIcons[index] ?? "info"} size={17} />
-                      </span>
-                      <strong>{node.title}</strong>
-                      <span>{node.description}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+          <div className="rf-food-mobile-art" aria-hidden="true">
+            <ReferenceImage src="/images/reference/food-tablet-clear.webp" alt={t("")}/>
           </div>
-        </section>
-
-        <section className="section">
-          <div className="container">
-            <div className="section-heading centered-heading">
-              <span className="eyebrow">FIT FIRST. CUSTOMIZE WITH PURPOSE.</span>
-              <h2 className="section-title">
-                Rõ phần phù hợp.
-                <br />
-                <span>Rõ cả phần cần cân nhắc.</span>
-              </h2>
-              <p className="section-lede">
-                Không. TNT tìm hiểu cách nhà máy đang vận hành, đối chiếu với nền
-                tảng TNM và cùng doanh nghiệp xác định phần nào có thể sử dụng,
-                phần nào cần điều chỉnh và phần nào chưa nên đầu tư.
-              </p>
-            </div>
-            <div className="fit-grid">
-              {content.fitStages.map((stage, index) => (
-                <article
-                  className={`fit-card fit-card-${["ready", "extend", "out"][index]}`}
-                  key={stage.label}
-                >
-                  <span aria-hidden="true" className="fit-icon">
-                    <Icon name={fitIcons[index] ?? "info"} size={21} />
-                  </span>
-                  <span className="fit-tag">0{index + 1} / {stage.label}</span>
-                  <h3>{stage.title}</h3>
-                  <p>{stage.description}</p>
-                </article>
-              ))}
-            </div>
-            <p className="fit-conclusion">Rõ chức năng. Rõ phần cần làm. Rõ phạm vi đầu tư.</p>
-          </div>
-        </section>
-
-        <section className="section food-partnership-section">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">GIÁ TRỊ HỢP TÁC</span>
-              <h2 className="section-title">
-                Vì sao doanh nghiệp
-                <br />
-                <span>làm việc với TNT?</span>
-              </h2>
-              <p className="section-lede">
-                Tập trung vào bài toán vận hành, khả năng phù hợp và lộ trình
-                triển khai có thể kiểm soát.
-              </p>
-            </div>
-            <div className="food-partnership-grid">
-              {content.partnership.map((item, index) => (
-                <article className="food-partnership-card" key={item.title}>
-                  <span aria-hidden="true">
-                    <Icon name={partnershipIcons[index] ?? "info"} size={23} />
-                  </span>
-                  <h3>{item.title}</h3>
-                  <p>{item.description}</p>
-                </article>
-              ))}
-            </div>
-            <article className="food-project-card">
-              <Image
-                src={content.projectDisclosure.image}
-                alt={content.projectDisclosure.imageAlt}
-                width={720}
-                height={480}
-                sizes="(max-width: 760px) 100vw, 48vw"
-              />
-              <div className="food-project-copy">
-                <span className="eyebrow">DỰ ÁN THAM KHẢO · MẪU DEMO</span>
-                <h3>{content.projectDisclosure.title}</h3>
-                <p>{content.projectDisclosure.summary}</p>
-                <Link className="text-link" href="/du-an/kala">
-                  Xem dự án tham khảo <Icon name="arrowRight" size={16} />
-                </Link>
-              </div>
+          <LeadForm context="food" idPrefix="food-hero-contact" submitLabel={t("Đăng ký đánh giá nhu cầu")} title={t("Đánh giá nhu cầu ERP cho nhà máy bạn")} description={t("Trao đổi với TNT để xác định chức năng phù hợp, các hạng mục cần điều chỉnh và hướng triển khai dự kiến.")}/>
+        </div>
+      </section>
+      <section className="rf-food-challenges">
+        <div className="rf-container">
+          <h2>{t("Nhà máy đang mất kiểm soát ở khâu nào?")}</h2>
+          <p>{t("Dữ liệu phân tán giữa mua hàng, kho, sản xuất và chất lượng khiến nhà máy")}<br />{t("khó nắm được tình hình thực tế, dễ phát sinh sai lệch và ảnh hưởng đến hiệu quả.")}</p>
+          <div className="rf-food-card-grid">{t(content.challenges.map((c, i) => <article key={c.title}>
+              <Icon className="rf-food-challenge-icon" name={challengeIcons[i]} size={64}/>
+              <h3>{t(c.title)}</h3>
+              <p>{t(c.description)}</p>
+            </article>))}</div>
+        </div>
+      </section>
+      <section className="rf-food-workflow" id="food-workflow">
+        <div className="rf-container">
+          <h2>{t("Từ dữ liệu rời rạc đến vận hành liên thông")}</h2>
+          <p>{t("Kết nối dữ liệu xuyên suốt từ nguyên vật liệu đến thành phẩm, giúp nhà máy kiểm soát tốt hơn, làm việc chủ động và minh bạch hơn.")}</p>
+          <div className="rf-workflow-states">
+            <article>
+              <h3>{t("Hiện trạng phổ biến")}</h3>
+              <ul>{t(content.workflowContext.before.map(line => <li key={line}>
+                  <Icon name="closeCircle"/>{t(line)}</li>))}</ul>
+            </article>
+            <Icon name="arrowRight"/>
+            <article>
+              <h3>{t("Mô hình quản lý mục tiêu")}</h3>
+              <ul>{t(content.workflowContext.after.map(line => <li key={line}>
+                  <Icon name="tickCircle"/>{t(line)}</li>))}</ul>
             </article>
           </div>
-        </section>
-
-        <section className="implementation-section">
-          <div className="container implementation-layout">
-            <div className="implementation-intro">
-              <span className="eyebrow eyebrow-light">QUY TRÌNH LÀM VIỆC</span>
-              <h2 className="section-title">
-                Quy trình đánh giá
-                <br />
-                <span>và triển khai</span>
-              </h2>
-              <p>
-                Quy trình bài bản, minh bạch từ bước tìm hiểu nhu cầu đến thống
-                nhất phương án.
-              </p>
-            </div>
-            <ol className="implementation-list">
-              {content.implementation.map((step, index) => (
-                <li key={step.title}>
-                  <span aria-hidden="true" className="implementation-icon">
-                    <Icon name={implementationIcons[index] ?? "info"} size={19} />
-                  </span>
-                  <div>
-                    <h3>{step.title}</h3>
-                    <p>{step.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ol>
+          <ol className="rf-workflow-nodes">{t(content.workflow.map((n, i) => <li key={n.title}>
+              <Icon name={workflowIcons[i]}/>
+              <h3>{t(n.title)}</h3>
+              <p>{t(n.description)}</p>{t(i < 5 && <Icon className="rf-step-arrow" name="arrowRight"/>)}</li>))}</ol>
+        </div>
+      </section>
+      <section className="rf-food-fit">
+        <div className="rf-container">
+          <div className="rf-food-fit-copy">
+            <span className="rf-eyebrow">{t("FIT FIRST. CUSTOMIZE WITH PURPOSE.")}</span>
+            <span className="rf-rule"/>
+            <h2>{t("Có phải thay đổi toàn bộ")}<br />{t("cách nhà máy vận hành?")}</h2>
+            <p>{t("Không. TNT không bắt đầu bằng việc yêu cầu doanh nghiệp thay đổi hoàn toàn quy trình. Chúng tôi tìm hiểu cách nhà máy đang vận hành, đối chiếu với nền tảng TNM và cùng bạn xác định phần nào có thể sử dụng, phần nào cần điều chỉnh và phần nào chưa nên đầu tư.")}</p>
+            <ReferenceImage src="/images/reference/tnt-factory-consulting.webp" alt={t("Chuyên gia TNT cùng quản lý nhà máy trao đổi về giải pháp ERP")}/>
           </div>
-        </section>
-
-        <section className="section faq-section">
-          <div className="container faq-layout">
-            <div className="faq-intro">
-              <span className="eyebrow">CÂU HỎI THƯỜNG GẶP</span>
-              <h2 className="section-title">
-                Cùng làm rõ
-                <br />
-                <span>trước khi bắt đầu.</span>
-              </h2>
-              <p>
-                Một số vấn đề doanh nghiệp thường quan tâm trước khi quyết định
-                triển khai giải pháp ERP.
-              </p>
-              <Link className="text-link" href="#food-contact">
-                Trao đổi câu hỏi khác <Icon name="arrowDown" size={16} />
+          <div className="rf-fit-options">{t(content.fitStages.map((s, i) => <article key={s.label}>
+              <span>
+                <Icon name={fitIcons[i]}/>
+              </span>
+              <div>
+                <h3>{t(s.label)}</h3>
+                <p>{t(["Những nghiệp vụ TNM đã có thể áp dụng ngay hoặc chỉ cần cấu hình.", "Những nghiệp vụ cần mở rộng, tích hợp hoặc điều chỉnh để phù hợp với quy trình của nhà máy.", "Những hạng mục chưa nằm trong phạm vi và ngân sách đề xuất, để doanh nghiệp cân nhắc ở giai đoạn phù hợp."][i])}</p>
+              </div>
+              <div>
+                <b>{t("Ví dụ")}</b>
+                <p>{t(["Mua hàng, quản lý kho, bán hàng, báo cáo quản trị.", "Định mức và hao hụt, kiểm soát chất lượng, quản lý theo lô.", "Các yêu cầu đặc thù chưa đủ thông tin để đánh giá."][i])}</p>
+              </div>
+            </article>))}<strong className="rf-fit-conclusion">
+              <Icon name="scan"/>{t(" Rõ chức năng. Rõ phần cần làm. Rõ phạm vi đầu tư.")}</strong>
+          </div>
+        </div>
+      </section>
+      <section className="rf-food-partnership">
+        <div className="rf-container">
+          <h2>{t("Vì sao doanh nghiệp làm việc với TNT?")}</h2>
+          <p>{t("TNT không chỉ cung cấp phần mềm, mà còn là đối tác tư vấn và triển khai giải pháp phù hợp với đặc thù vận hành của từng doanh nghiệp.")}</p>
+          <div className="rf-food-card-grid">{t(content.partnership.map((p, i) => <article key={p.title}>
+              <Icon name={partnershipIcons[i]}/>
+              <h3>{t(p.title)}</h3>
+              <p>{t(p.description)}</p>
+            </article>))}</div>
+          <article className="rf-food-project">
+            <ReferenceImage src="/images/work_factory.webp" alt={t("Nhà máy kính KALA — dự án tham khảo cần xác nhận")}/>
+            <div>
+              <span className="rf-pill">{t("DỰ ÁN THAM KHẢO")}</span>
+              <h3>{t("Triển khai giải pháp quản lý sản xuất cho nhà máy kính KALA")}</h3>
+              <p>{t("TNT đã triển khai nền tảng TNM để quản lý kế hoạch, sản xuất, kho và báo cáo cho nhà máy kính KALA, giúp chuẩn hóa dữ liệu và nâng cao hiệu quả phối hợp giữa các bộ phận.")}</p>
+              <small className="rf-review">{t("Mẫu minh họa, chưa xác nhận là công việc hoặc kết quả thực tế của TNT.")}</small>
+              <Link href="/du-an/kala">{t("Xem chi tiết dự án ")}<Icon name="arrowRight"/>
               </Link>
             </div>
-            <div className="faq-list">
-              {content.faqs.map((faq, index) => (
-                <details className="faq-item" key={faq.id}>
-                  <summary>
-                    <span className="faq-index">0{index + 1}</span>
-                    <span>{faq.question}</span>
-                    <span aria-hidden="true" className="faq-toggle">
-                      <Icon className="faq-toggle-closed" name="addCircle" size={19} />
-                      <Icon className="faq-toggle-open" name="closeCircle" size={19} />
-                    </span>
-                  </summary>
-                  <p>{faq.answer}</p>
-                </details>
-              ))}
-            </div>
+          </article>
+        </div>
+      </section>
+      <section className="rf-food-implementation">
+        <div className="rf-container">
+          <span className="rf-rule"/>
+          <h2>{t("Quy trình đánh giá và triển khai")}</h2>
+          <p>{t("Quy trình bài bản, minh bạch và bám sát thực tế vận hành của doanh nghiệp.")}</p>
+          <ol className="rf-food-steps">{t(content.implementation.map((s, i) => <li key={s.title}>
+              <ReferenceGlyph name={`implementation-${i}`}/>
+              <h3>{t(s.title)}</h3>
+              <p>{t(s.description)}</p>{t(i < 4 && <Icon className="rf-step-arrow" name="arrowRight"/>)}</li>))}</ol>
+        </div>
+      </section>
+      <section className="rf-food-faq">
+        <div className="rf-container">
+          <div>
+            <h2>{t("Câu hỏi thường gặp")}</h2>
+            <div className="rf-faq-list">{t(content.faqs.map(f => <details key={f.id}>
+                <summary>{t(f.question)}<span aria-hidden="true">{t("+")}</span>
+                </summary>
+                <p>{t(f.answer)}</p>
+              </details>))}</div>
           </div>
-        </section>
-
-        <section className="section contact-section" id="food-contact">
-          <div className="container">
-            <LeadForm
-              context="food"
-              idPrefix="food-follow-up-contact"
-              title="Bắt đầu từ bài toán vận hành của nhà máy bạn."
-              description="Đăng ký tư vấn để đội ngũ TNT cùng bạn đánh giá nhu cầu, gợi ý phạm vi triển khai phù hợp và lộ trình thực hiện."
-            />
+          <div id="food-contact">
+            <LeadForm context="food" idPrefix="food-follow-up-contact" submitLabel={t("Nhận tư vấn ngay")} title={t("Bắt đầu từ bài toán vận hành của nhà máy bạn.")} description={t("Đăng ký tư vấn để đội ngũ TNT cùng bạn đánh giá nhu cầu, gợi ý phạm vi triển khai phù hợp và lộ trình thực hiện.")}/>
           </div>
-        </section>
-      </main>
-    </PageFrame>
-  );
+        </div>
+      </section>
+    </main>
+  </ReferenceFrame>;
 }

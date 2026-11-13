@@ -1,0 +1,508 @@
+[
+  {
+    "route": "/",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Kiến tạo công nghệ. Thúc đẩy tăng trưởng.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 6303,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Engineering technology. Driving growth.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 6222,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/giai-phap-nganh-thuc-pham",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Sản xuất bao nhiêu, hao hụt ở đâu, tồn kho thế nào?",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 6547,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "How much is produced, where is waste occurring, and what is in stock?",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 6586,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/ve-tnt",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Hiểu nghiệp vụ trước. Đề xuất giải pháp sau.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 3568,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Understand operations first. Recommend solutions next.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 3573,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/dich-vu",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Giải pháp đúng nhu cầu. Đồng hành cùng tăng trưởng.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 3596,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Solutions that fit. Partnering for growth.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 3733,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/dich-vu/erp",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Kết nối dữ liệu. Kiểm soát vận hành.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 5128,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Connected data. Operational control.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 5160,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/dich-vu/outsourcing",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Từ ý tưởng đến sản phẩm vận hành thực tế.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 4089,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "From ideas to real operational products.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 4119,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/dich-vu/body-shop",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Đúng chuyên môn. Đúng thời điểm dự án.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 3612,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "The right expertise. At the right project stage.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 3672,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/du-an",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Giải pháp thực tế. Giá trị bền vững.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2444,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Practical solutions. Lasting value.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2535,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Kiến thức thực tiễn. Góc nhìn từ chuyên gia.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2731,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Practical knowledge. Expert perspectives.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2731,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/blog",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Góc nhìn công nghệ gắn với vận hành.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2679,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Technology insights connected to operations.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2846,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/guides",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Nguồn tài liệu cho quyết định tốt hơn.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2789,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Resource library for better decisions.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2748,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/faq",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Những câu hỏi thường gặp.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2286,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Questions frequently asked.",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2293,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/du-an/kala",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Triển khai TNM MES cho nhà máy kính KALA",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2185,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "TNM MES implementation for KALA glass factory",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2245,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/du-an/wood",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Hệ thống quản trị cho doanh nghiệp sản xuất gỗ",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2039,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Management system for a wood manufacturing business",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2105,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/du-an/recruitment",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Website tuyển dụng cho thị trường Nhật Bản",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2046,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Recruitment website for the Japanese market",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2092,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/du-an/elearning",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Nền tảng đào tạo trực tuyến cho khách hàng quốc tế",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2018,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Online training platform for an international customer",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2058,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/blog/erp-du-lieu",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "ERP giúp doanh nghiệp sản xuất kết nối dữ liệu như thế nào?",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 3156,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "How does ERP connect data in manufacturing businesses?",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2988,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/blog/chuan-bi-erp",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Những điểm cần chuẩn bị trước khi triển khai ERP",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2169,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "What to prepare before ERP implementation",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2134,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/blog/van-hanh-nha-may",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Từ dữ liệu rời rạc đến vận hành nhà máy minh bạch",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2181,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "From scattered data to transparent factory operations",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2201,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/blog/khi-nao-outsourcing",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Outsourcing: khi nào doanh nghiệp nên hợp tác với đối tác phần mềm?",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2226,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Outsourcing: when should a business work with a software partner?",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2234,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/blog/quan-ly-kho",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Quản lý kho: những dữ liệu cần theo dõi thường xuyên",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2137,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Warehouse management: data to monitor regularly",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2212,
+        "untranslated": []
+      }
+    ]
+  },
+  {
+    "route": "/kien-thuc/blog/bo-sung-nhan-su",
+    "versions": [
+      {
+        "locale": "vi",
+        "status": 200,
+        "h1": "Phát triển đội ngũ công nghệ linh hoạt theo dự án",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2162,
+        "untranslated": []
+      },
+      {
+        "locale": "en",
+        "status": 200,
+        "h1": "Scale your technology team flexibly by project",
+        "correctLanguage": true,
+        "navigation": true,
+        "length": 2106,
+        "untranslated": []
+      }
+    ]
+  }
+]

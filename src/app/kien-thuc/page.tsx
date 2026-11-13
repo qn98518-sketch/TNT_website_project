@@ -1,244 +1,42 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Icon } from "@/components/ui/icon";
-import { PageFrame } from "@/components/site-shell";
-import { articleRepository, guideRepository } from "@/content/repositories";
-import { createPageMetadata } from "@/lib/metadata";
+import Link from 'next/link';
+import { getI18n } from '@/i18n/server';
+import { PageFrame } from '@/components/site-shell';
+import { SiteImage } from '@/components/site-image';
+import { Icon } from '@/components/ui/icon';
+import { ArticleCards, WireframeCta, WireframeHeading, WireframeHero } from '@/components/wireframe-sections';
+import { articleRepository, guideRepository } from '@/content/repositories';
+import { createPageMetadata } from '@/lib/metadata';
+import { articleMedia, media } from '@/lib/media';
 
-export const metadata = createPageMetadata({
-  title: "Kiến thức",
-  description:
-    "Góc nhìn thực tiễn về quản trị doanh nghiệp, ERP, sản xuất, công nghệ và phát triển phần mềm.",
-  path: "/kien-thuc",
-});
+export async function generateMetadata(){return createPageMetadata({title:'Kiến thức',description:'Góc nhìn thực tiễn về quản trị doanh nghiệp, ERP, sản xuất, công nghệ và phát triển phần mềm.',path:'/kien-thuc'});}
 
-const knowledgeTopics = ["ERP", "Sản xuất", "Outsourcing", "Body Shop"] as const;
-
-export default async function InsightsPage() {
-  const [articles, guides] = await Promise.all([
-    articleRepository.listForPreview(),
-    guideRepository.listForPreview(),
-  ]);
-  const featuredArticles = articles.slice(0, 3);
-  const recentArticles = articles.slice(0, 3);
-  const featuredGuides = guides.slice(0, 2);
-
-  return (
-    <PageFrame>
-      <main>
-        <section className="knowledge-hero">
-          <div className="container knowledge-hero-inner">
-            <div className="knowledge-hero-copy">
-              <span className="eyebrow eyebrow-light">
-                GÓC NHÌN CÔNG NGHỆ <span className="eyebrow-rule" />
-              </span>
-              <h1>
-                Kiến thức thực tiễn.
-                <br />
-                <span>Góc nhìn từ chuyên gia.</span>
-              </h1>
-              <p>
-                Tìm hiểu về quản trị doanh nghiệp, ERP, sản xuất, công nghệ và
-                những kinh nghiệm triển khai phù hợp với nhu cầu thực tế.
-              </p>
-              <div className="knowledge-hero-actions">
-                <Link className="button button-primary" href="/kien-thuc/blog">
-                  Khám phá bài viết <Icon name="arrowRight" size={16} />
-                </Link>
-                <Link className="button button-ghost" href="/kien-thuc/guides">
-                  Xem tài liệu <Icon name="arrowDown" size={16} />
-                </Link>
-              </div>
-            </div>
-            <div className="knowledge-hero-visual">
-              <Image
-                src="/images/business_technology.webp"
-                alt="Minh họa công nghệ và dữ liệu"
-                fill
-                priority
-                sizes="(max-width: 860px) 100vw, 48vw"
-              />
-              <span className="knowledge-hero-badge">
-                <Icon name="book" size={18} />
-                TNT / INSIGHTS
-              </span>
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="container">
-            <div className="section-heading">
-              <span className="eyebrow">BÀI VIẾT NỔI BẬT</span>
-              <h2 className="section-title">
-                Xu hướng & góc nhìn
-                <br />
-                <span>đáng quan tâm</span>
-              </h2>
-              <p className="section-lede">
-                Các chủ đề được sắp xếp theo nhu cầu tìm hiểu của doanh nghiệp.
-                Bài viết mẫu cần được duyệt trước khi phát hành.
-              </p>
-            </div>
-            <div className="knowledge-article-grid">
-              {featuredArticles.map((article) => {
-                if (!article.image || !article.imageAlt) {
-                  throw new Error(`Missing article image for "${article.slug}".`);
-                }
-                return (
-                  <article className="knowledge-article-card" key={article.slug}>
-                    <Link href={`/kien-thuc/blog/${article.slug}`} className="knowledge-article-image">
-                      <Image
-                        src={article.image}
-                        alt={article.imageAlt}
-                        fill
-                        sizes="(max-width: 760px) 100vw, 33vw"
-                      />
-                    </Link>
-                    <div className="knowledge-article-copy">
-                      <span className="catalog-tag">{article.topic}</span>
-                      <span className="review-label">{article.sourceLabel}</span>
-                      <h3>
-                        <Link href={`/kien-thuc/blog/${article.slug}`}>
-                          {article.title}
-                        </Link>
-                      </h3>
-                      <p className="catalog-meta">
-                        <time dateTime={article.publishedAt}>{article.dateLabel}</time>
-                        <span>{article.readingTime}</span>
-                      </p>
-                      <p>{article.summary}</p>
-                      <Link className="text-link" href={`/kien-thuc/blog/${article.slug}`}>
-                        Đọc bài viết <Icon name="arrowRight" size={16} />
-                      </Link>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="section section-pale">
-          <div className="container">
-            <div className="section-heading centered-heading">
-              <span className="eyebrow">CHỦ ĐỀ KIẾN THỨC</span>
-              <h2 className="section-title">Tìm theo lĩnh vực quan tâm</h2>
-              <p className="section-lede">
-                Các chủ đề định hướng từ ERP đến hoạt động sản xuất và phát triển phần mềm.
-              </p>
-            </div>
-            <div className="knowledge-topic-grid">
-              {knowledgeTopics.map((topic, index) => (
-                <Link
-                  className="knowledge-topic-link"
-                  href="/kien-thuc/blog"
-                  key={topic}
-                >
-                  <span>0{index + 1}</span>
-                  <strong>{topic}</strong>
-                  <Icon name="arrowRight" size={17} />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section">
-          <div className="container">
-            <div className="knowledge-section-heading">
-              <div>
-                <span className="eyebrow">BÀI VIẾT MỚI</span>
-                <h2 className="section-title">
-                  Cập nhật kiến thức
-                </h2>
-                <p className="section-lede">
-                  Những bài viết minh họa được tổ chức theo chủ đề và thời gian.
-                </p>
-              </div>
-              <Link className="text-link" href="/kien-thuc/blog">
-                Xem tất cả bài viết <Icon name="arrowRight" size={16} />
-              </Link>
-            </div>
-            <div className="knowledge-recent-list">
-              {recentArticles.map((article) => (
-                <Link
-                  className="knowledge-recent-item"
-                  href={`/kien-thuc/blog/${article.slug}`}
-                  key={article.slug}
-                >
-                  <span className="catalog-tag">{article.topic}</span>
-                  <span className="knowledge-recent-date">{article.dateLabel}</span>
-                  <strong>{article.title}</strong>
-                  <span>{article.summary}</span>
-                  <Icon name="arrowRight" size={17} />
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className="section section-pale">
-          <div className="container">
-            <div className="knowledge-section-heading">
-              <div>
-                <span className="eyebrow">TÀI LIỆU / GUIDES</span>
-                <h2 className="section-title">Tài liệu để tìm hiểu sâu hơn</h2>
-                <p className="section-lede">
-                  Mẫu định hướng thư viện tài liệu. PDF dự kiến; chưa có tệp tải
-                  xuống được phát hành.
-                </p>
-              </div>
-              <Link className="text-link" href="/kien-thuc/guides">
-                Khám phá thư viện tài liệu <Icon name="arrowRight" size={16} />
-              </Link>
-            </div>
-            <div className="knowledge-guide-grid">
-              {featuredGuides.map((guide) => {
-                if (!guide.image || !guide.imageAlt) {
-                  throw new Error(`Missing guide image for "${guide.slug}".`);
-                }
-                return (
-                  <article className="knowledge-guide-card" key={guide.slug}>
-                    <div className="knowledge-guide-image">
-                      <Image
-                        src={guide.image}
-                        alt={guide.imageAlt}
-                        fill
-                        sizes="(max-width: 760px) 100vw, 40vw"
-                      />
-                      <span>PDF (dự kiến)</span>
-                    </div>
-                    <div>
-                      <span className="catalog-tag">{guide.topic}</span>
-                      <h3>{guide.title}</h3>
-                      <p>{guide.summary}</p>
-                      <Link className="text-link" href="/kien-thuc/guides">
-                        Xem bản mô phỏng <Icon name="arrowRight" size={16} />
-                      </Link>
-                    </div>
-                  </article>
-                );
-              })}
-            </div>
-          </div>
-        </section>
-
-        <section className="section knowledge-cta-section">
-          <div className="container knowledge-cta">
-            <div>
-              <span className="eyebrow eyebrow-light">TRAO ĐỔI CÙNG TNT</span>
-              <h2>Có câu hỏi về giải pháp ERP?</h2>
-              <p>
-                Chuyển từ việc tìm hiểu kiến thức sang trao đổi bài toán doanh nghiệp.
-              </p>
-            </div>
-            <Link className="button button-primary" href="/dich-vu/erp">
-              Nhận tư vấn ERP <Icon name="arrowRight" size={16} />
-            </Link>
-          </div>
-        </section>
-      </main>
-    </PageFrame>
-  );
+export default async function InsightsPage(){
+  const {t}=await getI18n();
+  const [articles,guides]=await Promise.all([articleRepository.listForPreview(),guideRepository.listForPreview()]);
+  const featured=articles[0];
+  if(!featured)throw new Error('Missing featured article');
+  const topics=['ERP','Sản xuất','Outsourcing','Body Shop'] as const;
+  return <PageFrame><main className="wf-page">
+    <WireframeHero eyebrow="GÓC NHÌN CÔNG NGHỆ" title="Kiến thức thực tiễn." accent="Góc nhìn từ chuyên gia." description="Tìm hiểu về quản trị doanh nghiệp, ERP, sản xuất, công nghệ và những kinh nghiệm triển khai phù hợp với nhu cầu thực tế." image={media.technology} action={{href:'/kien-thuc/blog',label:'Khám phá bài viết'}} secondary={{href:'/kien-thuc/guides',label:'Xem tài liệu'}} />
+    <section className="wf-section"><div className="container">
+      <WireframeHeading eyebrow="BÀI VIẾT NỔI BẬT" title="Xu hướng & góc nhìn" accent="đáng quan tâm" description="Các chủ đề được sắp xếp theo nhu cầu tìm hiểu của doanh nghiệp. Bài viết mẫu cần được duyệt trước khi phát hành." />
+      <div className="wf-editorial-grid">
+        <article className="wf-feature-article"><Link className="wf-photo" href={`/kien-thuc/blog/${featured.slug}`}><SiteImage src={articleMedia(featured.slug,featured.image)} alt={t(featured.imageAlt??featured.title)} width={1600} height={1000} sizes="(max-width:1100px) 100vw, 50vw" /></Link><div className="wf-feature-article-copy"><span className="wf-meta">{t(featured.topic)} · {featured.dateLabel}</span><h3><Link href={`/kien-thuc/blog/${featured.slug}`}>{t(featured.title)}</Link></h3><p>{t(featured.summary)}</p><Link className="rf-button" href={`/kien-thuc/blog/${featured.slug}`}>{t('Đọc bài viết')}<Icon name="arrowRight" size={18} /></Link></div></article>
+        <div className="wf-editorial-side">{articles.slice(1,3).map(article=><article className="wf-content-card" key={article.slug}><Link className="wf-photo" href={`/kien-thuc/blog/${article.slug}`}><SiteImage src={articleMedia(article.slug,article.image)} alt={t(article.imageAlt??article.title)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 28vw" /></Link><div className="wf-card-copy"><span className="wf-meta">{t(article.topic)} · {article.dateLabel}</span><h3><Link href={`/kien-thuc/blog/${article.slug}`}>{t(article.title)}</Link></h3><Link className="wf-text-link" href={`/kien-thuc/blog/${article.slug}`}>{t('Đọc bài viết')}<Icon name="arrowRight" size={16} /></Link></div></article>)}</div>
+      </div>
+    </div></section>
+    <section className="wf-section wf-soft"><div className="container">
+      <WireframeHeading eyebrow="CHỦ ĐỀ KIẾN THỨC" title="Tìm theo lĩnh vực quan tâm" description="Các chủ đề định hướng từ ERP đến hoạt động sản xuất và phát triển phần mềm." />
+      <div className="wf-topics">{topics.map((topic,index)=><Link key={topic} href={`/kien-thuc/blog?topic=${encodeURIComponent(topic)}`}><Icon name={(['box','activity','code','people'] as const)[index]} size={27} /><span>{t(topic)}</span><Icon name="arrowRight" size={18} /></Link>)}</div>
+    </div></section>
+    <section className="wf-section"><div className="container">
+      <WireframeHeading eyebrow="BÀI VIẾT MỚI" title="Cập nhật kiến thức" action={{href:'/kien-thuc/blog',label:'Xem tất cả bài viết'}} />
+      <ArticleCards articles={articles.slice(0,3)} />
+    </div></section>
+    <section className="wf-section wf-soft"><div className="container">
+      <WireframeHeading eyebrow="TÀI LIỆU / GUIDES" title="Tài liệu để tìm hiểu sâu hơn" action={{href:'/kien-thuc/guides',label:'Khám phá thư viện tài liệu'}} />
+      <div className="wf-resource-grid">{guides.slice(0,3).map(guide=><article className="wf-resource" key={guide.slug}><span className="wf-icon-tile"><Icon name="document" size={31} /></span><h3>{t(guide.title)}</h3><p>{t(guide.summary)}</p><span className="wf-meta">{t(guide.fileType)} · {t(guide.fileSize)}</span><p><Link className="wf-text-link" href={`/kien-thuc/guides#guide-${guide.slug}`}>{t('Xem bản mô phỏng')}<Icon name="arrowRight" size={16} /></Link></p></article>)}</div>
+    </div></section>
+    <WireframeCta title="Có câu hỏi về giải pháp ERP?" description="Chuyển từ việc tìm hiểu kiến thức sang trao đổi bài toán doanh nghiệp." href="/dich-vu/erp" label="Nhận tư vấn ERP" />
+  </main></PageFrame>;
 }

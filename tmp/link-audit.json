@@ -1,0 +1,28 @@
+{
+  "destinations": [
+    "/favicon.ico?favicon.117ezoe8m31dk.ico",
+    "/giai-phap-nganh-thuc-pham",
+    "/dich-vu",
+    "/dich-vu/erp",
+    "/dich-vu/outsourcing",
+    "/dich-vu/body-shop",
+    "/du-an",
+    "/kien-thuc",
+    "/kien-thuc/blog",
+    "/kien-thuc/guides",
+    "/kien-thuc/faq",
+    "/ve-tnt",
+    "/kien-thuc/blog?focus=search",
+    "/du-an/kala",
+    "/du-an/wood",
+    "/du-an/recruitment",
+    "/du-an/elearning",
+    "/kien-thuc/blog/erp-du-lieu",
+    "/kien-thuc/blog/chuan-bi-erp",
+    "/kien-thuc/blog/van-hanh-nha-may",
+    "/kien-thuc/blog/khi-nao-outsourcing",
+    "/kien-thuc/blog/quan-ly-kho",
+    "/kien-thuc/blog/bo-sung-nhan-su"
+  ],
+  "failures": []
+}

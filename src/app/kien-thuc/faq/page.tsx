@@ -8,7 +8,7 @@ import { media } from '@/lib/media';
 export async function generateMetadata(){return createPageMetadata({title:'Câu hỏi thường gặp',description:'Tìm kiếm câu trả lời về ERP, sản xuất, phát triển phần mềm và nhân lực công nghệ.',path:'/kien-thuc/faq'});}
 export default async function FaqPage(){
   const faqs=await faqRepository.listForPreview();
-  return <PageFrame><main className="wf-page">
+  return <PageFrame breadcrumbs={[{ label: 'Kiến thức', href: '/kien-thuc' }, { label: 'FAQ' }]}><main className="wf-page">
     <WireframeHero compact eyebrow="FAQ TNT" title="Những câu hỏi" accent="thường gặp." description="Tìm câu trả lời theo nhóm chủ đề hoặc từ khóa." image={media.technology} />
     <section className="wf-section"><div className="container wf-faq-intro">
       <WireframeHeading eyebrow="FAQ TNT" title="Bạn đang quan tâm" accent="vấn đề nào?" description="Các câu hỏi được nhóm theo nội dung quan tâm để bạn dễ tìm kiếm." />

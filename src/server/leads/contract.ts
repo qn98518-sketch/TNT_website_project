@@ -1,140 +1,45 @@
-export const leadContexts = [
-  "general",
-  "food-processing",
-  "erp",
-  "outsourcing",
-  "body-shop",
-] as const;
-
+import { companySizes, contextDetailKeys, detailOptions, interestsFor, leadContexts, type LeadDetailKey } from "@/lib/lead-options";
+export { leadContexts } from "@/lib/lead-options";
+export type { LeadDetailKey } from "@/lib/lead-options";
 export type LeadContext = (typeof leadContexts)[number];
-
-export type LeadDetailKey =
-  | "erpNeed"
-  | "projectType"
-  | "estimatedTiming"
-  | "role"
-  | "headcount"
-  | "foodPriority";
-
 export interface LeadSubmission {
-  name: string;
-  emailOrPhone: string;
-  company: string;
-  interest: string;
-  industry: string;
-  companySize: string;
-  message: string;
-  consent: boolean;
-  context: LeadContext;
-  source: string;
-  details: Partial<Record<LeadDetailKey, string>>;
+  name: string; emailOrPhone: string; company: string; interest: string;
+  industry: string; companySize: string; message: string; consent: boolean;
+  context: LeadContext; source: string; details: Partial<Record<LeadDetailKey, string>>;
 }
-
-export type LeadValidationResult =
-  | { success: true; data: LeadSubmission }
-  | { success: false; fieldErrors: Partial<Record<keyof LeadSubmission, string>> };
-
-const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const phonePattern = /^[+\d][\d\s().-]{6,24}$/;
-
+export type LeadValidationResult = { success: true; data: LeadSubmission } | { success: false; fieldErrors: Record<string, string> };
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/u;
+const phonePattern = /^\+?[\d\s().-]+$/u;
 export function validateLeadSubmission(value: unknown): LeadValidationResult {
-  const errors: Partial<Record<keyof LeadSubmission, string>> = {};
-
-  if (!value || typeof value !== "object" || Array.isArray(value)) {
-    return {
-      success: false,
-      fieldErrors: { name: "Dữ liệu gửi lên không hợp lệ." },
-    };
-  }
-
+  const errors: Record<string, string> = {};
+  if (!value || typeof value !== "object" || Array.isArray(value)) return { success: false, fieldErrors: { name: "Dữ liệu phải là một đối tượng JSON." } };
   const input = value as Record<string, unknown>;
-  const name = typeof input.name === "string" ? input.name.trim() : "";
-  const emailOrPhone =
-    typeof input.emailOrPhone === "string" ? input.emailOrPhone.trim() : "";
-  const company = typeof input.company === "string" ? input.company.trim() : "";
-  const interest = typeof input.interest === "string" ? input.interest.trim() : "";
-  const industry = typeof input.industry === "string" ? input.industry.trim() : "";
-  const companySize =
-    typeof input.companySize === "string" ? input.companySize.trim() : "";
-  const message = typeof input.message === "string" ? input.message.trim() : "";
-  const source = typeof input.source === "string" ? input.source.trim() : "";
-  const context = input.context;
-  const consent = input.consent;
-  const allowedDetailKeys: readonly LeadDetailKey[] = [
-    "erpNeed",
-    "projectType",
-    "estimatedTiming",
-    "role",
-    "headcount",
-    "foodPriority",
-  ];
-  const detailsInput =
-    typeof input.details === "object" &&
-    input.details !== null &&
-    !Array.isArray(input.details)
-      ? (input.details as Record<string, unknown>)
-      : {};
-  const details: Partial<Record<LeadDetailKey, string>> = {};
-
-  for (const [key, detail] of Object.entries(detailsInput)) {
-    if (!allowedDetailKeys.includes(key as LeadDetailKey)) {
-      errors.details = "Thông tin chi tiết gửi lên không hợp lệ.";
-      continue;
-    }
-
-    if (typeof detail !== "string" || detail.trim().length > 160) {
-      errors.details = "Thông tin chi tiết không hợp lệ.";
-      continue;
-    }
-
-    details[key as LeadDetailKey] = detail.trim();
+  const keys = ["name", "emailOrPhone", "company", "interest", "industry", "companySize", "message", "consent", "context", "source", "details"];
+  if (Object.keys(input).some(key => !keys.includes(key))) errors.form = "Dữ liệu có trường không được hỗ trợ.";
+  function string(key: string, max: number, required = false) {
+    if (input[key] === undefined && !required) return "";
+    if (typeof input[key] !== "string") { errors[key] = "Trường này phải là chuỗi ký tự."; return ""; }
+    const text = (input[key] as string).trim();
+    if ((required && !text) || Array.from(text).length > max || /[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/u.test(text)) errors[key] = `Vui lòng nhập thông tin hợp lệ (tối đa ${max} ký tự).`;
+    return text;
   }
-
-  if (!name || name.length > 120) {
-    errors.name = "Vui lòng nhập họ tên (tối đa 120 ký tự).";
+  const name = string("name", 120, true), company = string("company", 160, true);
+  const emailOrPhone = string("emailOrPhone", 254, true), interest = string("interest", 160, true);
+  const industry = string("industry", 160), companySize = string("companySize", 80), message = string("message", 4000);
+  const source = string("source", 300, true), context = input.context as LeadContext;
+  if (!emailPattern.test(emailOrPhone) && !(phonePattern.test(emailOrPhone) && /^\d{7,15}$/.test(emailOrPhone.replace(/\D/g, "")))) errors.emailOrPhone = "Vui lòng nhập email hoặc số điện thoại hợp lệ (7–15 chữ số).";
+  if (typeof context !== "string" || !leadContexts.includes(context)) errors.context = "Ngữ cảnh gửi yêu cầu không hợp lệ.";
+  else if (!interestsFor(context).includes(interest)) errors.interest = "Vui lòng chọn một lĩnh vực hợp lệ.";
+  if (companySize && !(companySizes as readonly string[]).includes(companySize)) errors.companySize = "Quy mô công ty không hợp lệ.";
+  if (!/^\/(?!\/)[^\s?#\\]*$/u.test(source)) errors.source = "Nguồn yêu cầu phải là đường dẫn nội bộ hợp lệ.";
+  if (input.consent !== true) errors.consent = "Vui lòng xác nhận đồng ý để TNT liên hệ.";
+  const details: LeadSubmission["details"] = {};
+  if (input.details !== undefined && (!input.details || typeof input.details !== "object" || Array.isArray(input.details))) errors.details = "Thông tin chi tiết phải là đối tượng JSON.";
+  else for (const [key, detail] of Object.entries((input.details ?? {}) as Record<string, unknown>)) {
+    if (!(leadContexts.includes(context) ? contextDetailKeys[context] : []).includes(key as LeadDetailKey) || typeof detail !== "string" || !(detailOptions[key as LeadDetailKey] as readonly string[] | undefined)?.includes(detail.trim())) errors.details = "Thông tin chi tiết không thuộc lựa chọn được hỗ trợ.";
+    else details[key as LeadDetailKey] = detail.trim();
   }
-  if (
-    !emailOrPhone ||
-    emailOrPhone.length > 254 ||
-    (!emailPattern.test(emailOrPhone) && !phonePattern.test(emailOrPhone))
-  ) {
-    errors.emailOrPhone = "Vui lòng nhập email hoặc số điện thoại hợp lệ.";
-  }
-  if (!company || company.length > 160) {
-    errors.company = "Vui lòng nhập tên công ty (tối đa 160 ký tự).";
-  }
-  if (!interest || interest.length > 160) {
-    errors.interest = "Vui lòng chọn lĩnh vực quan tâm.";
-  }
-  if (industry.length > 160) errors.industry = "Ngành nghề quá dài.";
-  if (companySize.length > 80) errors.companySize = "Quy mô công ty quá dài.";
-  if (message.length > 4000) errors.message = "Nội dung không được vượt quá 4.000 ký tự.";
-  if (typeof context !== "string" || !leadContexts.includes(context as LeadContext)) {
-    errors.context = "Ngữ cảnh gửi yêu cầu không hợp lệ.";
-  }
-  if (!source || source.length > 300 || !source.startsWith("/")) {
-    errors.source = "Nguồn yêu cầu không hợp lệ.";
-  }
-  if (consent !== true) errors.consent = "Vui lòng xác nhận đồng ý để TNT liên hệ.";
-
-  if (Object.keys(errors).length > 0) {
-    return { success: false, fieldErrors: errors };
-  }
-
-  return {
-    success: true,
-    data: {
-      name,
-      emailOrPhone,
-      company,
-      interest,
-      industry,
-      companySize,
-      message,
-      consent: true,
-      context: context as LeadContext,
-      source,
-      details,
-    },
+  return Object.keys(errors).length ? { success: false, fieldErrors: errors } : {
+    success: true, data: { name, company, emailOrPhone, interest, industry, companySize, message, source, context, consent: true, details },
   };
 }

@@ -16,7 +16,7 @@ export default async function BodyShopPage() {
   if (!service) notFound();
 
   return (
-    <PageFrame>
+    <PageFrame breadcrumbs={[{ label: "Dịch vụ", href: "/dich-vu" }, { label: "Body Shop" }]}>
       <ServiceLanding service={service} leadContext="body-shop" />
     </PageFrame>
   );

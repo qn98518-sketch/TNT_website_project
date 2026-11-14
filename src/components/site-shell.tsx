@@ -1,10 +1,11 @@
 import { getI18n } from "@/i18n/server";
 import Link from "next/link";
 import { ReferenceFrame } from "@/components/reference-frame";
+import type { BreadcrumbItem } from "@/components/site-breadcrumbs";
 import { Icon } from "@/components/ui/icon";
 const navigation = [
     { href: "/ve-tnt", label: "Về TNT" },
-    { href: "/giai-phap-nganh-thuc-pham", label: "Giải pháp thực phẩm" },
+    { href: "/giai-phap-nganh-thuc-pham", label: "Giải pháp ERP ngành thực phẩm" },
     { href: "/dich-vu", label: "Dịch vụ" },
     { href: "/du-an", label: "Dự án" },
     { href: "/kien-thuc", label: "Kiến thức" },
@@ -32,19 +33,20 @@ export async function SiteFooter() {
 
         <div className="footer-contact">
           <h2>{t("Liên hệ")}</h2>
-          <p>{t("Kênh tiếp nhận yêu cầu và thông tin liên hệ sẽ được cập nhật sau khi TNT xác nhận.")}</p>
+          <p>{t("Chia sẻ nhu cầu để TNT cùng bạn tìm giải pháp phù hợp.")}</p>
           <Link className="footer-contact-link" href="/#contact">{t("Gửi yêu cầu tư vấn ")}<Icon name="arrowUp" size={16}/>
           </Link>
         </div>
       </div>
       <div className="container footer-bottom">
         <span>{t("© TNT — Trí Nghĩa Tech")}</span>
-        <span>{t("Thông tin được cập nhật theo nội dung đã xác nhận.")}</span>
+
       </div>
     </footer>);
 }
-export function PageFrame({ children }: {
+export function PageFrame({ children, breadcrumbs }: {
     children: React.ReactNode;
+    breadcrumbs?: readonly BreadcrumbItem[];
 }) {
-    return (<ReferenceFrame variant="unified">{children}</ReferenceFrame>);
+    return (<ReferenceFrame variant="unified" breadcrumbs={breadcrumbs}>{children}</ReferenceFrame>);
 }

@@ -92,7 +92,7 @@
 .rf-unified .contact-section { position:relative;isolation:isolate;background:var(--brand-navy) url('/images/reference/reasons-background-v2.webp') center bottom/100% auto no-repeat; }
 .rf-unified .contact-section>.container { max-width:1100px; }
 .rf-unified .contact-section .lead-card { padding:0;background:transparent;border:0;box-shadow:none;color:var(--brand-on-dark); }
-.rf-unified .lead-card-heading h2 { font-size:clamp(28px,2.6vw,46px); }
+.rf-unified .lead-card-heading h3 { font-size:clamp(28px,2.6vw,46px); }
 .rf-unified .contact-section :is(.lead-card-heading>p,.form-notice,.consent-label) { color:var(--brand-pale); }
 .rf-unified .form-grid { gap:18px 24px; }
 .rf-unified .form-label { font-size:15px;line-height:1.5; }
@@ -116,7 +116,6 @@
 }
 @media(max-width:1120px) {
  .rf-frame .header-actions { display:flex;margin-left:auto; }
- .rf-frame .header-actions>:not(.language-switcher) { display:none; }
  .rf-frame .mobile-menu { margin-left:0; }
  .rf-frame .header-inner { gap:12px; }
  .rf-unified .service-content-card-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }

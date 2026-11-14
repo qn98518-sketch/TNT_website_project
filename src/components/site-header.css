@@ -1,0 +1,214 @@
+/* Persistent controls: logo, search, VI/EN, contact, and the compact menu. */
+.rf-frame .site-header :is(.header-inner, .desktop-nav, .header-actions) {
+  flex-wrap: nowrap;
+}
+
+.rf-frame .site-header .header-inner {
+  min-width: 0;
+}
+
+@media (min-width: 1121px) {
+  .rf-frame .site-header .desktop-nav {
+    --menu-gap: calc(39 * var(--u));
+    gap: var(--menu-gap);
+    margin-inline-start: clamp(40px, 2.6vw, 50px);
+  }
+
+  .rf-frame .site-header .desktop-nav > * {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .rf-frame .site-header .desktop-nav > * + *::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    inset-inline-start: calc(var(--menu-gap) / -2);
+    width: 1px;
+    height: clamp(10px, .73vw, 14px);
+    background: linear-gradient(to bottom, transparent, rgba(148, 163, 184, .42) 25%, rgba(148, 163, 184, .42) 75%, transparent);
+    transform: translateY(-50%);
+    pointer-events: none;
+  }
+}
+
+.rf-frame .site-header .header-actions {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: clamp(8px, 1.25vw, 24px);
+  margin-left: auto;
+}
+
+.rf-frame .site-header .header-actions > * {
+  flex-shrink: 0;
+}
+
+.rf-frame .site-header .header-actions > .header-icon-button {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid var(--brand-line);
+  border-radius: 10px;
+  background: var(--brand-surface);
+  color: var(--brand-navy-raised);
+}
+
+.rf-frame .site-header .header-icon-button:hover {
+  border-color: var(--brand-action);
+  background: var(--brand-pale);
+  color: var(--brand-link);
+}
+
+.rf-frame .site-header .header-search-icon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+.rf-frame .site-header .header-search-icon path {
+  stroke-width: 1.8;
+  vector-effect: non-scaling-stroke;
+}
+
+.rf-frame .site-header .header-actions > .header-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(6px, .6vw, 12px);
+  padding-inline: clamp(12px, 1.35vw, 26px);
+  font-size: clamp(12px, .9375vw, 18px);
+  white-space: nowrap;
+}
+
+.rf-frame .site-header .header-cta svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 1120px) {
+  .rf-frame .site-header .header-inner {
+    width: calc(100% - clamp(16px, 4vw, 40px));
+    min-height: clamp(60px, 9vw, 76px);
+    gap: clamp(4px, 1.3vw, 12px);
+  }
+
+  .rf-frame .site-header .brand-lockup {
+    width: clamp(56px, 14vw, 104px);
+    height: clamp(29px, 7.3vw, 54px);
+  }
+
+  .rf-frame .site-header .header-actions {
+    gap: clamp(4px, 1.2vw, 12px);
+  }
+
+  .rf-frame .site-header .header-actions > .header-icon-button {
+    width: clamp(30px, 6vw, 40px);
+    height: clamp(32px, 6vw, 40px);
+    border-radius: 8px;
+  }
+
+  .rf-frame .site-header .header-search-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .rf-frame .site-header .language-switcher {
+    gap: 2px;
+    padding: 2px;
+  }
+
+  .rf-frame .site-header .language-switcher button {
+    min-width: clamp(22px, 4vw, 32px);
+    min-height: clamp(26px, 5vw, 32px);
+    padding: 4px;
+    font-size: clamp(10px, 1.6vw, 12px);
+  }
+
+  .rf-frame .site-header .header-actions > .header-cta {
+    min-height: clamp(32px, 6vw, 44px);
+    padding: 8px clamp(6px, 1.5vw, 16px);
+    gap: 4px;
+    border-radius: 8px;
+    font-size: clamp(10px, 2vw, 14px);
+    line-height: 1.2;
+  }
+
+  .rf-frame .site-header .header-cta svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .rf-frame .site-header .mobile-menu {
+    flex: 0 0 auto;
+    margin-left: 0;
+  }
+
+  .rf-frame .site-header .mobile-menu-button {
+    width: clamp(30px, 6vw, 40px);
+    height: clamp(32px, 6vw, 40px);
+    padding: 0;
+  }
+
+  .rf-frame .site-header .mobile-menu-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+@media (max-width: 360px) {
+  .rf-frame .site-header .header-inner,
+  .rf-frame .site-header .header-actions {
+    gap: 4px;
+  }
+
+  .rf-frame .site-header .brand-lockup {
+    width: clamp(44px, 20vw, 64px);
+    height: clamp(23px, 10.4vw, 33px);
+  }
+
+  .rf-frame .site-header .header-actions > .header-icon-button,
+  .rf-frame .site-header .mobile-menu-button {
+    width: clamp(24px, 9.375vw, 30px);
+  }
+
+  .rf-frame .site-header .header-search-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .rf-frame .site-header .language-switcher button {
+    min-width: clamp(18px, 6.875vw, 22px);
+    padding-inline: 2px;
+    font-size: clamp(8px, 3.125vw, 10px);
+  }
+
+  .rf-frame .site-header .header-actions > .header-cta {
+    padding-inline: clamp(4px, 1.875vw, 6px);
+    font-size: clamp(8px, 3vw, 10px);
+  }
+
+  .rf-frame .site-header .header-cta svg {
+    display: none;
+  }
+}
+
+@media (max-width: 280px) {
+  .rf-frame .site-header .header-inner {
+    width: calc(100% - 8px);
+  }
+
+  .rf-frame .site-header .header-inner,
+  .rf-frame .site-header .header-actions {
+    gap: 2px;
+  }
+
+  .rf-frame .site-header .brand-lockup {
+    width: clamp(40px, 18vw, 50px);
+  }
+
+  .rf-frame .site-header .header-actions > .header-icon-button,
+  .rf-frame .site-header .mobile-menu-button {
+    width: 22px;
+  }
+}

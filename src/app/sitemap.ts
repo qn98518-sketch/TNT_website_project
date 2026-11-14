@@ -9,6 +9,7 @@ const routes = [
   "/dich-vu/outsourcing",
   "/dich-vu/body-shop",
   "/du-an",
+  "/du-an/erp-che-bien-thuy-san",
   "/kien-thuc",
   "/kien-thuc/blog",
   "/kien-thuc/guides",

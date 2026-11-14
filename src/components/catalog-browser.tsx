@@ -6,6 +6,8 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Icon } from "@/components/ui/icon";
 import type { ContentTopic } from "@/content/models";
+import { SelectBox } from "@/components/select-box";
+import { guideIcon } from "@/lib/content-icons";
 export interface CatalogEntry {
     slug: string;
     title: string;
@@ -15,9 +17,10 @@ export interface CatalogEntry {
     publishedAt?: string;
     dateLabel?: string;
     industry?: string;
+    isSimulation?: boolean;
     image?: string;
     imageAlt?: string;
-    sourceLabel?: string;
+
     readingTime?: string;
     preview?: readonly string[];
 }
@@ -33,9 +36,9 @@ type Props = {
     kind: "project" | "article" | "guide";
 };
 const emptyMessages = {
-    project: "Danh sách dự án sẽ được cập nhật khi TNT xác nhận nội dung, kết quả và quyền công bố.",
-    article: "Bài viết sẽ được đăng sau khi nội dung và thông tin biên tập được duyệt.",
-    guide: "Tài liệu sẽ xuất hiện khi tệp tải xuống và quyền phát hành được xác nhận.",
+    project: "Hiện chưa có dự án trong danh sách.",
+    article: "Hiện chưa có bài viết trong danh sách.",
+    guide: "Hiện chưa có tài liệu trong danh sách.",
 };
 export function CatalogBrowser({ entries, kind }: Props) {
     const { t } = useI18n();
@@ -76,26 +79,8 @@ export function CatalogBrowser({ entries, kind }: Props) {
           <Icon name="search" size={18}/>
           <input ref={searchInputRef} onChange={(event) => setQuery(event.target.value)} placeholder={t(kind === "article" ? "Tìm trong bài viết" : "Tìm theo từ khóa")} type="search" value={query}/>
         </label>
-        <label className="catalog-topic">
-          <span className="visually-hidden">{t("Lọc theo chủ đề")}</span>
-          <Icon name="settings" size={17}/>
-          <select onChange={(event) => setTopic(event.target.value as ContentTopic | "all")} value={topic}>
-            <option value="all">{t("Tất cả chủ đề")}</option>
-            {t(topics.map((item) => (<option key={item} value={item}>
-                {t(item)}
-              </option>)))}
-          </select>
-        </label>
-        {t(kind === "project" && (<label className="catalog-topic">
-            <span className="visually-hidden">{t("Lọc theo ngành")}</span>
-            <Icon name="building" size={17}/>
-            <select onChange={(event) => setIndustry(event.target.value)} value={industry}>
-              <option value="all">{t("Tất cả ngành")}</option>
-              {t(industries.map((item) => (<option key={item} value={item}>
-                  {t(item)}
-                </option>)))}
-            </select>
-          </label>))}
+        <div className="catalog-topic"><SelectBox label={t("Lọc theo chủ đề")} icon="settings" value={topic} onValueChange={value => setTopic(value as ContentTopic | "all")} options={[{value: "all", label: t("Tất cả chủ đề")}, ...topics.map(item => ({value: item, label: t(item)}))]} /></div>
+        {kind === "project" && <div className="catalog-topic"><SelectBox label={t("Lọc theo ngành")} icon="building" value={industry} onValueChange={setIndustry} options={[{value: "all", label: t("Tất cả ngành")}, ...industries.map(item => ({value: item, label: t(item)}))]} /></div>}
         <button className="catalog-reset" onClick={reset} type="button">{t("Xóa bộ lọc")}</button>
       </div>
 
@@ -112,21 +97,23 @@ export function CatalogBrowser({ entries, kind }: Props) {
                         ? "(max-width: 760px) 100vw, 50vw"
                         : "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"} src={entry.image}/>
                 </Link>))}
+              {kind === "guide" && <div className="catalog-guide-icon"><Icon name={guideIcon(entry.slug)} size={32}/></div>}
               <div className="catalog-card-content">
                 <div className="catalog-card-tags">
                   <span className="catalog-tag">{t(entry.topic)}</span>
+                  {entry.isSimulation && <span className="catalog-tag">{t("Case study mô phỏng")}</span>}
                   {t(entry.industry && (<span className="catalog-tag catalog-industry">
                       {t(entry.industry)}
                     </span>))}
                 </div>
-                <h2>{t(entry.title)}</h2>
+                {kind === "article" ? <h3>{t(entry.title)}</h3> : <h2>{t(entry.title)}</h2>}
                 {t(entry.publishedAt && (<p className="catalog-meta">
                     <time dateTime={entry.publishedAt}>
                       {t(entry.dateLabel ?? entry.publishedAt)}
                     </time>
                     {t(entry.readingTime && <span>{t(entry.readingTime)}</span>)}
                   </p>))}
-                {t(entry.sourceLabel && (<span className="review-label">{t(entry.sourceLabel)}</span>))}
+
                 <p>{t(entry.summary)}</p>
                 <Link className="text-link" href={entry.href}>
                   {t(kind === "guide"

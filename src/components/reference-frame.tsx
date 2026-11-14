@@ -2,27 +2,41 @@ import { getI18n } from "@/i18n/server";
 import Link from "next/link";
 import { SiteImage as Image } from "@/components/site-image";
 import { SiteHeader } from "@/components/site-header";
+import { SiteBreadcrumbs, type BreadcrumbItem } from "@/components/site-breadcrumbs";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { Icon } from "@/components/ui/icon";
 import "./reference-pages.css";
 import "./unified-pages.css";
 import "./wireframe-pages.css";
 import "./hero-banners.css";
+import "./section-spacing.css";
+import "./project-story.css";
+import "./responsive-actions.css";
+import "./site-header.css";
+import "./leadership-carousel.css";
+import "./dropdowns.css";
+import "./home-statistics.css";
 /** Shared navigation and footer, with a matching content style for the other pages. */
-export async function ReferenceFrame({ children, variant }: {
+export async function ReferenceFrame({ children, variant, breadcrumbs }: {
     children: React.ReactNode;
     variant?: "unified";
+    breadcrumbs?: readonly BreadcrumbItem[];
 }) {
     const { t } = await getI18n();
     return <div className={`rf-frame${variant === "unified" ? " rf-unified" : ""}`}>
-    <SiteHeader />{children}<ScrollReveal /><footer className="rf-footer">
+    <SiteHeader />
+    <div className="site-page-content">
+      <SiteBreadcrumbs items={breadcrumbs} />
+      {children}
+    </div>
+    <ScrollReveal /><footer className="rf-footer">
       <div className="rf-container rf-footer-grid">
         <div>
           <Link aria-label={t("TNT — Trang chủ")} className="rf-logo" href="/"/>
           <p>{t("Kiến tạo hạ tầng công nghệ")}<br />{t("cho tăng trưởng doanh nghiệp.")}</p>
           <div className="rf-socials" aria-label={t("Trí Nghĩa Tech")}>
             <span>{t("in")}</span>
-            <span>{t("f")}</span>
+            <span><Icon name="facebook" size={18}/></span>
             <Icon name="monitor" size={18}/>
           </div>
         </div>
@@ -48,7 +62,7 @@ export async function ReferenceFrame({ children, variant }: {
             <Icon name="call"/>{t(" +84 28 1234 5678")}</p>
           <p>
             <Icon name="message"/>{t(" info@tnt-tech.vn")}</p>
-          <small>{t("Thông tin theo bản thiết kế, cần TNT xác nhận.")}</small>
+
         </div>
       </div>
       <div className="rf-container rf-footer-bottom">
@@ -74,7 +88,7 @@ export async function ReferenceHeading({ eyebrow, children, description }: {
 }) {
     const { t } = await getI18n();
     return <div className="rf-heading">
-    <div>{t(eyebrow && <span className="rf-eyebrow">{t(eyebrow)}</span>)}<h2>{t(children)}</h2>
+    <div>{t(eyebrow && <span className="rf-eyebrow">{t(eyebrow)}</span>)}<h2 className="tnt-section-title">{t(children)}</h2>
     </div>{t(description && <p>{t(description)}</p>)}</div>;
 }
 export function ReferenceWave() { return <div className="rf-wave" aria-hidden="true"/>; }

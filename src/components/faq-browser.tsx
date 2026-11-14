@@ -3,6 +3,7 @@ import { useI18n } from "@/i18n/provider";
 import { useState } from "react";
 import { Icon } from "@/components/ui/icon";
 import type { ContentTopic, FaqRecord } from "@/content/models";
+import { Accordion } from "@/components/accordion";
 type Props = {
     items: readonly FaqRecord[];
 };
@@ -40,17 +41,7 @@ export function FaqBrowser({ items }: Props) {
       <p aria-live="polite" className="catalog-count">
         {t(result.length)}{t(" câu hỏi phù hợp")}</p>
       <div className="faq-list">
-        {t(result.map((item, index) => (<details className="faq-item" key={item.id}>
-            <summary>
-              <span className="faq-index">{t(String(index + 1).padStart(2, "0"))}</span>
-              <span>{t(item.question)}</span>
-              <span aria-hidden="true" className="faq-toggle">
-                <Icon className="faq-toggle-closed" name="addCircle" size={19}/>
-                <Icon className="faq-toggle-open" name="closeCircle" size={19}/>
-              </span>
-            </summary>
-            <p>{t(item.answer)}</p>
-          </details>)))}
+        {result.map((item, index) => <Accordion key={item.id} question={t(item.question)} index={index}><p>{t(item.answer)}</p></Accordion>)}
         {t(result.length === 0 && (<div className="catalog-empty compact-empty">
             <h2>{t("Không tìm thấy câu hỏi")}</h2>
             <p>{t("Thử từ khóa khác hoặc chọn “Tất cả chủ đề”.")}</p>

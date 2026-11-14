@@ -1,0 +1,63 @@
+/* Shared vertical rhythm. Load after page styles to replace artboard-specific
+ * padding and minimum heights without changing banner layouts or card spacing. */
+.rf-frame {
+  --section-space: 64px;
+  --section-heading-space: 32px;
+}
+
+@media (max-width: 1100px) {
+  .rf-frame {
+    --section-space: 48px;
+    --section-heading-space: 28px;
+  }
+}
+
+@media (max-width: 760px) {
+  .rf-frame {
+    --section-space: 40px;
+    --section-heading-space: 24px;
+  }
+}
+
+/* Each content section owns equal space above and below its content.
+ * Keep these selectors at the page level so nested article sections and cards
+ * do not receive a second set of section padding. */
+.rf-frame :is(.rf-home, .rf-about, .rf-food) > section:not(:first-child),
+.rf-frame .wf-page > :is(.wf-section, .wf-contact, .wf-small-cta, .wf-article-top),
+.rf-frame main > :is(.section, .article-layout) {
+  min-height: 0;
+  margin-block: 0;
+  padding-block: var(--section-space);
+}
+
+/* Remove trailing container margins that would add to the shared padding. */
+.rf-frame main > section > :is(.rf-container, .container) > :last-child {
+  margin-bottom: 0;
+}
+
+/* Use the same heading-to-content rhythm across reference and service pages. */
+.rf-frame :is(.rf-heading, .wf-section-heading, .section-heading),
+.rf-frame .rf-insights .rf-heading,
+.rf-frame .rf-services .rf-heading,
+.rf-frame .rf-process .rf-heading {
+  margin-bottom: var(--section-heading-space);
+}
+
+/* Article cover and body are separate blocks; the body supplies bottom space. */
+.rf-frame .wf-page > .wf-article-photo-wrap {
+  margin-block: 0;
+  padding-block: var(--section-space) 0;
+}
+
+.rf-frame .wf-page .wf-article-photo {
+  padding-top: 0;
+}
+
+.rf-frame .wf-article-body > section {
+  margin-block: 0 var(--section-heading-space);
+}
+
+.rf-frame .wf-article-body > section:last-child,
+.rf-frame .wf-article-body > section > :last-child {
+  margin-bottom: 0;
+}

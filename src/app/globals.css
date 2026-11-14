@@ -344,8 +344,7 @@ textarea:focus-visible {
     min-height: 72px;
   }
 
-  .desktop-nav,
-  .header-actions {
+  .desktop-nav {
     display: none;
   }
 
@@ -417,21 +416,6 @@ textarea:focus-visible {
     padding-left: 25px;
     background: var(--brand-surface);
     font-weight: 550;
-  }
-
-  .mobile-search span {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .mobile-language {
-    display: block;
-    padding: 12px;
-    border-bottom: 1px solid #edf1f7;
-    color: #52657f;
-    font-size: 12px;
-    font-weight: 700;
   }
 
   .mobile-nav .mobile-contact {
@@ -1448,7 +1432,7 @@ p {
   box-shadow: 0 18px 60px color-mix(in srgb, var(--brand-navy-raised) 6.5%, transparent);
 }
 
-.lead-card-heading h2 {
+.lead-card-heading h3 {
   margin: 12px 0 12px;
   color: var(--navy);
   font-size: 29px;
@@ -1517,6 +1501,9 @@ p {
 .form-field-errors {
   color: #a52b2b;
 }
+
+.form-input-error { display:block;color:#a52b2b;font-size:12px;line-height:1.5; }
+.lead-form [aria-invalid="true"] { border-color:#a52b2b; }
 
 .form-feedback-success {
   color: #168055;
@@ -2155,7 +2142,7 @@ p {
   padding: 30px;
 }
 
-.food-hero .lead-card-heading h2 {
+.food-hero .lead-card-heading h3 {
   font-size: 24px;
 }
 
@@ -3808,7 +3795,7 @@ p {
     grid-row: auto;
   }
 
-  .lead-card-heading h2 {
+  .lead-card-heading h3 {
     font-size: 25px;
   }
 

@@ -1,0 +1,39 @@
+/* Site-wide sizes stay fixed across all routes and viewport widths.
+ * Important sizes intentionally override legacy page and breakpoint rules. */
+:root {
+  --heading-h1-size: 40px;
+  --heading-h2-size: 36px;
+  --form-heading-size: 20px;
+}
+
+h1 {
+  font-size: var(--heading-h1-size) !important;
+}
+
+h2 {
+  font-size: var(--heading-h2-size) !important;
+}
+
+.lead-card-heading > h3 {
+  font-size: var(--form-heading-size) !important;
+  line-height: 1.25 !important;
+}
+
+h1,
+h2,
+.lead-card-heading > h3 {
+  overflow-wrap: anywhere;
+}
+
+.rf-frame {
+  --section-title-tracking: -.035em;
+}
+
+.rf-frame :is(.rf-home, .rf-about, .rf-food, .wf-page) h2.tnt-section-title {
+  font-weight: 750;
+  line-height: 1.15;
+  letter-spacing: var(--section-title-tracking);
+  white-space: normal;
+  overflow-wrap: break-word;
+  text-wrap: balance;
+}

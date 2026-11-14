@@ -1,3 +1,5 @@
+import type { IconName } from "@/components/ui/icon";
+
 export type ContentStatus = "approved" | "pending-review";
 
 export type ContentTopic = "ERP" | "Sản xuất" | "Outsourcing" | "Body Shop" | "Khác";
@@ -14,6 +16,9 @@ export interface ContentRecord {
 }
 
 export interface ProjectRecord extends ContentRecord {
+  shortTitle?: string;
+  isSimulation?: boolean;
+  disclosure?: string;
   detailTitle?: string;
   industry: string;
   challenge: string;
@@ -27,6 +32,26 @@ export interface ProjectRecord extends ContentRecord {
   solution?: string;
   gallery?: readonly { src: string; alt: string; width: number; height: number }[];
   relatedProjectSlugs?: readonly string[];
+}
+
+export interface ProjectStorySection {
+  id: string;
+  heading: string;
+  paragraphs?: readonly string[];
+  bullets?: readonly string[];
+  subsections?: readonly {
+    heading: string;
+    paragraphs?: readonly string[];
+    bullets?: readonly string[];
+  }[];
+}
+
+export interface ProjectStory {
+  imageCaption: string;
+  sections: readonly ProjectStorySection[];
+  quote: string;
+  editorialNote: string;
+  contact: { title: string; description: string; invitation: string };
 }
 
 export interface ArticleSection {
@@ -50,7 +75,7 @@ export interface ArticleRecord extends ContentRecord {
 export interface GuideRecord extends ContentRecord {
   fileUrl: string;
   fileType: string;
-  fileSize: string;
+  fileSize?: string;
   preview: readonly string[];
 }
 
@@ -80,7 +105,7 @@ export type ServiceLandingSection =
       title: string;
       accent: string;
       summary: string;
-      cards: readonly { title: string; description: string }[];
+      cards: readonly { title: string; description: string; icon?: IconName }[];
       disclosure?: string;
     }
   | {
@@ -99,7 +124,11 @@ export type ServiceLandingSection =
       title: string;
       accent: string;
       summary: string;
-      steps: readonly { title: string; description: string }[];
+      steps: readonly {
+        title: string;
+        description: string;
+        icon?: "search" | "chart" | "diagram" | "code" | "shield" | "briefcase";
+      }[];
     }
   | {
       kind: "image-callout";
@@ -126,7 +155,7 @@ export type ServiceLandingSection =
         image: string;
         imageAlt: string;
         href: string;
-        disclosure: string;
+        disclosure?: string;
       }[];
     }
   | {
@@ -159,13 +188,14 @@ export interface HomePageContent {
     label: string;
     description: string;
   }[];
-  statisticsNote: string;
+  statisticsNote?: string;
   erpModules: readonly {
     label: string;
     code: string;
-    icon: "shoppingCart" | "activity" | "box" | "chart" | "people" | "briefcase";
+    icon: "shoppingCart" | "activity" | "box" | "chart" | "people" | "briefcase" | "bag";
   }[];
   additionalServices: readonly {
+    icon?: IconName;
     title: string;
     description: string;
     href: string;
@@ -193,6 +223,18 @@ export interface HomePageContent {
   insightPrompts: readonly { topic: string; question: string; description: string }[];
 }
 
+export interface LeadershipProfile {
+  id: string;
+  name: string;
+  role: string;
+  title: string;
+  description: string;
+  imageAlt: string;
+  summary: string;
+  details: readonly string[];
+  image: string;
+}
+
 export interface AboutPageContent {
   hero: { eyebrow: string; title: string; accent: string; summary: string };
   overview: {
@@ -210,17 +252,12 @@ export interface AboutPageContent {
     icon: "message" | "diagram" | "checklist";
   }[];
   statistics: readonly { value: string; label: string }[];
-  statisticsNote: string;
+  statisticsNote?: string;
   fitPrinciple: { eyebrow: string; title: string; accent: string; summary: string };
   fitStages: readonly { label: string; title: string; description: string }[];
   capabilities: readonly { title: string; description: string }[];
   teamDisclosure: { eyebrow: string; title: string; accent: string; summary: string };
-  teamRoles: readonly {
-    title: string;
-    description: string;
-    image: string;
-    imageAlt: string;
-  }[];
+  teamRoles: readonly LeadershipProfile[];
 }
 
 export interface FoodSolutionPageContent {

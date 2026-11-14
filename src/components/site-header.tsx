@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { Icon } from "@/components/ui/icon";
 import { LanguageSwitcher } from "@/components/language-switcher";
+import { AnimatedCollapse } from "@/components/animated-collapse";
 type NavLink = {
     href: string;
     label: string;
@@ -14,7 +15,7 @@ const links = {
     home: { href: "/", label: "Trang chủ" },
     solution: {
         href: "/giai-phap-nganh-thuc-pham",
-        label: "Giải pháp",
+        label: "Giải pháp ERP ngành thực phẩm",
     },
     projects: { href: "/du-an", label: "Dự án" },
     about: { href: "/ve-tnt", label: "Về TNT" },
@@ -51,6 +52,9 @@ export function SiteHeader() {
         }
         function handleKeyDown(event: KeyboardEvent) {
             if (event.key === "Escape") {
+                const active = document.activeElement as HTMLElement | null;
+                const selector = active?.closest(".desktop-nav") ? '.nav-dropdown-trigger[aria-expanded="true"]' : '.mobile-menu-button[aria-expanded="true"]';
+                menuRef.current?.querySelector<HTMLButtonElement>(selector)?.focus();
                 setMenuOpen(false);
                 setOpenDropdown(null);
             }
@@ -70,7 +74,7 @@ export function SiteHeader() {
         const expanded = openDropdown === id;
         const active = items.some((item) => isCurrentRoute(pathname, item.href));
         return (<div className="nav-dropdown">
-        <button aria-expanded={expanded} aria-haspopup="true" className="nav-dropdown-trigger" data-active={active || undefined} onClick={() => setOpenDropdown(expanded ? null : id)} onKeyDown={(event) => {
+        <button aria-expanded={expanded} aria-controls={`desktop-${id}-menu`} className="nav-dropdown-trigger" data-active={active || undefined} onClick={() => setOpenDropdown(expanded ? null : id)} onKeyDown={(event) => {
                 if (event.key === "ArrowDown") {
                     event.preventDefault();
                     setOpenDropdown(id);
@@ -84,7 +88,7 @@ export function SiteHeader() {
           {t(label)}
           <Icon name="arrowDown" size={15}/>
         </button>
-        <div className="nav-dropdown-panel" data-menu={id} hidden={!expanded} onKeyDown={(event) => {
+        <div className="nav-dropdown-panel dropdown-surface" id={`desktop-${id}-menu`} data-menu={id} data-open={expanded} aria-hidden={!expanded} inert={!expanded} onKeyDown={(event) => {
                 if (event.key === "ArrowDown" || event.key === "ArrowUp") {
                     const anchors = Array.from(event.currentTarget.querySelectorAll<HTMLAnchorElement>("a"));
                     const index = anchors.indexOf(document.activeElement as HTMLAnchorElement);
@@ -99,7 +103,7 @@ export function SiteHeader() {
         </div>
       </div>);
     }
-    return (<header className="site-header" ref={menuRef}>
+    return (<header className="site-header rf-unified" ref={menuRef}>
       <div className="container header-inner">
         <Link aria-label={t("TNT — Trang chủ")} className="brand" href="/" onClick={closeMenus}>
           <span aria-hidden="true" className="brand-lockup">
@@ -127,7 +131,7 @@ export function SiteHeader() {
 
         <div className="header-actions">
           <Link aria-label={t("Tìm kiếm bài viết")} className="header-icon-button" href={links.search.href} onClick={closeMenus} title={t("Tìm kiếm bài viết")}>
-            <Icon name="search" size={19}/>
+            <Icon name="search" className="header-search-icon" size={22}/>
           </Link>
           <LanguageSwitcher />
           <Link className="button button-small header-cta" href={links.contact.href} onClick={closeMenus}>
@@ -139,32 +143,27 @@ export function SiteHeader() {
           <button aria-controls="mobile-navigation" aria-expanded={menuOpen} aria-label={t(menuOpen ? "Đóng menu điều hướng" : "Mở menu điều hướng")} className="mobile-menu-button" onClick={() => setMenuOpen((isOpen) => !isOpen)} type="button">
             <Icon name="menu" size={23}/>
           </button>
-          <nav aria-label={t("Điều hướng di động")} className="mobile-nav" hidden={!menuOpen} id="mobile-navigation">
+          <nav aria-label={t("Điều hướng di động")} className="mobile-nav dropdown-surface" data-open={menuOpen} aria-hidden={!menuOpen} inert={!menuOpen} id="mobile-navigation">
             <Link aria-current={isCurrentRoute(pathname, "/") ? "page" : undefined} href="/" onClick={closeMenus}>{t("Trang chủ")}</Link>
-            <Link aria-current={isCurrentRoute(pathname, links.solution.href) ? "page" : undefined} href={links.solution.href} onClick={closeMenus}>{t("Giải pháp")}</Link>
+            <Link aria-current={isCurrentRoute(pathname, links.solution.href) ? "page" : undefined} href={links.solution.href} onClick={closeMenus}>{t(links.solution.label)}</Link>
             <div className="mobile-nav-group">
-              <button aria-expanded={openDropdown === "services"} onClick={() => setOpenDropdown(openDropdown === "services" ? null : "services")} type="button">{t("Dịch vụ ")}<Icon name="arrowDown" size={16}/>
+              <button aria-expanded={openDropdown === "services"} aria-controls="mobile-services-menu" onClick={() => setOpenDropdown(openDropdown === "services" ? null : "services")} type="button">{t("Dịch vụ ")}<Icon name="arrowDown" size={16}/>
               </button>
-              {t(openDropdown === "services" &&
-            serviceLinks.map((item) => (<Link aria-current={isCurrentRoute(pathname, item.href) ? "page" : undefined} href={item.href} key={item.href} onClick={closeMenus}>
+              <AnimatedCollapse open={openDropdown === "services"} id="mobile-services-menu"><div className="mobile-submenu-links">
+            {serviceLinks.map((item) => (<Link aria-current={isCurrentRoute(pathname, item.href) ? "page" : undefined} href={item.href} key={item.href} onClick={closeMenus}>
                     {t(item.label)}
-                  </Link>)))}
+                  </Link>))}</div></AnimatedCollapse>
             </div>
             <Link aria-current={isCurrentRoute(pathname, links.projects.href) ? "page" : undefined} href={links.projects.href} onClick={closeMenus}>{t("Dự án")}</Link>
             <div className="mobile-nav-group">
-              <button aria-expanded={openDropdown === "insights"} onClick={() => setOpenDropdown(openDropdown === "insights" ? null : "insights")} type="button">{t("Kiến thức ")}<Icon name="arrowDown" size={16}/>
+              <button aria-expanded={openDropdown === "insights"} aria-controls="mobile-insights-menu" onClick={() => setOpenDropdown(openDropdown === "insights" ? null : "insights")} type="button">{t("Kiến thức ")}<Icon name="arrowDown" size={16}/>
               </button>
-              {t(openDropdown === "insights" &&
-            insightLinks.map((item) => (<Link aria-current={isCurrentRoute(pathname, item.href) ? "page" : undefined} href={item.href} key={item.href} onClick={closeMenus}>
+              <AnimatedCollapse open={openDropdown === "insights"} id="mobile-insights-menu"><div className="mobile-submenu-links">
+            {insightLinks.map((item) => (<Link aria-current={isCurrentRoute(pathname, item.href) ? "page" : undefined} href={item.href} key={item.href} onClick={closeMenus}>
                     {t(item.label)}
-                  </Link>)))}
+                  </Link>))}</div></AnimatedCollapse>
             </div>
             <Link aria-current={isCurrentRoute(pathname, links.about.href) ? "page" : undefined} href={links.about.href} onClick={closeMenus}>{t("Về TNT")}</Link>
-            <Link className="mobile-search" href={links.search.href} onClick={closeMenus}>
-              <span><Icon name="search" size={17}/>{t(" Tìm kiếm")}</span>
-              <Icon name="arrowRight" size={16}/>
-            </Link>
-            <span aria-current="true" aria-label={t("Ngôn ngữ hiện tại: Tiếng Việt")} className="mobile-language" lang="vi">{t("VI · Tiếng Việt")}</span>
             <Link className="mobile-contact" href={links.contact.href} onClick={closeMenus}>{t("Trao đổi dự án ")}<Icon name="arrowRight" size={17}/>
             </Link>
           </nav>

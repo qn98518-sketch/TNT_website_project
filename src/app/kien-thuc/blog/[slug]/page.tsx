@@ -26,11 +26,10 @@ export default async function ArticlePage({params}:Props){
   const {t}=await getI18n();
   const all=await articleRepository.listForPreview();
   const related=all.filter(item=>article.relatedArticleSlugs.includes(item.slug));
-  return <PageFrame><main className="wf-page">
+  return <PageFrame breadcrumbs={[{ label: 'Kiến thức', href: '/kien-thuc' }, { label: 'Blog', href: '/kien-thuc/blog' }, { label: article.title }]}><main className="wf-page">
     <section className="wf-article-top"><div className="container">
-      <nav className="wf-breadcrumb" aria-label="Breadcrumb"><Link href="/kien-thuc">{t('Kiến thức')}</Link><span>/</span><Link href="/kien-thuc/blog">Blog</Link><span>/</span><span>{t(article.topic)}</span></nav>
       <span className="wf-meta">{t(article.topic)} · <time dateTime={article.publishedAt}>{article.dateLabel}</time> · {t(article.readingTime)}</span>
-      <h1>{t(article.title)}</h1><p>{t(article.summary)}</p><small className="wf-disclosure">{t(article.sourceLabel)}</small>
+      <h1>{t(article.title)}</h1><p>{t(article.summary)}</p>
     </div></section>
     <section className="wf-article-photo-wrap"><div className="container wf-article-photo"><div className="wf-photo"><SiteImage src={articleMedia(article.slug,article.image)} alt={t(article.imageAlt??article.title)} width={1600} height={1000} preload sizes="(max-width:760px) 100vw, 80vw" /></div></div></section>
     <section className="wf-section"><div className="container wf-article-layout">

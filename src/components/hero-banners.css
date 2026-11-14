@@ -20,7 +20,7 @@
 .rf-frame .rf-home-hero .rf-eyebrow { font-size:clamp(12px,1vw,19px);letter-spacing:.08em; }
 .rf-frame .rf-home-hero h1 { font-size:clamp(42px,3.55vw,68px);letter-spacing:-.035em;margin-bottom:clamp(18px,1.4vw,28px); }
 .rf-frame .rf-home-hero p { font-size:clamp(17px,1.2vw,23px);line-height:1.55;max-width:clamp(480px,42vw,820px); }
-.rf-frame .rf-home-hero .rf-actions { margin-top:clamp(24px,1.9vw,36px);flex-wrap:wrap; }
+.rf-frame .rf-home-hero .rf-actions { margin-top:clamp(24px,1.9vw,36px); }
 
 /* ----------------------------------------------------------- about (/ve-tnt) */
 .rf-frame .rf-about-hero { min-height:clamp(440px,33.3vw,640px);overflow:hidden; }
@@ -49,7 +49,7 @@
 .rf-frame .rf-food-hero .rf-actions { margin-top:clamp(22px,1.8vw,34px); }
 /* Lead form: readable floors on smaller desktops. */
 .rf-frame .rf-food-hero .lead-card { padding:clamp(22px,1.6vw,32px);border-radius:clamp(14px,1vw,20px); }
-.rf-frame .rf-food-hero .lead-card h2 { font-size:clamp(22px,1.65vw,32px);line-height:1.2; }
+.rf-frame .rf-food-hero .lead-card h3 { font-size:clamp(22px,1.65vw,32px);line-height:1.2; }
 .rf-frame .rf-food-hero .lead-card-heading>p { font-size:clamp(14px,.9vw,17px);line-height:1.45;margin:clamp(10px,.8vw,15px) 0; }
 .rf-frame .rf-food-hero :is(.form-notice,.consent-label) { font-size:clamp(12px,.68vw,13px);line-height:1.5; }
 .rf-frame .rf-food-hero .form-grid { gap:clamp(12px,.8vw,16px); }
@@ -87,12 +87,17 @@
 .rf-unified .wf-hero .rf-button { min-height:clamp(48px,3vw,56px);font-size:clamp(15px,1vw,18px);padding:clamp(12px,.8vw,15px) clamp(20px,1.4vw,26px); }
 
 /* ---------------------------------------------------------------- tablet */
+/* Match the homepage breadcrumb gutter throughout the header's tablet range. */
+@media(min-width:761px) and (max-width:1120px) {
+  .rf-frame .rf-home-hero .rf-container { width:calc(100% - 64px); }
+}
+
 @media(min-width:761px) and (max-width:1100px) {
   /* Home: art sits behind the right half, copy keeps a solid backdrop. */
   .rf-frame .rf-home-hero { min-height:clamp(440px,52vw,540px); }
   .rf-frame .rf-home-hero:before { width:68%;background-size:cover;background-position:72% center;mask-image:linear-gradient(90deg,transparent,#000 30%); }
   .rf-frame .rf-home-hero::after { content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,var(--brand-navy) 0%,var(--brand-navy) 34%,color-mix(in srgb,var(--brand-navy) 55%,transparent) 55%,transparent 75%); }
-  .rf-frame .rf-home-hero .rf-container { width:calc(100% - 64px);z-index:1; }
+  .rf-frame .rf-home-hero .rf-container { z-index:1; }
   .rf-frame .rf-home-hero-copy { max-width:min(60%,560px);padding-left:0; }
   .rf-frame .rf-home-hero h1 { font-size:clamp(38px,4.6vw,48px); }
   .rf-frame .rf-home-hero p { font-size:17px; }
@@ -172,7 +177,7 @@
   .rf-frame .rf-food-hero .rf-food-hero-copy h2 { font-size:clamp(18px,5vw,22px); }
   .rf-frame .rf-food-hero .rf-eyebrow { font-size:11px; }
   .rf-frame .rf-food-hero .rf-food-hero-copy>p { max-width:none;font-size:15px; }
-  .rf-frame .rf-food-hero .lead-card h2 { font-size:24px; }
+  .rf-frame .rf-food-hero .lead-card h3 { font-size:24px; }
 
   /* Shared wireframe hero */
   .rf-unified .wf-hero .wf-hero-art,.rf-unified .wf-hero-compact .wf-hero-art { position:absolute;inset:-12px;z-index:-2;width:auto;height:auto; }
@@ -183,7 +188,4 @@
   .rf-unified .wf-hero h1 { font-size:clamp(30px,8.4vw,40px);letter-spacing:-.025em;margin:14px 0 16px; }
   .rf-unified .wf-hero-copy>p { max-width:none;font-size:16px;margin-bottom:24px; }
   .rf-unified .wf-hero .rf-button { min-height:46px;font-size:15px; }
-}
-@media(max-width:480px) {
-  .rf-frame :is(.rf-home-hero,.rf-food-hero-copy) .rf-actions>.rf-button,.rf-unified .wf-hero .wf-actions>.rf-button { flex:1 1 auto; }
 }

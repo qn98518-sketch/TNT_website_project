@@ -1,0 +1,126 @@
+.rf-frame .rf-home .rf-project-tabs {
+  margin-bottom: 24px;
+}
+
+.rf-frame .rf-home .rf-project-feature {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: stretch;
+  gap: clamp(24px, 2.35vw, 45px);
+}
+
+.rf-frame .rf-home .rf-project-media {
+  position: relative;
+  min-width: 0;
+  min-height: clamp(300px, 20vw, 380px);
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.rf-frame .rf-home .rf-project-media > img.tnt-media[data-media-kind] {
+  width: 100%;
+  height: 100%;
+  max-height: none;
+  aspect-ratio: auto;
+  border-radius: 0;
+  object-fit: cover;
+  object-position: center;
+}
+
+.rf-frame .rf-home .rf-project-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.rf-frame .rf-home .rf-project-copy > .rf-pill {
+  padding: 7px 12px;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.rf-frame .rf-home .rf-project-copy > .project-simulation-label {
+  margin: 0;
+}
+
+.rf-frame .rf-home .rf-project-copy > h3 {
+  margin: 0;
+  font-size: clamp(24px, 1.6vw, 30px);
+  line-height: 1.25;
+}
+
+.rf-frame .rf-home .rf-project-copy > p {
+  margin: 0;
+  font-size: clamp(15px, .95vw, 18px);
+  line-height: 1.6;
+}
+
+.rf-frame .rf-home .rf-project-copy .rf-project-points {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  gap: 16px;
+}
+
+.rf-frame .rf-home .rf-project-points > div {
+  min-width: 0;
+}
+
+.rf-frame .rf-home .rf-project-points > div:last-child {
+  padding-right: 0;
+  border-right: 0;
+}
+
+.rf-frame .rf-home .rf-project-points strong {
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.rf-frame .rf-home .rf-project-points p {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.rf-frame .rf-home .rf-project-points svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 8px;
+}
+
+.rf-frame .rf-home .rf-project-copy > .rf-button {
+  min-height: 44px;
+  padding: 11px 18px;
+  font-size: 15px;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .rf-frame .rf-home .rf-project-feature {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .rf-frame .rf-home .rf-project-media {
+    min-height: 0;
+    aspect-ratio: 16 / 10;
+  }
+
+  .rf-frame .rf-home .rf-project-copy {
+    justify-content: flex-start;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 600px) {
+  .rf-frame .rf-home .rf-project-copy .rf-project-points {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 14px;
+  }
+
+  .rf-frame .rf-home .rf-project-points > div {
+    padding-right: 0;
+    border-right: 0;
+  }
+}

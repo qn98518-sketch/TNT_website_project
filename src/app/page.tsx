@@ -1,10 +1,20 @@
 import { getI18n } from "@/i18n/server";
 import Link from "next/link";
 import { LeadForm } from "@/components/lead-form";
-import { ReferenceFrame, ReferenceGlyph, ReferenceHeading, ReferenceImage } from "@/components/reference-frame";
+import { ReferenceFrame, ReferenceHeading, ReferenceImage } from "@/components/reference-frame";
 import { Icon, type IconName } from "@/components/ui/icon";
 import { homePageContent } from "@/content/local-data";
 import { HomeProjectShowcase } from "@/components/home-project-showcase";
+import { ResponsiveActions } from "@/components/responsive-actions";
+import { HomeStatistics } from "@/components/home-statistics";
+import { SiteImage } from "@/components/site-image";
+import { ProcessGrid } from "@/components/process-grid";
+const processImages = [
+  { src: "/images/process/process-1-requirements-natural.webp", alt: "Bộ giấy và bút ghi nhận yêu cầu" },
+  { src: "/images/process/process-2-analysis-natural.webp", alt: "Tài liệu phân tích và kính lúp" },
+  { src: "/images/process/process-3-implementation-natural.webp", alt: "Laptop triển khai phần mềm quản trị" },
+  { src: "/images/process/process-4-handover-natural.webp", alt: "Bộ tài liệu bàn giao và hỗ trợ vận hành" },
+];
 export default async function Home() {
     const { t } = await getI18n();
     const content = homePageContent;
@@ -18,11 +28,11 @@ export default async function Home() {
               <em>{t("Thúc đẩy tăng trưởng.")}</em>
             </h1>
             <p>{t(content.hero.summary)}</p>
-            <div className="rf-actions">
+            <ResponsiveActions className="rf-actions">
               <Link className="rf-button" href="#contact">{t("Trao đổi dự án ")}<Icon name="arrowRight"/>
               </Link>
               <Link className="rf-button rf-outline" href="#solutions">{t("Khám phá giải pháp")}</Link>
-            </div>
+            </ResponsiveActions>
           </div>
         </div>
       </section>
@@ -31,15 +41,8 @@ export default async function Home() {
           <ReferenceHeading eyebrow={t("NHỮNG CON SỐ BIẾT NÓI")} description={t("Với nhiều năm kinh nghiệm trong lĩnh vực công nghệ, TNT luôn nỗ lực mang đến những giải pháp hiệu quả, đồng hành cùng hàng trăm doanh nghiệp trên hành trình chuyển đổi số và phát triển bền vững.")}>{t("Năng lực được khẳng định")}<br />
             <em>{t("qua từng dự án")}</em>
           </ReferenceHeading>
-          <div className="rf-statistics">{t(content.statistics.map((s, i) => <article key={s.label}>
-              <ReferenceGlyph name={`statistic-${i}`}/>
-            <div>
-              <strong>{t(s.value)}</strong>
-              <h3>{t(s.label)}</h3>
-              <p>{t(s.description)}</p>
-            </div>
-          </article>))}</div>
-          <small className="rf-review">{t(content.statisticsNote)}</small>
+          <HomeStatistics label={t("NHỮNG CON SỐ BIẾT NÓI")} statistics={content.statistics.map(statistic => ({value: statistic.value, label: t(statistic.label), description: t(statistic.description)}))} />
+
         </div>
       </section>
       <section className="rf-services" id="solutions">
@@ -74,8 +77,8 @@ export default async function Home() {
             <h3>{t("Các dịch vụ công nghệ khác")}</h3>
             <p>{t("Cung cấp đa dạng dịch vụ CNTT, đáp ứng linh hoạt nhu cầu doanh nghiệp.")}</p>
           </div>
-          <div className="rf-service-grid">{t(content.additionalServices.map((s, i) => <article key={s.title}>
-            <ReferenceImage src={`/images/reference/service-${i}.webp`} alt={t("")}/>
+          <div className="rf-service-grid">{t(content.additionalServices.map(s => <article key={s.title}>
+            <Icon className="rf-service-icon" name={s.icon ?? "code"} purpose="content" size={72}/>
             <h3>{t(s.title)}</h3>
             <p>{t(s.description)}</p>
             <Link href={s.href} aria-label={t(`Khám phá ${s.title}`)}>
@@ -88,7 +91,7 @@ export default async function Home() {
         <div className="rf-container rf-reasons-grid">
           <div>
             <span className="rf-eyebrow">{t("LÝ DO LỰA CHỌN TNT")}</span>
-            <h2>{t("Vì sao doanh nghiệp")}<br />
+            <h2 className="tnt-section-title">{t("Vì sao doanh nghiệp")}<br />
               <em>{t("chọn TNT")}</em>
             </h2>
             <p>{t("Chúng tôi không chỉ cung cấp dịch vụ, mà còn đồng hành cùng doanh nghiệp trên hành trình tăng trưởng bền vững.")}</p>
@@ -102,11 +105,11 @@ export default async function Home() {
         <div className="rf-container">
           <ReferenceHeading eyebrow={t("QUY TRÌNH TRIỂN KHAI")} description={t("TNT áp dụng quy trình triển khai tinh gọn, linh hoạt và minh bạch, đảm bảo dự án được triển khai hiệu quả và phù hợp với từng doanh nghiệp.")}>{t("Từ nhu cầu đến giá trị")}<br />{t("trong ")}<em>{t("4 bước đơn giản")}</em>
           </ReferenceHeading>
-          <ol className="rf-process-grid">{t(content.process.map((p, i) => <li key={p.title}>
+          <ProcessGrid>{t(content.process.map((p, i) => <li key={p.title}>
             <b>{t("0")}{t(i + 1)}</b>
-            <ReferenceImage src={`/images/reference/process-${i}.webp`} alt={t("")}/>
-            <h3>{t(p.title)}</h3>
-            <p>{t(p.description)}</p>{t(i < 3 && <Icon name="arrowRight" className="rf-step-arrow"/>)}</li>))}</ol>
+            <div className="rf-process-visual"><SiteImage unoptimized className="rf-process-photo" src={processImages[i].src} alt={t(processImages[i].alt)} width={640} height={480} mediaKind="cutout"/></div>
+            <h3><span className="rf-process-title-text">{t(p.title)}</span></h3>
+            <p><span className="rf-process-description-text">{t(p.description)}</span></p>{t(i < 3 && <Icon name="arrowRight" className="rf-step-arrow"/>)}</li>))}</ProcessGrid>
           <div className="rf-values">{t([["tickCircle", "Rõ ràng", "Quy trình minh bạch, mục tiêu cụ thể."], ["setting", "Linh hoạt", "Giải pháp phù hợp với từng doanh nghiệp."], ["chart", "Hiệu quả", "Tập trung vào kết quả và giá trị thực tế."]].map(([icon, title, text]) => <div key={title}>
             <Icon name={icon as IconName}/>
             <div>
@@ -152,7 +155,7 @@ export default async function Home() {
         <div className="rf-container rf-contact-grid">
           <div className="rf-contact-copy">
             <span className="rf-eyebrow">{t("LIÊN HỆ VỚI CHÚNG TÔI")}</span>
-            <h2>{t("Cùng nhau kiến tạo")}<br />
+            <h2 className="tnt-section-title">{t("Cùng nhau kiến tạo")}<br />
               <em>{t("giải pháp phù hợp")}</em>
               <br />{t("cho doanh nghiệp của bạn")}</h2>
             <p>{t("Hãy chia sẻ nhu cầu của bạn, đội ngũ TNT sẽ liên hệ tư vấn trong thời gian sớm nhất.")}</p>

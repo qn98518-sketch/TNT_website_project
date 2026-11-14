@@ -1,51 +1,69 @@
 import Link from 'next/link';
 import { getI18n } from '@/i18n/server';
 import { SiteImage } from '@/components/site-image';
-import { Icon } from '@/components/ui/icon';
+import { Icon, type IconName } from '@/components/ui/icon';
 import { serviceLandingContent } from '@/content/local-data';
 import type { ServiceLandingSection, ServiceRecord } from '@/content/models';
 import { media, projectMedia } from '@/lib/media';
 import { FeatureCards, WireframeContact, WireframeHeading, WireframeHero } from '@/components/wireframe-sections';
+import { Accordion } from '@/components/accordion';
+
+const beforeIcons: readonly IconName[] = ['data', 'documentCopy', 'monitor'];
+const afterIcons: readonly IconName[] = ['link', 'taskSquare', 'chartSuccess'];
+const expertiseIcons: Record<string, readonly IconName[]> = {
+  erp: ['setting', 'checklist', 'chartSuccess'],
+  outsourcing: ['driver', 'monitor', 'mobile', 'hierarchy', 'shield'],
+  'body-shop': ['teacher', 'people', 'messageText'],
+};
 
 async function ServiceSection({ section, index, service }: { section: ServiceLandingSection; index: number; service: string }) {
   const { t } = await getI18n();
   const id = `service-section-${index}`;
   if (section.kind === 'cards') {
     const dark = section.eyebrow.includes('FIT FIRST');
-    return <section className={`wf-section${dark ? ' wf-navy' : index % 2 ? ' wf-soft' : ''}`} id={id}><div className="container">
+    const interactiveCards = service === 'erp' && ['HỆ THỐNG / MODULE', 'BÀI TOÁN DOANH NGHIỆP'].includes(section.eyebrow);
+    return <section className={`wf-section${dark ? ' wf-navy' : index % 2 ? ' wf-soft' : ''}${interactiveCards ? ' wf-interactive-cards' : ''}`} id={id}><div className="container">
       <WireframeHeading eyebrow={section.eyebrow} title={section.title} accent={section.accent} description={section.summary} />
       <FeatureCards cards={section.cards} />
-      {section.disclosure && <small className="wf-disclosure">{t(section.disclosure)}</small>}
+
     </div></section>;
   }
   if (section.kind === 'flow') return <section className="wf-section wf-soft" id={id}><div className="container">
     <WireframeHeading eyebrow={section.eyebrow} title={section.title} accent={section.accent} description={section.summary} />
     <div className="wf-compare">
-      <article><h3>{t('HIỆN TRẠNG PHỔ BIẾN')}</h3><ul>{section.before.map(line => <li key={line}><Icon name="closeCircle" size={20} />{t(line)}</li>)}</ul></article>
-      <article><h3>{t('MÔ HÌNH MỤC TIÊU')}</h3><ul>{section.after.map(line => <li key={line}><Icon name="tickCircle" size={20} />{t(line)}</li>)}</ul><div className="wf-flow-stages">{section.stages.map(stage => <span key={stage.title}>{t(stage.title)}</span>)}</div></article>
+      <article><h3>{t('HIỆN TRẠNG PHỔ BIẾN')}</h3><ul>{section.before.map((line,i) => <li key={line}><Icon name={beforeIcons[i]} size={20} />{t(line)}</li>)}</ul></article>
+      <article><h3>{t('MÔ HÌNH MỤC TIÊU')}</h3><ul>{section.after.map((line,i) => <li key={line}><Icon name={afterIcons[i]} size={20} />{t(line)}</li>)}</ul><div className="wf-flow-stages">{section.stages.map(stage => <span key={stage.title}>{t(stage.title)}</span>)}</div></article>
     </div>
   </div></section>;
   if (section.kind === 'steps') return <section className="wf-section wf-navy" id={id}><div className="container">
     <WireframeHeading eyebrow={section.eyebrow} title={section.title} accent={section.accent} description={section.summary} />
-    <ol className={`wf-process-grid${section.steps.length > 4 ? ' wf-process-six' : ''}`}>{section.steps.map((step,i) => <li key={step.title}><span>{String(i+1).padStart(2,'0')}</span><h3>{t(step.title)}</h3><p>{t(step.description)}</p></li>)}</ol>
+    <ol className={`wf-process-grid${section.steps.length > 4 ? ' wf-process-six' : ''}`}>
+      {section.steps.map((step,i) => <li key={step.title}>
+        {step.icon ? <div className="wf-process-step-header">
+          <span>{String(i+1).padStart(2,'0')}</span>
+          <Icon className="wf-process-step-icon" name={step.icon} purpose="content" size={48} />
+        </div> : <span>{String(i+1).padStart(2,'0')}</span>}
+        <h3>{t(step.title)}</h3><p>{t(step.description)}</p>
+      </li>)}
+    </ol>
   </div></section>;
   if (section.kind === 'image-callout') return <section className="wf-section" id={id}><div className="container wf-split">
     <div className="wf-photo"><SiteImage src={service === 'body-shop' ? media.team : service === 'outsourcing' ? media.software : media.food} alt={t(section.imageAlt)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 50vw" /></div>
-    <div className="wf-split-copy"><span className="wf-kicker">{t(section.eyebrow)}</span><h2>{t(section.title)}<br /><em>{t(section.accent)}</em></h2><p>{t(section.summary)}</p><ul className="wf-points">{section.points.map(point => <li key={point}><Icon name="tickCircle" size={20} />{t(point)}</li>)}</ul>
+    <div className="wf-split-copy"><span className="wf-kicker">{t(section.eyebrow)}</span><h2 className="tnt-section-title">{t(section.title)}<br /><em>{t(section.accent)}</em></h2><p>{t(section.summary)}</p><ul className="wf-points">{section.points.map((point,i) => <li key={point}><Icon name={expertiseIcons[service][i]} size={20} />{t(point)}</li>)}</ul>
       {section.href && section.linkLabel && <Link className="rf-button" href={section.href}>{t(section.linkLabel)}<Icon name="arrowRight" size={18} /></Link>}
-      {section.disclosure && <small className="wf-disclosure">{t(section.disclosure)}</small>}
+
     </div>
   </div></section>;
   if (section.kind === 'projects') return <section className="wf-section wf-soft" id={id}><div className="container">
     <WireframeHeading eyebrow={section.eyebrow} title={section.title} description={section.summary} />
     <div className={section.projects.length === 1 ? 'wf-single-project' : 'wf-card-grid'}>{section.projects.map(project => <article className={section.projects.length === 1 ? 'wf-split' : 'wf-content-card'} key={project.href}>
       <Link className="wf-photo" href={project.href}><SiteImage src={projectMedia(project.href.split('/').pop() ?? '', project.image)} alt={t(project.imageAlt)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 50vw" /></Link>
-      <div className="wf-card-copy"><span className="wf-meta">{t(project.category)}</span><h3><Link href={project.href}>{t(project.title)}</Link></h3><p>{t(project.description)}</p><small className="wf-disclosure">{t(project.disclosure)}</small><Link className="wf-text-link" href={project.href}>{t('Xem câu chuyện dự án')}<Icon name="arrowRight" size={18} /></Link></div>
+      <div className="wf-card-copy"><span className="wf-meta">{t(project.category)}</span>{project.disclosure && <span className="project-simulation-label">{t(project.disclosure)}</span>}<h3><Link href={project.href}>{t(project.title)}</Link></h3><p>{t(project.description)}</p><Link className="wf-text-link" href={project.href}>{t('Xem câu chuyện dự án')}<Icon name="arrowRight" size={18} /></Link></div>
     </article>)}</div>
   </div></section>;
   return <section className="wf-section wf-service-faq" id={id}><div className="container">
     <WireframeHeading eyebrow={section.eyebrow} title={section.title} description={section.summary} />
-    <div className="faq-list">{section.faqs.map(faq => <details className="faq-item" key={faq.question}><summary><span>{t(faq.question)}</span><Icon name="addCircle" size={21} /></summary><p>{t(faq.answer)}</p></details>)}</div>
+    <div className="faq-list">{section.faqs.map(faq => <Accordion key={faq.question} question={t(faq.question)}><p>{t(faq.answer)}</p></Accordion>)}</div>
   </div></section>;
 }
 

@@ -16,7 +16,7 @@ export default async function ErpServicePage() {
   if (!service) notFound();
 
   return (
-    <PageFrame>
+    <PageFrame breadcrumbs={[{ label: "Dịch vụ", href: "/dich-vu" }, { label: "TNM ERP" }]}>
       <ServiceLanding service={service} leadContext="erp" />
     </PageFrame>
   );

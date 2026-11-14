@@ -6,11 +6,23 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint src"
+    "lint": "eslint src",
+    "test:cms": "node scripts/test-cms.cjs",
+    "cms:setup": "node scripts/cms-local-postgres.cjs setup",
+    "cms:start": "node scripts/cms-local-postgres.cjs start",
+    "cms:status": "node scripts/cms-local-postgres.cjs status",
+    "cms:stop": "node scripts/cms-local-postgres.cjs stop",
+    "cms:migrate": "node scripts/cms-database.cjs migrate",
+    "cms:admin": "node scripts/cms-database.cjs create-admin",
+    "cms:check": "node scripts/cms-database.cjs check",
+    "cms:import:mysql": "node scripts/cms-import-mysql.cjs",
+    "cms:import:local": "node scripts/cms-import-local.cjs"
   },
   "dependencies": {
+    "bcryptjs": "^3.0.3",
     "iconsax-react": "^0.0.8",
     "next": "16.4.6",
+    "postgres": "^3.4.9",
     "react": "19.3.0",
     "react-dom": "19.3.0"
   },

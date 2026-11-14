@@ -97,25 +97,29 @@ for public-release boundaries.
 
 ## Lead form and delivery
 
-`src/server/leads/contract.ts` defines the shared lead submission and
-validation contract. `POST /api/leads` validates requests and delegates through
-the `LeadDeliveryRepository` interface in `src/server/leads/delivery.ts`.
+`src/server/leads/contract.ts` validates the shared public form contract on the
+client and Next.js API. `POST /api/leads` validates and commits requests directly
+to PostgreSQL. The CMS backend runs inside Next.js on Vercel; Supabase hosts
+the production database. It needs no PHP host, VPS or always-on local computer.
+Without database configuration it returns a clear 503 instead of claiming success.
 
-The configured provider is `LEAD_PROVIDER=none`. In this state, a valid
-submission returns `503 LEAD_DELIVERY_UNAVAILABLE`; no lead is sent or stored,
-and the form displays an unavailable state. The site only reports success
-after a configured provider confirms acceptance.
-
-Before enabling delivery, implement an approved adapter, configure the
-provider, and get approval for consent text, privacy notice, retention, routing,
-and credentials. Unknown provider values fail explicitly.
+Open `/cms` to sign in. Appending `/cms` to another page redirects there too.
+There is one fixed admin, created by CLI, plus editor/viewer staff accounts.
+Sessions and rate limits are stored in PostgreSQL, so authentication works across
+serverless instances. The inbox automatically updates every three seconds.
+See [Supabase + Vercel setup and MySQL migration](./docs/CMS_SUPABASE.md) and
+[local startup](./docs/CMS_LOCAL.md). `backend/` is retained for reading old MySQL
+data during migration and for rollback; deployed APIs never call it.
 
 ## Environment variables
 
 | Name | Purpose |
 |---|---|
 | `NEXT_PUBLIC_SITE_URL` | Canonical site origin used by metadata, `sitemap.xml`, and `robots.txt`. Set this to the deployed HTTPS origin in production. |
-| `LEAD_PROVIDER` | Lead-delivery adapter selector. Keep `none` until an approved provider adapter is implemented. |
+| `DATABASE_URL` | Private PostgreSQL connection string. On Vercel use the Supabase transaction pooler. |
+| `CMS_SESSION_SECRET` | Random secret of at least 32 characters used by CMS rate limits. Server-side only. |
+| `CMS_MIGRATION_DATABASE_URL` | Optional direct/session pooler URL used only by migration tools. |
+| `DATABASE_SSL_CA` | Optional provider root CA PEM. Remote database TLS certificates are verified. |
 
 See [`.env.example`](./.env.example) for the local template. Do not put
 provider secrets in `NEXT_PUBLIC_*` variables.

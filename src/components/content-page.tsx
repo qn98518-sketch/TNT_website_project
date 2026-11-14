@@ -4,6 +4,7 @@ import { CatalogBrowser } from "@/components/catalog-browser";
 import { Icon } from "@/components/ui/icon";
 import type { ContentTopic } from "@/content/models";
 import { PageFrame } from "@/components/site-shell";
+import { ResponsiveActions } from "@/components/responsive-actions";
 type HeroProps = {
     eyebrow: string;
     title: string;
@@ -30,9 +31,9 @@ export async function EditorialHero({ eyebrow, title, highlightedTitle, descript
               </>))}
           </h1>
           <p>{t(description)}</p>
-          {t(action && (<Link className="button button-primary" href={action.href}>
+          {t(action && (<ResponsiveActions><Link className="button button-primary" href={action.href}>
               {t(action.label)} <Icon name="arrowUp" size={17}/>
-            </Link>))}
+            </Link></ResponsiveActions>))}
         </div>
         <div aria-hidden="true" className="editorial-hero-visual">
           <div className="editorial-hero-orbit">

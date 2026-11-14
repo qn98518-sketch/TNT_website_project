@@ -1,0 +1,79 @@
+.site-page-content {
+  position: relative;
+  isolation: isolate;
+  --breadcrumb-color: var(--brand-pale);
+  --breadcrumb-current: var(--brand-on-dark);
+  --breadcrumb-hover: var(--brand-sky);
+}
+
+/* Overlay the banner's existing top space without moving its content. */
+.rf-frame .site-breadcrumbs {
+  position: absolute;
+  inset: 12px 0 auto;
+  z-index: 10;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  color: var(--breadcrumb-color);
+  font: 400 12px/1.6 Arial, sans-serif;
+}
+
+.rf-frame .site-breadcrumbs ol {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-block: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.rf-frame .site-breadcrumbs li {
+  display: inline-flex;
+  min-width: 0;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+.rf-frame .site-breadcrumbs li:not(:last-child) {
+  flex-shrink: 0;
+}
+
+.site-breadcrumbs a:hover {
+  color: var(--breadcrumb-hover);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.site-breadcrumbs [aria-current="page"] {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: var(--breadcrumb-current);
+  font-weight: 600;
+}
+
+.site-breadcrumb-separator {
+  flex-shrink: 0;
+  color: var(--breadcrumb-color);
+}
+
+/* Article and error page banners use a light background. */
+.site-page-content:has(> main > .wf-article-top),
+.site-page-content:has(> .not-found-page) {
+  --breadcrumb-color: var(--brand-body);
+  --breadcrumb-current: var(--brand-navy-raised);
+  --breadcrumb-hover: var(--brand-link);
+}
+
+@media (min-width: 761px) and (max-width: 1120px) {
+  .site-page-content:has(> :is(.rf-home, .rf-about, .rf-food)) .site-breadcrumbs ol {
+    width: calc(100% - 64px);
+  }
+}
+
+@media (max-width: 760px) {
+  .rf-frame .site-breadcrumbs {
+    inset-block-start: 10px;
+  }
+}

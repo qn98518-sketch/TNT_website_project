@@ -16,7 +16,7 @@ export default async function OutsourcingServicePage() {
   if (!service) notFound();
 
   return (
-    <PageFrame>
+    <PageFrame breadcrumbs={[{ label: "Dịch vụ", href: "/dich-vu" }, { label: "Outsourcing" }]}>
       <ServiceLanding service={service} leadContext="outsourcing" />
     </PageFrame>
   );

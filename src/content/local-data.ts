@@ -1,3 +1,5 @@
+import { seafoodProject } from "@/content/seafood-project";
+import { leadershipTeam } from "@/content/leadership";
 import type {
   ArticleRecord,
   FaqRecord,
@@ -43,8 +45,6 @@ export const services: readonly ServiceRecord[] = [
   },
 ];
 
-const demoReviewLabel = "MẪU DEMO · CẦN TNT XÁC NHẬN TRƯỚC KHI CÔNG BỐ";
-
 export const serviceLandingContent: Record<string, ServiceLandingContent> = {
   erp: {
     hero: {
@@ -67,10 +67,10 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         summary:
           "Những khó khăn phổ biến khi hệ thống quản trị chưa kết nối dữ liệu.",
         cards: [
-          { title: "Dữ liệu phân tán", description: "Thông tin nằm ở nhiều bảng tính và bộ phận riêng lẻ." },
-          { title: "Thiếu kiểm soát kho", description: "Khó theo dõi nguyên vật liệu và tồn kho theo thời điểm." },
-          { title: "Tiến độ sản xuất", description: "Khó tổng hợp tình trạng kế hoạch, lệnh sản xuất." },
-          { title: "Báo cáo chậm", description: "Tốn thời gian tổng hợp số liệu phục vụ điều hành." },
+          { icon: "data", title: "Dữ liệu phân tán", description: "Thông tin nằm ở nhiều bảng tính và bộ phận riêng lẻ." },
+          { icon: "boxSearch", title: "Thiếu kiểm soát kho", description: "Khó theo dõi nguyên vật liệu và tồn kho theo thời điểm." },
+          { icon: "timer", title: "Tiến độ sản xuất", description: "Khó tổng hợp tình trạng kế hoạch, lệnh sản xuất." },
+          { icon: "documentFilter", title: "Báo cáo chậm", description: "Tốn thời gian tổng hợp số liệu phục vụ điều hành." },
         ],
       },
       {
@@ -105,17 +105,16 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         title: "Các phân hệ quản trị",
         accent: "trên nền tảng TNM",
         summary:
-          "Danh sách tham khảo từ hệ thống TNM, cần TNT xác nhận phạm vi hiện còn triển khai.",
-        disclosure: demoReviewLabel,
+          "Các phân hệ TNM giúp kết nối dữ liệu và quy trình quản trị doanh nghiệp.",
         cards: [
-          { title: "Khách hàng / CRM", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến khách hàng / CRM." },
-          { title: "Mua hàng", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến mua hàng." },
-          { title: "Kho / WMS", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến kho / WMS." },
-          { title: "Sản xuất / MES", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến sản xuất / MES." },
-          { title: "Bán hàng", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến bán hàng." },
-          { title: "Tài chính", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến tài chính." },
-          { title: "Nhân sự", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến nhân sự." },
-          { title: "Dự án", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến dự án." },
+          { icon: "profile", title: "Khách hàng / CRM", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến khách hàng / CRM." },
+          { icon: "bag", title: "Mua hàng", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến mua hàng." },
+          { icon: "box", title: "Kho / WMS", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến kho / WMS." },
+          { icon: "settings", title: "Sản xuất / MES", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến sản xuất / MES." },
+          { icon: "shoppingCart", title: "Bán hàng", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến bán hàng." },
+          { icon: "wallet", title: "Tài chính", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến tài chính." },
+          { icon: "people", title: "Nhân sự", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến nhân sự." },
+          { icon: "taskSquare", title: "Dự án", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến dự án." },
         ],
       },
       {
@@ -126,14 +125,14 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         summary:
           "Cấu trúc triển khai định hướng: rõ phần sẵn có, phần cần điều chỉnh và phần ngoài phạm vi.",
         cards: [
-          { title: "READY — Sẵn sàng sử dụng", description: "Những nghiệp vụ phù hợp hiện trạng và nhu cầu ưu tiên." },
-          { title: "EXTEND — Cần điều chỉnh", description: "Phạm vi mở rộng hoặc bổ sung theo quy trình riêng." },
-          { title: "OUT OF SCOPE — Ngoài phạm vi", description: "Các yêu cầu khác biệt cần đánh giá trước khi cam kết." },
+          { icon: "tickCircle", title: "READY — Sẵn sàng sử dụng", description: "Những nghiệp vụ phù hợp hiện trạng và nhu cầu ưu tiên." },
+          { icon: "setting", title: "EXTEND — Cần điều chỉnh", description: "Phạm vi mở rộng hoặc bổ sung theo quy trình riêng." },
+          { icon: "closeSquare", title: "OUT OF SCOPE — Ngoài phạm vi", description: "Các yêu cầu khác biệt cần đánh giá trước khi cam kết." },
         ],
       },
       {
         kind: "image-callout",
-        eyebrow: "GIẢI PHÁP CHUYÊN NGÀNH · MẪU DEMO",
+        eyebrow: "GIẢI PHÁP CHUYÊN NGÀNH",
         title: "Đồng hành cùng doanh nghiệp",
         accent: "chế biến thực phẩm",
         summary:
@@ -147,24 +146,24 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         ],
         href: "/giai-phap-nganh-thuc-pham",
         linkLabel: "Trao đổi nhu cầu ngành thực phẩm",
-        disclosure: demoReviewLabel,
+
       },
       {
         kind: "projects",
         eyebrow: "CÂU CHUYỆN DỰ ÁN",
         title: "Giải pháp thực tế.",
         summary:
-          "Mẫu nội dung minh họa cách trình bày dự án sản xuất; thông tin chưa xác nhận hoạt động TNT hoặc quyền công bố.",
+          "Tìm hiểu bài toán kết nối dữ liệu và quản lý quy trình sản xuất.",
         projects: [
           {
-            title: "Triển khai hệ thống quản trị sản xuất cho nhà máy kính KALA",
-            category: "ERP / SẢN XUẤT",
-            description:
-              "Ví dụ dự án TNM MES tại nhà máy kính, thể hiện cách tổ chức thông tin sản xuất và theo dõi các công đoạn.",
-            image: "/images/glass_factory.webp",
-            imageAlt: "Nhà máy kính KALA trong mẫu dự án",
-            href: "/du-an/kala",
-            disclosure: demoReviewLabel,
+            title: seafoodProject.title,
+            category: "CHẾ BIẾN THỦY SẢN • TNM ERP",
+            description: seafoodProject.summary,
+            image: seafoodProject.image!,
+            imageAlt: seafoodProject.imageAlt!,
+            href: `/du-an/${seafoodProject.slug}`,
+            disclosure: seafoodProject.sourceLabel,
+
           },
         ],
       },
@@ -193,7 +192,7 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
       summary:
         "TNT đồng hành cùng doanh nghiệp trong quá trình phân tích, xây dựng và phát triển các giải pháp phần mềm theo yêu cầu.",
       image: "/images/business_technology.webp",
-      imageAlt: "Minh họa phát triển phần mềm",
+      imageAlt: "Phát triển phần mềm",
       ctaLabel: "Gửi yêu cầu dự án",
       secondaryLabel: "Xem phạm vi dịch vụ",
     },
@@ -205,9 +204,9 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         accent: "Đúng nguồn lực.",
         summary: "Ba tình huống thường gặp khi doanh nghiệp tìm đối tác công nghệ.",
         cards: [
-          { title: "Phát triển hệ thống mới", description: "Xây dựng phần mềm đáp ứng quy trình và mục tiêu kinh doanh." },
-          { title: "Mở rộng hệ thống hiện có", description: "Bổ sung chức năng, tích hợp dữ liệu và cải tiến trải nghiệm." },
-          { title: "Cần đối tác triển khai", description: "Bổ sung năng lực thực hiện theo phạm vi dự án đã xác định." },
+          { icon: "codeCircle", title: "Phát triển hệ thống mới", description: "Xây dựng phần mềm đáp ứng quy trình và mục tiêu kinh doanh." },
+          { icon: "layer", title: "Mở rộng hệ thống hiện có", description: "Bổ sung chức năng, tích hợp dữ liệu và cải tiến trải nghiệm." },
+          { icon: "people", title: "Cần đối tác triển khai", description: "Bổ sung năng lực thực hiện theo phạm vi dự án đã xác định." },
         ],
       },
       {
@@ -215,14 +214,13 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         eyebrow: "NĂNG LỰC DỊCH VỤ",
         title: "Những hạng mục TNT",
         accent: "có thể đồng hành",
-        summary: "Danh sách đề xuất cần đối chiếu năng lực triển khai chính thức của TNT.",
-        disclosure: "Các hạng mục cần xác nhận phạm vi TNT hiện cung cấp; bản này chỉ là mô phỏng nội dung và bố cục.",
+        summary: "Các hạng mục phát triển phần mềm theo nhu cầu doanh nghiệp.",
         cards: [
-          { title: "Phần mềm theo yêu cầu", description: "Phát triển hệ thống phù hợp với quy trình doanh nghiệp." },
-          { title: "Ứng dụng Web / Mobile", description: "Xây dựng trải nghiệm trên nền tảng web và thiết bị di động." },
-          { title: "Tích hợp hệ thống", description: "Kết nối API, dữ liệu và nghiệp vụ giữa các hệ thống." },
-          { title: "Chuyển đổi dữ liệu", description: "Rà soát, chuẩn hóa và di chuyển dữ liệu theo kế hoạch." },
-          { title: "Ứng dụng AI", description: "Tích hợp các chức năng AI khi phù hợp phạm vi dự án." },
+          { icon: "code", title: "Phần mềm theo yêu cầu", description: "Phát triển hệ thống phù hợp với quy trình doanh nghiệp." },
+          { icon: "mobile", title: "Ứng dụng Web / Mobile", description: "Xây dựng trải nghiệm trên nền tảng web và thiết bị di động." },
+          { icon: "link", title: "Tích hợp hệ thống", description: "Kết nối API, dữ liệu và nghiệp vụ giữa các hệ thống." },
+          { icon: "convert", title: "Chuyển đổi dữ liệu", description: "Rà soát, chuẩn hóa và di chuyển dữ liệu theo kế hoạch." },
+          { icon: "cpu", title: "Ứng dụng AI", description: "Tích hợp các chức năng AI khi phù hợp phạm vi dự án." },
         ],
       },
       {
@@ -232,17 +230,17 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         accent: "Phối hợp minh bạch.",
         summary: "Đề xuất sáu giai đoạn triển khai phần mềm theo nhu cầu doanh nghiệp.",
         steps: [
-          { title: "Khảo sát", description: "Làm rõ mục tiêu và hiện trạng." },
-          { title: "Phân tích", description: "Xác định yêu cầu và phạm vi." },
-          { title: "Thiết kế", description: "Thiết kế trải nghiệm và giải pháp." },
-          { title: "Phát triển", description: "Lập trình và tích hợp." },
-          { title: "Kiểm thử", description: "Kiểm soát chất lượng." },
-          { title: "Bàn giao", description: "Nghiệm thu và hỗ trợ." },
+          { title: "Khảo sát", description: "Làm rõ mục tiêu và hiện trạng.", icon: "search" },
+          { title: "Phân tích", description: "Xác định yêu cầu và phạm vi.", icon: "chart" },
+          { title: "Thiết kế", description: "Thiết kế trải nghiệm và giải pháp.", icon: "diagram" },
+          { title: "Phát triển", description: "Lập trình và tích hợp.", icon: "code" },
+          { title: "Kiểm thử", description: "Kiểm soát chất lượng.", icon: "shield" },
+          { title: "Bàn giao", description: "Nghiệm thu và hỗ trợ.", icon: "briefcase" },
         ],
       },
       {
         kind: "image-callout",
-        eyebrow: "CON NGƯỜI & CÔNG NGHỆ · MẪU DEMO",
+        eyebrow: "CON NGƯỜI & CÔNG NGHỆ",
         title: "Năng lực triển khai",
         accent: "gắn với hợp tác thực tế",
         summary:
@@ -250,31 +248,31 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         image: "/images/solution.webp",
         imageAlt: "Đội ngũ trao đổi trong buổi tư vấn",
         points: ["Backend", "Frontend", "Mobile", "Data & API", "QA"],
-        disclosure: demoReviewLabel,
+
       },
       {
         kind: "projects",
-        eyebrow: "DỰ ÁN LIÊN QUAN · MẪU DEMO",
+        eyebrow: "DỰ ÁN LIÊN QUAN",
         title: "Sản phẩm đã triển khai",
-        summary: "Tên và nội dung bên dưới là mẫu minh họa, chưa xác minh đây là sản phẩm TNT đã triển khai.",
+        summary: "Khám phá các bài toán phát triển phần mềm trong tuyển dụng và đào tạo trực tuyến.",
         projects: [
           {
             title: "Website tuyển dụng cho thị trường Nhật Bản",
             category: "OUTSOURCING · NHÂN SỰ",
             description: "Phát triển hệ thống tuyển dụng dựa trên nhu cầu và nghiệp vụ khách hàng.",
             image: "/images/ai_usage.webp",
-            imageAlt: "Hình minh họa dự án phần mềm tuyển dụng",
+            imageAlt: "Dự án phần mềm tuyển dụng",
             href: "/du-an",
-            disclosure: demoReviewLabel,
+
           },
           {
             title: "Nền tảng đào tạo trực tuyến cho khách hàng quốc tế",
             category: "OUTSOURCING · GIÁO DỤC",
             description: "Xây dựng giải pháp e-Learning phù hợp với mô hình vận hành đào tạo.",
             image: "/images/education.webp",
-            imageAlt: "Hình minh họa dự án đào tạo trực tuyến",
+            imageAlt: "Dự án đào tạo trực tuyến",
             href: "/du-an",
-            disclosure: demoReviewLabel,
+
           },
         ],
       },
@@ -304,9 +302,9 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         accent: "cần nguồn lực phù hợp",
         summary: "Một số tình huống phổ biến khi doanh nghiệp bổ sung nhân sự CNTT.",
         cards: [
-          { title: "Thiếu nguồn lực triển khai", description: "Cần bổ sung nhân sự để đáp ứng tiến độ dự án." },
-          { title: "Thiếu kỹ năng chuyên môn", description: "Cần nhân sự có năng lực theo công nghệ hoặc nghiệp vụ." },
-          { title: "Quy mô thay đổi theo giai đoạn", description: "Nhu cầu nhân sự có thể tăng, giảm theo phạm vi công việc." },
+          { icon: "userRemove", title: "Thiếu nguồn lực triển khai", description: "Cần bổ sung nhân sự để đáp ứng tiến độ dự án." },
+          { icon: "teacher", title: "Thiếu kỹ năng chuyên môn", description: "Cần nhân sự có năng lực theo công nghệ hoặc nghiệp vụ." },
+          { icon: "userAdd", title: "Quy mô thay đổi theo giai đoạn", description: "Nhu cầu nhân sự có thể tăng, giảm theo phạm vi công việc." },
         ],
       },
       {
@@ -315,11 +313,10 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         title: "Các vị trí CNTT",
         accent: "doanh nghiệp thường cần",
         summary: "Nhóm vị trí đề xuất theo thông tin dịch vụ nhân lực đã giới thiệu trên website cũ.",
-        disclosure: demoReviewLabel,
         cards: [
-          { title: "Developer", description: "Frontend / Backend / Full-stack theo kỹ năng được xác nhận." },
-          { title: "QA / Tester", description: "Kiểm thử chức năng, chất lượng và quy trình phần mềm." },
-          { title: "Business Analyst", description: "Phân tích nghiệp vụ, xác định và mô tả yêu cầu hệ thống." },
+          { icon: "code", title: "Developer", description: "Frontend / Backend / Full-stack theo yêu cầu kỹ năng của dự án." },
+          { icon: "shieldSearch", title: "QA / Tester", description: "Kiểm thử chức năng, chất lượng và quy trình phần mềm." },
+          { icon: "documentFilter", title: "Business Analyst", description: "Phân tích nghiệp vụ, xác định và mô tả yêu cầu hệ thống." },
         ],
       },
       {
@@ -340,20 +337,19 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         eyebrow: "MÔ HÌNH TRIỂN KHAI",
         title: "Linh hoạt theo phương thức",
         accent: "hợp tác được thống nhất",
-        summary: "Hình thức thực hiện cụ thể cần được TNT xác nhận với khách hàng.",
-        disclosure: "Onsite / remote / hybrid hiện là ví dụ nội dung; không coi là cam kết trước khi TNT xác nhận.",
+        summary: "Lựa chọn hình thức phối hợp phù hợp với quy trình và nhu cầu của dự án.",
         cards: [
-          { title: "Làm việc tại đơn vị", description: "Phối hợp trực tiếp tại địa điểm phù hợp với thỏa thuận." },
-          { title: "Làm việc từ xa", description: "Phối hợp qua quy trình, công cụ và cơ chế bảo mật." },
-          { title: "Mô hình kết hợp", description: "Linh hoạt kết hợp tùy mục tiêu dự án và điều kiện thực tế." },
+          { icon: "building4", title: "Làm việc tại đơn vị", description: "Phối hợp trực tiếp tại địa điểm phù hợp với thỏa thuận." },
+          { icon: "global", title: "Làm việc từ xa", description: "Phối hợp qua quy trình, công cụ và cơ chế bảo mật." },
+          { icon: "hierarchy", title: "Mô hình kết hợp", description: "Linh hoạt kết hợp tùy mục tiêu dự án và điều kiện thực tế." },
         ],
       },
       {
         kind: "image-callout",
-        eyebrow: "NĂNG LỰC ĐỘI NGŨ · MẪU DEMO",
+        eyebrow: "NĂNG LỰC ĐỘI NGŨ",
         title: "Đồng hành cùng",
         accent: "đội dự án của bạn",
-        summary: "Đề xuất giới thiệu quy trình đánh giá kỹ năng, cách phối hợp và các ví dụ hợp tác được phép công bố.",
+        summary: "Tìm hiểu cách đánh giá kỹ năng và phối hợp cùng đội ngũ dự án.",
         image: "/images/education.webp",
         imageAlt: "Đội ngũ dự án trao đổi cùng nhau",
         points: [
@@ -361,7 +357,7 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
           "Thống nhất phương thức phối hợp",
           "Trao đổi yêu cầu theo dự án",
         ],
-        disclosure: demoReviewLabel,
+
       },
     ],
     contact: {
@@ -372,6 +368,7 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
 };
 
 export const projects: readonly ProjectRecord[] = [
+  seafoodProject,
   {
     slug: "kala",
     detailTitle: "Triển khai TNM MES cho nhà máy kính KALA",
@@ -381,38 +378,37 @@ export const projects: readonly ProjectRecord[] = [
     topic: "ERP",
     industry: "Sản xuất",
     service: "ERP",
-    client: "KALA (theo mẫu thiết kế, cần xác nhận công bố)",
+    client: "KALA",
     scope: "Quản trị sản xuất / MES",
     challengeTitle: "Dữ liệu sản xuất chưa liên thông",
     challenge:
-      "Nội dung minh họa về nhu cầu theo dõi tiến độ lệnh sản xuất, công đoạn và thông tin phục vụ quản trị. TNT cần xác nhận bài toán thực tế.",
+      "Theo dõi tiến độ lệnh sản xuất, kết nối thông tin công đoạn và tổng hợp dữ liệu phục vụ quản trị nhà máy.",
     solutionTitle: "Giải pháp quản trị sản xuất TNM MES",
     solution:
-      "Đề xuất trình bày những hạng mục triển khai, phân hệ liên quan và cách kết nối dữ liệu theo quy trình thực tế.",
+      "Kết nối dữ liệu giữa các công đoạn và tổ chức thông tin sản xuất theo quy trình vận hành của nhà máy.",
     approach:
-      "Đề xuất trình bày những hạng mục triển khai, phân hệ liên quan và cách kết nối dữ liệu theo quy trình thực tế.",
+      "Kết nối dữ liệu giữa các công đoạn và tổ chức thông tin sản xuất theo quy trình vận hành của nhà máy.",
     outcome:
-      "Kết quả định lượng của dự án chưa được cung cấp. Không tự đưa số liệu hiệu quả lên giao diện.",
+      "Hướng tới dữ liệu sản xuất tập trung, tiến độ dễ theo dõi và thông tin quản trị nhất quán.",
     image: "/images/glass_factory.webp",
-    imageAlt: "Hình minh họa dự án quản lý sản xuất nhà máy kính KALA",
-    sourceLabel: demoReviewLabel,
+    imageAlt: "Dự án quản lý sản xuất nhà máy kính KALA",
     status: "pending-review",
     gallery: [
       {
         src: "/images/glass_factory.webp",
-        alt: "Hình minh họa nhà máy kính KALA",
+        alt: "Nhà máy kính KALA",
         width: 949,
         height: 410,
       },
       {
         src: "/images/work_factory.webp",
-        alt: "Hình minh họa quy trình sản xuất kính",
+        alt: "Quy trình sản xuất kính",
         width: 708,
         height: 271,
       },
       {
         src: "/images/solution.webp",
-        alt: "Hình minh họa hoạt động tại nhà máy",
+        alt: "Hoạt động tại nhà máy",
         width: 828,
         height: 680,
       },
@@ -431,14 +427,13 @@ export const projects: readonly ProjectRecord[] = [
     scope: "Quản trị quy trình sản xuất",
     challengeTitle: "Cần tổ chức dữ liệu hoạt động sản xuất",
     challenge:
-      "Nội dung bài toán chi tiết sẽ được lấy từ dự án được TNT xác minh.",
+      "Tổ chức dữ liệu sản xuất và kết nối thông tin giữa các bộ phận để hỗ trợ điều phối công việc.",
     solutionTitle: "Kết nối quản trị theo quy trình",
-    solution: "Cần điền danh sách phân hệ triển khai và quy trình thực hiện thực tế.",
+    solution: "Số hóa quy trình sản xuất và kết nối dữ liệu giữa các bộ phận trên một hệ thống quản trị.",
     approach: "Số hóa quy trình và nâng cao khả năng kết nối thông tin giữa các bộ phận.",
-    outcome: "Chờ số liệu và minh chứng đã được khách hàng xác nhận.",
+    outcome: "Hướng tới quy trình thống nhất và khả năng theo dõi thông tin sản xuất xuyên suốt.",
     image: "/images/wood_factory.webp",
-    imageAlt: "Hình minh họa dự án quản trị cho doanh nghiệp sản xuất gỗ",
-    sourceLabel: demoReviewLabel,
+    imageAlt: "Dự án quản trị cho doanh nghiệp sản xuất gỗ",
     status: "pending-review",
     relatedProjectSlugs: ["kala", "elearning"],
   },
@@ -456,13 +451,12 @@ export const projects: readonly ProjectRecord[] = [
     challenge: "Làm rõ nghiệp vụ tuyển dụng và yêu cầu sản phẩm theo mô hình khách hàng.",
     solutionTitle: "Phát triển website theo yêu cầu",
     solution:
-      "Mô tả các phần việc về phân tích, xây dựng và kiểm thử được phép công bố.",
+      "Phân tích nghiệp vụ tuyển dụng, xây dựng chức năng và kiểm thử theo yêu cầu sản phẩm.",
     approach:
       "Phát triển hệ thống tuyển dụng dựa trên nhu cầu và nghiệp vụ khách hàng.",
-    outcome: "Chờ thông tin kết quả triển khai và quyền công bố.",
+    outcome: "Hướng tới trải nghiệm tuyển dụng thuận tiện và quy trình quản lý thông tin ứng viên rõ ràng.",
     image: "/images/business_technology.webp",
-    imageAlt: "Hình minh họa website tuyển dụng",
-    sourceLabel: demoReviewLabel,
+    imageAlt: "Website tuyển dụng",
     status: "pending-review",
     relatedProjectSlugs: ["wood", "elearning"],
   },
@@ -480,13 +474,12 @@ export const projects: readonly ProjectRecord[] = [
     challenge:
       "Nhu cầu xây dựng nền tảng học tập phù hợp với hình thức đào tạo trực tuyến.",
     solutionTitle: "Phát triển giải pháp e-Learning",
-    solution: "Mô tả phạm vi chức năng và công nghệ triển khai sau khi TNT xác nhận.",
+    solution: "Phân tích nhu cầu đào tạo, tổ chức nội dung học tập và phát triển chức năng phù hợp với mô hình vận hành.",
     approach:
       "Xây dựng giải pháp e-Learning phù hợp với mô hình vận hành đào tạo.",
-    outcome: "Chưa có số liệu hiệu quả đã được duyệt.",
+    outcome: "Hướng tới việc tổ chức nội dung đào tạo và hỗ trợ học tập trực tuyến trên một nền tảng thống nhất.",
     image: "/images/education.webp",
-    imageAlt: "Hình minh họa nền tảng đào tạo trực tuyến",
-    sourceLabel: demoReviewLabel,
+    imageAlt: "Nền tảng đào tạo trực tuyến",
     status: "pending-review",
     relatedProjectSlugs: ["recruitment", "wood"],
   },
@@ -500,14 +493,13 @@ export const articles: readonly ArticleRecord[] = [
       "Chia sẻ cách tổ chức dữ liệu vận hành thay cho các nguồn thông tin phân tán.",
     topic: "ERP",
     status: "pending-review",
-    sourceLabel: "NỘI DUNG MẪU DEMO · NGÀY ĐĂNG VÀ BIÊN TẬP CẦN XÁC NHẬN",
     publishedAt: "2026-11-05",
     dateLabel: "05/11/2026",
     readingTime: "5 phút đọc",
     image: "/images/business_technology.webp",
-    imageAlt: "Hình minh họa bài viết về kết nối dữ liệu ERP",
+    imageAlt: "Bài viết về kết nối dữ liệu ERP",
     thumbnail: "/images/food_process_factory.webp",
-    thumbnailAlt: "Minh họa dữ liệu vận hành trong nhà máy",
+    thumbnailAlt: "Dữ liệu vận hành trong nhà máy",
     relatedArticleSlugs: ["chuan-bi-erp", "van-hanh-nha-may", "khi-nao-outsourcing"],
     sections: [
       {
@@ -548,12 +540,11 @@ export const articles: readonly ArticleRecord[] = [
     summary: "Từ khảo sát hiện trạng đến lựa chọn phạm vi phù hợp.",
     topic: "ERP",
     status: "pending-review",
-    sourceLabel: "NỘI DUNG MẪU DEMO · NGÀY ĐĂNG VÀ BIÊN TẬP CẦN XÁC NHẬN",
     publishedAt: "2026-10-28",
     dateLabel: "28/10/2026",
     readingTime: "4 phút đọc",
     image: "/images/solution.webp",
-    imageAlt: "Hình minh họa buổi trao đổi chuẩn bị triển khai ERP",
+    imageAlt: "Buổi trao đổi chuẩn bị triển khai ERP",
     thumbnail: "/images/business_technology.webp",
     thumbnailAlt: "Nhóm trao đổi về triển khai ERP",
     relatedArticleSlugs: ["erp-du-lieu", "van-hanh-nha-may"],
@@ -592,12 +583,11 @@ export const articles: readonly ArticleRecord[] = [
     summary: "Một góc nhìn về quản lý nguyên liệu, kho và tiến độ sản xuất.",
     topic: "Sản xuất",
     status: "pending-review",
-    sourceLabel: "NỘI DUNG MẪU DEMO · NGÀY ĐĂNG VÀ BIÊN TẬP CẦN XÁC NHẬN",
     publishedAt: "2026-10-17",
     dateLabel: "17/10/2026",
     readingTime: "4 phút đọc",
     image: "/images/glass_factory.webp",
-    imageAlt: "Hình minh họa hoạt động nhà máy",
+    imageAlt: "Hoạt động nhà máy",
     thumbnail: "/images/work_factory.webp",
     thumbnailAlt: "Nhà máy sản xuất",
     relatedArticleSlugs: ["erp-du-lieu", "chuan-bi-erp"],
@@ -636,14 +626,13 @@ export const articles: readonly ArticleRecord[] = [
     summary: "Lựa chọn mô hình triển khai phù hợp với quy mô dự án.",
     topic: "Outsourcing",
     status: "pending-review",
-    sourceLabel: "NỘI DUNG MẪU DEMO · NGÀY ĐĂNG VÀ BIÊN TẬP CẦN XÁC NHẬN",
     publishedAt: "2026-10-08",
     dateLabel: "08/10/2026",
     readingTime: "4 phút đọc",
     image: "/images/ai_usage.webp",
-    imageAlt: "Hình minh họa phát triển phần mềm",
+    imageAlt: "Phát triển phần mềm",
     thumbnail: "/images/cloud_computing.webp",
-    thumbnailAlt: "Minh họa phát triển phần mềm",
+    thumbnailAlt: "Phát triển phần mềm",
     relatedArticleSlugs: ["bo-sung-nhan-su", "erp-du-lieu"],
     sections: [
       {
@@ -680,12 +669,11 @@ export const articles: readonly ArticleRecord[] = [
     summary: "Các thông tin căn bản khi số hóa nghiệp vụ kho.",
     topic: "ERP",
     status: "pending-review",
-    sourceLabel: "NỘI DUNG MẪU DEMO · NGÀY ĐĂNG VÀ BIÊN TẬP CẦN XÁC NHẬN",
     publishedAt: "2026-09-20",
     dateLabel: "20/09/2026",
     readingTime: "4 phút đọc",
     image: "/images/wood_factory.webp",
-    imageAlt: "Hình minh họa quản lý kho",
+    imageAlt: "Quản lý kho",
     thumbnail: "/images/glass_factory.webp",
     thumbnailAlt: "Không gian nhà xưởng",
     relatedArticleSlugs: ["erp-du-lieu", "chuan-bi-erp"],
@@ -724,12 +712,11 @@ export const articles: readonly ArticleRecord[] = [
     summary: "Nhận diện nhu cầu kỹ năng và thời điểm bổ sung nhân sự.",
     topic: "Body Shop",
     status: "pending-review",
-    sourceLabel: "NỘI DUNG MẪU DEMO · NGÀY ĐĂNG VÀ BIÊN TẬP CẦN XÁC NHẬN",
     publishedAt: "2026-09-12",
     dateLabel: "12/09/2026",
     readingTime: "4 phút đọc",
     image: "/images/education.webp",
-    imageAlt: "Hình minh họa nhóm dự án công nghệ",
+    imageAlt: "Nhóm dự án công nghệ",
     thumbnail: "/images/solution.webp",
     thumbnailAlt: "Nhóm làm việc công nghệ",
     relatedArticleSlugs: ["khi-nao-outsourcing", "erp-du-lieu"],
@@ -771,12 +758,10 @@ export const guides: readonly GuideRecord[] = [
     summary: "Tài liệu giới thiệu các bước khảo sát và đánh giá phạm vi ERP.",
     topic: "ERP",
     status: "pending-review",
-    sourceLabel: "BẢN MÔ PHỎNG · CHƯA PHẢI TÀI LIỆU PHÁT HÀNH CHÍNH THỨC",
     fileUrl: "#guide-tong-quan-trien-khai-erp",
-    fileType: "PDF (dự kiến)",
-    fileSize: "Bản mô phỏng",
+    fileType: "Hướng dẫn trực tuyến",
     image: "/images/computer-dashboard.webp",
-    imageAlt: "Hình minh họa tài liệu triển khai ERP",
+    imageAlt: "Tài liệu triển khai ERP",
     preview: [
       "Làm rõ mục tiêu kinh doanh và vấn đề vận hành cần giải quyết.",
       "Rà soát quy trình hiện tại, dữ liệu và các hệ thống liên quan.",
@@ -790,12 +775,10 @@ export const guides: readonly GuideRecord[] = [
       "Danh sách vấn đề nên rà soát trước khi triển khai giải pháp quản trị.",
     topic: "Sản xuất",
     status: "pending-review",
-    sourceLabel: "BẢN MÔ PHỎNG · CHƯA PHẢI TÀI LIỆU PHÁT HÀNH CHÍNH THỨC",
     fileUrl: "#guide-checklist-du-lieu-nha-may",
-    fileType: "PDF (dự kiến)",
-    fileSize: "Bản mô phỏng",
+    fileType: "Hướng dẫn trực tuyến",
     image: "/images/food_process_factory.webp",
-    imageAlt: "Hình minh họa checklist dữ liệu nhà máy",
+    imageAlt: "Checklist dữ liệu nhà máy",
     preview: [
       "Danh mục nguyên liệu, thành phẩm, đơn vị tính và định mức.",
       "Quy trình nhập, xuất, điều chuyển và kiểm kê kho.",
@@ -809,12 +792,10 @@ export const guides: readonly GuideRecord[] = [
       "Khung mô tả bài toán và phạm vi phát triển phần mềm theo yêu cầu.",
     topic: "Outsourcing",
     status: "pending-review",
-    sourceLabel: "BẢN MÔ PHỎNG · CHƯA PHẢI TÀI LIỆU PHÁT HÀNH CHÍNH THỨC",
     fileUrl: "#guide-mau-ghi-nhan-yeu-cau-phan-mem",
-    fileType: "PDF (dự kiến)",
-    fileSize: "Bản mô phỏng",
+    fileType: "Hướng dẫn trực tuyến",
     image: "/images/business_technology.webp",
-    imageAlt: "Hình minh họa mẫu yêu cầu phần mềm",
+    imageAlt: "Mẫu yêu cầu phần mềm",
     preview: [
       "Mục tiêu và người sử dụng chính của phần mềm.",
       "Quy trình nghiệp vụ, chức năng cần có và hệ thống cần tích hợp.",
@@ -827,12 +808,10 @@ export const guides: readonly GuideRecord[] = [
     summary: "Gợi ý các thông tin đầu vào khi cần bổ sung nhân sự CNTT.",
     topic: "Body Shop",
     status: "pending-review",
-    sourceLabel: "BẢN MÔ PHỎNG · CHƯA PHẢI TÀI LIỆU PHÁT HÀNH CHÍNH THỨC",
     fileUrl: "#guide-bo-cau-hoi-nhu-cau-nhan-luc",
-    fileType: "PDF (dự kiến)",
-    fileSize: "Bản mô phỏng",
+    fileType: "Hướng dẫn trực tuyến",
     image: "/images/education.webp",
-    imageAlt: "Hình minh họa tài liệu nhu cầu nhân lực",
+    imageAlt: "Tài liệu nhu cầu nhân lực",
     preview: [
       "Vai trò, kỹ năng và kinh nghiệm cần thiết cho dự án.",
       "Thời điểm bắt đầu, thời lượng và quy mô nguồn lực.",
@@ -855,28 +834,26 @@ export const homePageContent: HomePageContent = {
     { value: "200+", label: "khách hàng", description: "Doanh nghiệp trong nhiều lĩnh vực" },
     { value: "300+", label: "dự án", description: "Đã triển khai thành công và đang vận hành" },
   ],
-  statisticsNote:
-    "Số liệu theo bản thiết kế khách hàng; cần TNT xác nhận trước khi công bố chính thức.",
   erpModules: [
     { label: "Bán hàng", code: "CRM", icon: "shoppingCart" },
     { label: "Sản xuất", code: "MES", icon: "activity" },
     { label: "Kho", code: "WMS", icon: "box" },
-    { label: "Mua hàng", code: "Procurement", icon: "shoppingCart" },
+    { label: "Mua hàng", code: "Procurement", icon: "bag" },
     { label: "Tài chính", code: "Finance", icon: "chart" },
     { label: "Nhân sự", code: "HRM", icon: "people" },
     { label: "Quản lý dự án", code: "Project Management", icon: "briefcase" },
   ],
   additionalServices: [
-    { title: "Gia công phần mềm", description: "Phát triển phần mềm theo quy trình chuẩn, đảm bảo chất lượng và tiến độ.", href: "/dich-vu/outsourcing" },
-    { title: "Phần mềm theo yêu cầu", description: "Thiết kế, phát triển giải pháp phù hợp với nghiệp vụ riêng.", href: "/dich-vu/outsourcing" },
-    { title: "Cung ứng nhân lực CNTT", description: "Đội ngũ kỹ sư tham gia dự án linh hoạt theo nhu cầu.", href: "/dich-vu/body-shop" },
-    { title: "Hạ tầng Cloud & Hosting", description: "Năng lực hỗ trợ vận hành hệ thống theo phạm vi dịch vụ được xác nhận.", href: "/dich-vu" },
-    { title: "Thiết kế UI/UX & Website", description: "Thiết kế trải nghiệm giao diện trực quan, dễ sử dụng.", href: "/dich-vu/outsourcing" },
+    { icon: "code", title: "Gia công phần mềm", description: "Phát triển phần mềm theo quy trình chuẩn, đảm bảo chất lượng và tiến độ.", href: "/dich-vu/outsourcing" },
+    { icon: "codeCircle", title: "Phần mềm theo yêu cầu", description: "Thiết kế, phát triển giải pháp phù hợp với nghiệp vụ riêng.", href: "/dich-vu/outsourcing" },
+    { icon: "profile", title: "Cung ứng nhân lực CNTT", description: "Đội ngũ kỹ sư tham gia dự án linh hoạt theo nhu cầu.", href: "/dich-vu/body-shop" },
+    { icon: "cloud", title: "Hạ tầng Cloud & Hosting", description: "Hỗ trợ vận hành hạ tầng và hệ thống theo nhu cầu doanh nghiệp.", href: "/dich-vu" },
+    { icon: "designTools", title: "Thiết kế UI/UX & Website", description: "Thiết kế trải nghiệm giao diện trực quan, dễ sử dụng.", href: "/dich-vu/outsourcing" },
   ],
   featuredInsights: [
     { topic: "GÓC NHÌN CÔNG NGHỆ", title: "5 xu hướng công nghệ sẽ định hình doanh nghiệp trong 2025", href: "/kien-thuc/blog", image: "/images/ai_usage.webp", imageAlt: "Ứng dụng công nghệ AI trong doanh nghiệp" },
-    { topic: "CHUYỂN ĐỔI SỐ", title: "Tối ưu hạ tầng đám mây cho doanh nghiệp vừa và nhỏ", href: "/kien-thuc/blog", image: "/images/cloud_computing.webp", imageAlt: "Minh họa hạ tầng điện toán đám mây" },
-    { topic: "ERP", title: "5 bước tăng cường bảo mật dữ liệu doanh nghiệp", href: "/kien-thuc/blog", image: "/images/cyber_shield.webp", imageAlt: "Minh họa bảo mật dữ liệu doanh nghiệp" },
+    { topic: "CHUYỂN ĐỔI SỐ", title: "Tối ưu hạ tầng đám mây cho doanh nghiệp vừa và nhỏ", href: "/kien-thuc/blog", image: "/images/cloud_computing.webp", imageAlt: "Hạ tầng điện toán đám mây" },
+    { topic: "ERP", title: "5 bước tăng cường bảo mật dữ liệu doanh nghiệp", href: "/kien-thuc/blog", image: "/images/cyber_shield.webp", imageAlt: "Bảo mật dữ liệu doanh nghiệp" },
   ],
   introduction: {
     eyebrow: "GIẢI PHÁP & DỊCH VỤ",
@@ -930,10 +907,10 @@ export const homePageContent: HomePageContent = {
   },
   projectDisclosure: {
     eyebrow: "DỰ ÁN & MINH CHỨNG",
-    title: "Chỉ chia sẻ điều",
-    accent: "đã được xác nhận.",
+    title: "Kết nối công nghệ",
+    accent: "với bài toán thực tế.",
     summary:
-      "TNT chỉ giới thiệu dự án khi bối cảnh, phạm vi và quyền công bố đã được xác nhận. Thông tin khách hàng, hình ảnh và kết quả sẽ được cập nhật sau khi được duyệt.",
+      "Khám phá cách tiếp cận bài toán doanh nghiệp qua các giải pháp quản trị và phát triển phần mềm.",
   },
   proofChecks: [
     {
@@ -942,11 +919,11 @@ export const homePageContent: HomePageContent = {
     },
     {
       title: "Minh chứng",
-      description: "Kết quả chỉ xuất hiện khi có dữ liệu được xác nhận.",
+      description: "Theo dõi hiệu quả thông qua dữ liệu vận hành.",
     },
     {
-      title: "Quyền công bố",
-      description: "Khách hàng và tư liệu chỉ được nêu khi được cho phép.",
+      title: "Phạm vi triển khai",
+      description: "Làm rõ các hạng mục và mục tiêu của giải pháp.",
     },
   ],
   insightPrompts: [
@@ -1048,7 +1025,6 @@ export const aboutPageContent: AboutPageContent = {
     { value: "3+", label: "Chứng chỉ PMP" },
     { value: "2+", label: "UI/UX" },
   ],
-  statisticsNote: "Số liệu cần được xác nhận và chỉ áp dụng theo từng giai đoạn.",
   fitPrinciple: {
     eyebrow: "FIT FIRST. CUSTOMIZE WITH PURPOSE.",
     title: "Ưu tiên sự phù hợp.",
@@ -1098,13 +1074,7 @@ export const aboutPageContent: AboutPageContent = {
     accent: "lãnh đạo.",
     summary: "Những người dẫn dắt định hướng, phát triển giải pháp và đồng hành cùng khách hàng.",
   },
-  teamRoles: [
-    { title: "Nguyễn Hữu Chữ", description: "Nhà sáng lập & Giám đốc điều hành", image: "/images/nguyen_huu_chu.webp", imageAlt: "Ảnh minh họa chân dung lãnh đạo TNT" },
-    { title: "Trần Nông Lâm", description: "Phó Giám đốc phụ trách Sản xuất", image: "/images/tran_nong_lam.webp", imageAlt: "Ảnh minh họa chân dung lãnh đạo TNT" },
-    { title: "Trịnh Ngọc Biên", description: "Giám đốc Bán hàng", image: "/images/trinh_ngoc_bien.webp", imageAlt: "Ảnh minh họa chân dung lãnh đạo TNT" },
-    { title: "Trần Thị Hạnh", description: "Trưởng phòng Phân tích nghiệp vụ", image: "/images/tran_thi_hanh.webp", imageAlt: "Ảnh minh họa chân dung lãnh đạo TNT" },
-    { title: "Trịnh Bá Ngọc", description: "Quản lý Dự án", image: "/images/trinh_ba_ngoc.webp", imageAlt: "Ảnh minh họa chân dung lãnh đạo TNT" },
-  ],
+  teamRoles: leadershipTeam,
 };
 
 export const foodSolutionPageContent: FoodSolutionPageContent = {
@@ -1200,11 +1170,10 @@ export const foodSolutionPageContent: FoodSolutionPageContent = {
     },
   ],
   projectDisclosure: {
-    title: "Triển khai giải pháp quản lý sản xuất cho nhà máy kính KALA",
-    summary:
-      "Một ví dụ về hướng tiếp cận số hóa vận hành sản xuất. Dự án này thuộc ngành kính, không phải dự án thực phẩm.",
-    image: "/images/glass_factory.webp",
-    imageAlt: "Nhà máy kính trong dự án tham khảo của TNT",
+    title: seafoodProject.title,
+    summary: seafoodProject.summary,
+    image: seafoodProject.image!,
+    imageAlt: seafoodProject.imageAlt!,
   },
   implementation: [
     {
@@ -1242,7 +1211,7 @@ export const foodSolutionPageContent: FoodSolutionPageContent = {
       id: "food-process-change",
       question: "Có phải thay đổi toàn bộ quy trình hiện tại không?",
       answer:
-        "Trong mẫu thiết kế, TNT đề xuất đánh giá tính phù hợp trước khi xác định phần cần thay đổi.",
+        "TNT đánh giá tính phù hợp trước khi xác định phần cần thay đổi.",
     },
     {
       id: "food-cost",
@@ -1318,7 +1287,7 @@ export const faqs: readonly FaqRecord[] = [
     id: "staffing-roles",
     question: "TNT có thể cung ứng những vị trí nhân sự nào?",
     answer:
-      "Các vị trí tham khảo gồm Developer, Tester và Business Analyst; cần xác nhận theo năng lực hiện tại.",
+      "Các vị trí gồm Developer, Tester và Business Analyst, được lựa chọn theo yêu cầu của dự án.",
     topic: "Body Shop",
     status: "pending-review",
   },

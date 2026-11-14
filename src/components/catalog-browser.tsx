@@ -7,7 +7,7 @@ import { useSearchParams } from "next/navigation";
 import { Icon } from "@/components/ui/icon";
 import type { ContentTopic } from "@/content/models";
 import { SelectBox } from "@/components/select-box";
-import { guideIcon } from "@/lib/content-icons";
+import { GuideCard } from "@/components/guide-card";
 export interface CatalogEntry {
     slug: string;
     title: string;
@@ -23,6 +23,7 @@ export interface CatalogEntry {
 
     readingTime?: string;
     preview?: readonly string[];
+    fileType?: string;
 }
 const topics: readonly ContentTopic[] = [
     "ERP",
@@ -77,7 +78,7 @@ export function CatalogBrowser({ entries, kind }: Props) {
         <label className="catalog-search">
           <span className="visually-hidden">{t("Tìm kiếm")}</span>
           <Icon name="search" size={18}/>
-          <input ref={searchInputRef} onChange={(event) => setQuery(event.target.value)} placeholder={t(kind === "article" ? "Tìm trong bài viết" : "Tìm theo từ khóa")} type="search" value={query}/>
+          <input ref={searchInputRef} onChange={(event) => setQuery(event.target.value)} placeholder={t(kind === "article" ? "Tìm trong bài viết" : kind === "guide" ? "Nhập tên tài liệu..." : "Tìm theo từ khóa")} type="search" value={query}/>
         </label>
         <div className="catalog-topic"><SelectBox label={t("Lọc theo chủ đề")} icon="settings" value={topic} onValueChange={value => setTopic(value as ContentTopic | "all")} options={[{value: "all", label: t("Tất cả chủ đề")}, ...topics.map(item => ({value: item, label: t(item)}))]} /></div>
         {kind === "project" && <div className="catalog-topic"><SelectBox label={t("Lọc theo ngành")} icon="building" value={industry} onValueChange={setIndustry} options={[{value: "all", label: t("Tất cả ngành")}, ...industries.map(item => ({value: item, label: t(item)}))]} /></div>}
@@ -90,14 +91,13 @@ export function CatalogBrowser({ entries, kind }: Props) {
             : `${result.length} kết quả`)}
       </p>
 
-      {t(result.length > 0 ? (<div className={kind === "article" ? "catalog-grid catalog-grid-article" : "catalog-grid"}>
-          {t(result.map((entry) => (<article className={`catalog-card catalog-card-${kind}`} key={entry.slug}>
+      {t(result.length > 0 ? (<div className={kind === "guide" ? "guide-card-grid" : kind === "article" ? "catalog-grid catalog-grid-article" : "catalog-grid"}>
+          {t(result.map((entry) => (kind === "guide" ? <GuideCard guide={entry} key={entry.slug} /> : <article className={`catalog-card catalog-card-${kind}`} key={entry.slug}>
               {t(entry.image && (<Link aria-label={t(entry.title)} className="catalog-card-image" href={entry.href} tabIndex={-1}>
                   <Image alt={t(entry.imageAlt ?? "")} fill sizes={kind === "article"
                         ? "(max-width: 760px) 100vw, 50vw"
                         : "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"} src={entry.image}/>
                 </Link>))}
-              {kind === "guide" && <div className="catalog-guide-icon"><Icon name={guideIcon(entry.slug)} size={32}/></div>}
               <div className="catalog-card-content">
                 <div className="catalog-card-tags">
                   <span className="catalog-tag">{t(entry.topic)}</span>
@@ -116,20 +116,12 @@ export function CatalogBrowser({ entries, kind }: Props) {
 
                 <p>{t(entry.summary)}</p>
                 <Link className="text-link" href={entry.href}>
-                  {t(kind === "guide"
-                    ? "Xem nội dung tham khảo"
-                    : kind === "article"
+                  {t(kind === "article"
                         ? "Đọc bài viết"
                         : "Xem câu chuyện dự án")}
                   <Icon name="arrowRight" size={16}/>
                 </Link>
               </div>
-              {t(entry.preview && (<div className="catalog-card-preview" id={`guide-${entry.slug}`}>
-                  <strong>{t("Nội dung tham khảo")}</strong>
-                  <ul>
-                    {t(entry.preview.map((line) => <li key={line}>{t(line)}</li>))}
-                  </ul>
-                </div>))}
             </article>)))}
         </div>) : (<div className="catalog-empty">
           <span className="catalog-empty-icon">

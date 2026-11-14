@@ -7,7 +7,7 @@ import { ArticleCards, WireframeCta, WireframeHeading, WireframeHero } from '@/c
 import { articleRepository, guideRepository } from '@/content/repositories';
 import { createPageMetadata } from '@/lib/metadata';
 import { articleMedia, media } from '@/lib/media';
-import { guideIcon } from '@/lib/content-icons';
+import { GuideCard } from '@/components/guide-card';
 
 export async function generateMetadata(){return createPageMetadata({title:'Kiến thức',description:'Góc nhìn thực tiễn về quản trị doanh nghiệp, ERP, sản xuất, công nghệ và phát triển phần mềm.',path:'/kien-thuc'});}
 
@@ -36,7 +36,7 @@ export default async function InsightsPage(){
     </div></section>
     <section className="wf-section wf-soft"><div className="container">
       <WireframeHeading eyebrow="TÀI LIỆU / GUIDES" title="Tài liệu để tìm hiểu sâu hơn" action={{href:'/kien-thuc/guides',label:'Khám phá thư viện tài liệu'}} />
-      <div className="wf-resource-grid">{guides.slice(0,3).map(guide=><article className="wf-resource" key={guide.slug}><span className="wf-icon-tile"><Icon name={guideIcon(guide.slug)} size={31} /></span><h3>{t(guide.title)}</h3><p>{t(guide.summary)}</p><span className="wf-meta">{t(guide.fileType)}</span><p><Link className="wf-text-link" href={`/kien-thuc/guides#guide-${guide.slug}`}>{t('Xem nội dung tài liệu')}<Icon name="arrowRight" size={16} /></Link></p></article>)}</div>
+      <div className="guide-card-grid">{guides.slice(0,4).map(guide=><GuideCard guide={guide} inlinePreview={false} key={guide.slug} />)}</div>
     </div></section>
     <WireframeCta title="Có câu hỏi về giải pháp ERP?" description="Chuyển từ việc tìm hiểu kiến thức sang trao đổi bài toán doanh nghiệp." href="/dich-vu/erp" label="Nhận tư vấn ERP" />
   </main></PageFrame>;

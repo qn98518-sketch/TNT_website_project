@@ -43,6 +43,41 @@
   margin-bottom: var(--section-heading-space);
 }
 
+/* Side-by-side descriptions share the content's right edge. Stacked headings
+ * keep their natural reading alignment at each layout's own breakpoint. */
+@media (min-width: 761px) {
+  .rf-frame .wf-section-heading:not(.wf-centered) > p,
+  .rf-frame .rf-project-heading > p {
+    text-align: right;
+  }
+}
+
+@media (min-width: 1101px) {
+  .rf-frame :is(.rf-heading, .rf-service-subheading) > p {
+    text-align: right;
+  }
+
+  /* Keep project navigation below the description instead of taking its edge. */
+  .rf-frame .content-desktop-layout .rf-project-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 16px 40px;
+  }
+
+  .rf-frame .content-desktop-layout .rf-project-heading > div:first-child {
+    grid-row: 1 / span 2;
+  }
+
+  .rf-frame .content-desktop-layout .rf-project-heading > p,
+  .rf-frame .content-desktop-layout .rf-project-heading > div:last-child {
+    grid-column: 2;
+  }
+
+  .rf-frame .content-desktop-layout .rf-project-heading > div:last-child {
+    justify-self: end;
+  }
+}
+
 /* Article cover and body are separate blocks; the body supplies bottom space. */
 .rf-frame .wf-page > .wf-article-photo-wrap {
   margin-block: 0;

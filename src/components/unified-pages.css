@@ -7,146 +7,49 @@
 .rf-unified main { overflow:clip; }
 .rf-unified .container { width:calc(100% - clamp(40px,10.4vw,200px));max-width:1720px;margin-inline:auto; }
 .rf-unified .section { padding-block:clamp(40px,4.2vw,80px); }
-.rf-unified .section-pale { background:var(--brand-surface); }
 .rf-unified h1,.rf-unified h2,.rf-unified h3 { overflow-wrap:break-word;text-wrap:balance; }
 .rf-unified h2,.rf-unified .section-title { font-size:clamp(28px,3vw,54px);line-height:1.18;letter-spacing:-1.2px; }
 .rf-unified h3 { font-size:clamp(19px,1.5vw,28px);line-height:1.3; }
 .rf-unified p { font-size:clamp(15px,1.1vw,20px);line-height:1.7; }
 .rf-unified .eyebrow { font:700 clamp(11px,.95vw,18px)/1.5 Arial,sans-serif;letter-spacing:.09em;color:var(--brand-link); }
-.rf-unified .eyebrow-light { color:var(--brand-sky); }
 .rf-unified .section-heading { max-width:100%;margin-bottom:clamp(25px,2.8vw,52px); }
 .rf-unified .section-heading .section-title { margin:14px 0 20px; }
-.rf-unified .section-lede { max-width:850px;color:#526886; }
 .rf-unified .section-title span { color:var(--brand-link); }
 .rf-unified .button { min-height:46px;padding:13px 22px;border-radius:9px;font-size:clamp(14px,1vw,18px);font-weight:700;line-height:1.4;gap:10px;white-space:normal;text-align:center; }
 .rf-unified .button-primary { border:0;background:linear-gradient(120deg,var(--brand-action),var(--brand-action));color:white;box-shadow:none; }
 .rf-unified .button-outline { color:var(--brand-link);border:1px solid var(--brand-line);background:transparent; }
-.rf-unified .button-ghost { border:1px solid var(--brand-sky);background:transparent;color:var(--brand-on-dark); }
 .rf-unified .text-link { display:inline-flex;align-items:center;gap:8px;font-size:14px;color:var(--brand-link); }
-.rf-unified :is(.service-hero,.editorial-hero,.projects-hero,.knowledge-hero,.article-hero) { position:relative;isolation:isolate;background-color:var(--brand-navy);color:white; }
-.rf-unified :is(.service-hero-inner,.editorial-hero-inner,.projects-hero-inner,.knowledge-hero-inner,.article-hero-inner) { min-height:clamp(420px,34vw,640px);padding-block:clamp(40px,4vw,76px);gap:clamp(28px,4vw,76px); }
-.rf-unified :is(.service-hero-copy,.editorial-hero-copy,.knowledge-hero-copy,.article-hero-copy) { min-width:0; }
-.rf-unified :is(.service-hero,.editorial-hero,.projects-hero,.knowledge-hero,.article-hero) h1 { color:#fff;font-size:clamp(36px,3.8vw,70px);line-height:1.12;letter-spacing:-1.8px;margin:20px 0 24px; }
-.rf-unified :is(.service-hero,.editorial-hero,.projects-hero,.knowledge-hero,.article-hero) h1 span { color:var(--brand-sky); }
-.rf-unified :is(.service-hero-copy,.editorial-hero-copy,.projects-hero-inner,.knowledge-hero-copy,.article-hero-copy)>p { color:var(--brand-pale);max-width:740px;font-size:clamp(16px,1.2vw,22px);line-height:1.65;margin-bottom:26px; }
-.rf-unified .service-hero-image { opacity:.38;width:65%;mask-image:linear-gradient(90deg,transparent,#000 55%); }
-.rf-unified .service-hero-image::after { background:linear-gradient(90deg,var(--brand-navy),transparent 80%); }
-.rf-unified :is(.service-hero-visual,.knowledge-hero-visual,.project-detail-hero-image,.article-hero-image) { border:0;border-radius:0;background:transparent;box-shadow:none;overflow:visible;min-height:280px; }
-.rf-unified .service-hero-visual img { display:block;width:100%;height:auto;object-fit:contain; }
-.rf-unified :is(.knowledge-hero-visual,.project-detail-hero-image,.article-hero-image) { aspect-ratio:3/2; }
-.rf-unified :is(.knowledge-hero-visual,.project-detail-hero-image,.article-hero-image) img { object-fit:contain; }
-.rf-unified .knowledge-hero-visual::after { display:none; }
-.rf-unified .service-hero-visual::after { display:none; }
-.rf-unified :is(.service-hero-badge,.knowledge-hero-badge) { border:0;bottom:8px;right:8px;background:color-mix(in srgb, var(--brand-navy) 90.98%, transparent); }
-.rf-unified .editorial-hero:has(.editorial-hero-visual) { background:var(--brand-navy) url('/images/home-hero-original-enhanced.webp') right center/auto 100% no-repeat; }
-.rf-unified .editorial-hero:has(.editorial-hero-visual)::before { mask:none;background:linear-gradient(90deg,var(--brand-navy) 5%,color-mix(in srgb, var(--brand-navy) 90.98%, transparent) 35%,color-mix(in srgb, var(--brand-navy) 20%, transparent) 65%,transparent); }
-.rf-unified .editorial-hero-visual { visibility:hidden; }
-.rf-unified .projects-hero>img { object-position:right center; }
-.rf-unified .projects-hero::after { background:linear-gradient(90deg,var(--brand-navy) 0%,color-mix(in srgb, var(--brand-navy) 87.843%, transparent) 40%,color-mix(in srgb, var(--brand-navy) 25.098%, transparent) 78%); }
-.rf-unified .projects-hero-inner p { max-width:770px; }
-.rf-unified :is(.service-overview-grid,.service-proof-grid,.service-project-grid,.catalog-grid,.knowledge-article-grid,.knowledge-guide-grid) { gap:clamp(18px,2vw,36px); }
-.rf-unified :is(.service-overview-card,.service-advantage-card,.service-content-card,.service-proof-card,.service-project-card,.catalog-card,.knowledge-article-card,.knowledge-guide-card,.link-card) { border:0;border-radius:18px;box-shadow:none;background:var(--brand-surface);overflow:hidden; }
-.rf-unified .section-pale :is(.service-overview-card,.service-content-card,.catalog-card) { background:white; }
-.rf-unified :is(.service-overview-card,.service-advantage-card,.service-content-card,.link-card) { padding:clamp(22px,2.1vw,40px);min-height:0; }
-.rf-unified :is(.service-overview-icon,.service-content-icon,.link-card-icon,.service-advantage-card>span) { border:0;background:transparent;color:var(--brand-action);width:54px;height:54px;margin-bottom:18px; }
-.rf-unified :is(.service-overview-icon,.service-content-icon,.link-card-icon) svg { width:40px;height:40px; }
-.rf-unified :is(.service-overview-card,.service-content-card,.service-advantage-card) h3 { margin-bottom:14px; }
-.rf-unified :is(.service-overview-card,.service-content-card,.service-advantage-card) p { margin-bottom:22px;color:#526886; }
-.rf-unified :is(.service-proof-image,.service-project-image,.catalog-card-image,.knowledge-article-image,.featured-project-image,.featured-article-image,.article-hero-image,.project-detail-hero-image) { position:relative;display:block;min-height:0;height:auto;aspect-ratio:16/10;background:transparent;border:0;border-radius:14px;overflow:hidden; }
-.rf-unified :is(.service-proof-image,.service-project-image,.catalog-card-image,.knowledge-article-image,.featured-project-image,.featured-article-image,.knowledge-guide-image) img { width:100%;height:100%;object-fit:contain; }
-.rf-unified :is(.service-proof-copy,.service-project-copy,.catalog-card-content,.knowledge-article-copy) { padding:clamp(20px,1.7vw,32px); }
-.rf-unified :is(.catalog-card h2,.knowledge-article-card h3,.service-proof-card h3,.service-project-card h3) { font-size:clamp(20px,1.4vw,26px);line-height:1.4;margin:12px 0;letter-spacing:-.3px; }
-.rf-unified :is(.catalog-card p,.service-proof-card p,.service-project-card p,.knowledge-article-card p) { font-size:15px;color:#526886; }
 .rf-unified .catalog-controls { flex-wrap:wrap;gap:12px;padding:20px;background:var(--brand-surface);border:0;border-radius:16px; }
 .rf-unified :is(.catalog-search,.catalog-topic) { border-color:var(--brand-line);border-radius:9px;min-height:48px;min-width:0; }
 .rf-unified :is(.catalog-search input,.catalog-topic select) { font-size:15px;min-width:0; }
 .rf-unified .catalog-count { margin:20px 0;font-size:14px;color:#607899; }
-.rf-unified :is(.catalog-tag,.sample-label,.review-label) { font-size:11px;line-height:1.5;white-space:normal; }
-.rf-unified :is(.service-flow-board,.service-flow-state,.workflow-node,.service-step-card,.faq-item,.featured-project-card,.article-toc) { border:0;border-radius:16px;box-shadow:none;background:var(--brand-surface); }
-.rf-unified .service-flow-state-target { background:var(--brand-surface); }
-.rf-unified .service-step-card { padding:26px; }
-.rf-unified .service-step-number { color:var(--brand-link);font-size:36px; }
-.rf-unified :is(.service-step-card h3,.featured-project-card h3) { margin:14px 0; }
-.rf-unified :is(.service-image-frame img,.project-gallery img) { width:100%;height:auto;object-fit:contain;border:0;border-radius:14px;box-shadow:none; }
-.rf-unified .service-image-frame { border:0;background:transparent;box-shadow:none; }
-.rf-unified .service-image-copy p { margin:22px 0;color:#526886; }
-.rf-unified .service-image-copy ul { display:grid;gap:15px; }
-.rf-unified .service-disclosure { font-size:13px;color:#6b7e98; }
-.rf-unified :is(.faq-page-layout,.faq-layout) { gap:clamp(28px,4vw,76px); }
+.rf-unified :is(.workflow-node,.faq-item,.article-toc) { border:0;border-radius:16px;box-shadow:none;background:var(--brand-surface); }
 .rf-unified .faq-item { margin-bottom:12px; }
 .rf-unified .faq-item summary { padding:22px;font-size:17px;line-height:1.5; }
 .rf-unified .faq-item>p { margin:0 22px 24px;padding-bottom:22px;font-size:15px;line-height:1.8; }
 .rf-unified .faq-tabs { flex-wrap:wrap;gap:8px; }
 .rf-unified .article-layout { padding-block:clamp(36px,4vw,76px); }
-.rf-unified .article-layout-inner { grid-template-columns:260px minmax(0,860px);gap:clamp(30px,4vw,76px); }
 .rf-unified .article-toc { top:100px;padding:24px; }
 .rf-unified .article-toc a { font-size:14px; }
-.rf-unified .article-copy h2 { font-size:clamp(25px,2vw,36px);margin-bottom:22px; }
-.rf-unified .article-copy p { margin-bottom:22px;line-height:1.9; }
-.rf-unified :is(.article-breadcrumb,.article-kicker) { color:var(--brand-pale); }
-.rf-unified .project-story-grid { gap:32px; }
-.rf-unified .project-story-grid article { border:0;border-radius:16px;background:var(--brand-surface);padding:28px; }
-.rf-unified :is(.knowledge-cta-section,.project-contact,.contact-section) { background:var(--brand-navy);color:#fff; }
-.rf-unified :is(.knowledge-cta-section,.project-contact,.contact-section) h2 { color:#fff; }
-.rf-unified :is(.knowledge-cta-section,.project-contact) p { color:var(--brand-pale); }
-.rf-unified .contact-section { position:relative;isolation:isolate;background:var(--brand-navy) url('/images/reference/reasons-background-v2.webp') center bottom/100% auto no-repeat; }
-.rf-unified .contact-section>.container { max-width:1100px; }
-.rf-unified .contact-section .lead-card { padding:0;background:transparent;border:0;box-shadow:none;color:var(--brand-on-dark); }
 .rf-unified .lead-card-heading h3 { font-size:clamp(28px,2.6vw,46px); }
-.rf-unified .contact-section :is(.lead-card-heading>p,.form-notice,.consent-label) { color:var(--brand-pale); }
 .rf-unified .form-grid { gap:18px 24px; }
 .rf-unified .form-label { font-size:15px;line-height:1.5; }
 .rf-unified .lead-form input:not([type=checkbox]),.rf-unified .lead-form select,.rf-unified .lead-form textarea { min-height:48px;font-size:15px;padding:12px 14px; }
 .rf-unified .lead-form textarea { min-height:110px;height:auto; }
 .rf-unified .consent-label { margin:20px 0;font-size:13px;line-height:1.7; }
-.rf-unified .form-notice { margin:16px 0;font-size:13px;line-height:1.7; }
 .rf-unified .lead-form .button { width:auto;min-width:220px;font-size:16px; }
-.rf-unified .contact-section :is(.required-mark,.form-feedback-error,.form-field-errors) { color:#ffb6c2; }
-.rf-unified .contact-section .form-feedback-success { color:#98edc0; }
-.rf-unified .knowledge-recent-item { grid-template-columns:110px 105px 1.15fr 1fr 20px;min-height:110px; }
-.rf-unified .knowledge-recent-item strong { font-size:17px; }
-.rf-unified .knowledge-guide-image { min-height:210px; }
-.rf-unified .knowledge-guide-card h3 { font-size:22px; }
-.rf-unified .knowledge-guide-card p { font-size:15px; }
-.rf-unified .project-list-cta,.rf-unified .blog-list-cta { background:var(--brand-surface); }
 .rf-unified .rf-footer p,.rf-unified .rf-footer a { line-height:1.6; }
-@media(hover:hover) {
- .rf-unified :is(.service-overview-card,.service-content-card,.catalog-card,.knowledge-article-card) { transition:transform .2s ease,box-shadow .2s ease; }
- .rf-unified :is(.service-overview-card,.service-content-card,.catalog-card,.knowledge-article-card):hover { transform:translateY(-4px);box-shadow:0 14px 35px color-mix(in srgb, var(--brand-navy-raised) 7.059%, transparent); }
-}
 @media(max-width:1120px) {
  .rf-frame .header-actions { display:flex;margin-left:auto; }
  .rf-frame .mobile-menu { margin-left:0; }
  .rf-frame .header-inner { gap:12px; }
- .rf-unified .service-content-card-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
- .rf-unified :is(.service-hero-inner,.knowledge-hero-inner,.article-hero-inner,.editorial-hero-inner) { grid-template-columns:1fr 1fr; }
- .rf-unified .knowledge-recent-item { grid-template-columns:90px 85px 1fr 20px; }
- .rf-unified .article-layout-inner { grid-template-columns:210px minmax(0,1fr); }
 }
 @media(max-width:760px) {
  .rf-unified .container { width:calc(100% - 36px); }
  .rf-unified .section { padding-block:38px; }
- .rf-unified :is(.service-hero-inner,.knowledge-hero-inner,.article-hero-inner,.editorial-hero-inner) { grid-template-columns:1fr;gap:28px;min-height:0;padding-block:38px; }
- .rf-unified :is(.service-hero,.editorial-hero,.projects-hero,.knowledge-hero,.article-hero) h1 { font-size:36px;letter-spacing:-1px; }
- .rf-unified .editorial-hero-visual { display:none; }
- .rf-unified .editorial-hero:has(.editorial-hero-visual) { background-size:auto 100%; }
- .rf-unified .editorial-hero:has(.editorial-hero-visual)::before { background:color-mix(in srgb, var(--brand-navy) 85.098%, transparent); }
- .rf-unified :is(.service-hero-visual,.knowledge-hero-visual,.project-detail-hero-image,.article-hero-image) { min-height:0; }
- .rf-unified :is(.service-overview-grid,.service-proof-grid,.service-project-grid,.catalog-grid,.catalog-grid-article,.knowledge-article-grid,.knowledge-guide-grid,.service-content-card-grid,.service-advantage-grid,.service-step-grid,.project-story-grid) { grid-template-columns:1fr; }
- .rf-unified :is(.featured-project-layout,.featured-article-layout,.service-image-layout,.service-flow-board,.faq-page-layout,.faq-layout,.article-layout-inner) { grid-template-columns:1fr;gap:24px; }
- .rf-unified .service-flow-arrow { transform:rotate(90deg);justify-self:center; }
  .rf-unified .catalog-controls { display:grid;grid-template-columns:1fr;padding:16px; }
  .rf-unified :is(.catalog-search,.catalog-topic) { width:100%; }
  .rf-unified .article-toc { position:static; }
- .rf-unified .knowledge-recent-item { grid-template-columns:1fr auto;gap:10px;padding-block:20px; }
- .rf-unified .knowledge-recent-item>span,.rf-unified .knowledge-recent-item strong { grid-column:1; }
- .rf-unified .knowledge-guide-card { grid-template-columns:1fr; }
- .rf-unified .knowledge-guide-image { aspect-ratio:16/10;min-height:0; }
  .rf-unified .form-grid { grid-template-columns:1fr; }
  .rf-unified .lead-form .button { width:100%; }
- .rf-unified .knowledge-cta { flex-direction:column;align-items:flex-start;padding-block:0; }
-}
-@media(prefers-reduced-motion:reduce) {
- .rf-unified :is(.service-overview-card,.service-content-card,.catalog-card,.knowledge-article-card) { transition:none; }
- .rf-unified :is(.service-overview-card,.service-content-card,.catalog-card,.knowledge-article-card):hover { transform:none; }
 }

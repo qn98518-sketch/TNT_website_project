@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { articles, projects } from "@/content/local-data";
 
 const routes = [
   "/",
@@ -9,7 +10,6 @@ const routes = [
   "/dich-vu/outsourcing",
   "/dich-vu/body-shop",
   "/du-an",
-  "/du-an/erp-che-bien-thuy-san",
   "/kien-thuc",
   "/kien-thuc/blog",
   "/kien-thuc/guides",
@@ -19,7 +19,11 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
-  return routes.map((route) => ({
+  const contentRoutes = [
+    ...projects.map(project => `/du-an/${project.slug}`),
+    ...articles.map(article => `/kien-thuc/blog/${article.slug}`),
+  ];
+  return [...routes, ...contentRoutes].map((route) => ({
     url: new URL(route, siteUrl).toString(),
   }));
 }

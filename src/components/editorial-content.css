@@ -1,0 +1,128 @@
+.rf-frame .wf-article-inline-image {
+  margin: 28px 0;
+}
+
+.rf-frame .wf-article-inline-image > img.tnt-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: auto;
+  object-fit: contain;
+  border: 1px solid var(--brand-line);
+  border-radius: 12px;
+}
+
+/* Comfortable reading images, scoped to detail pages so previews keep their layout. */
+.rf-frame .wf-article-detail .wf-article-photo {
+  max-width: 1040px;
+}
+
+.rf-frame .wf-article-detail .wf-article-inline-image,
+.rf-frame .wf-project-detail .project-story-figure {
+  width: min(100%, 800px);
+  margin-inline: auto;
+}
+
+.rf-frame .wf-project-detail .wf-split > .wf-photo,
+.rf-frame .wf-project-detail .wf-gallery > .wf-photo {
+  width: min(100%, 640px);
+  height: auto;
+  aspect-ratio: auto;
+  margin-inline: auto;
+}
+
+.rf-frame .wf-article-detail .wf-article-photo .wf-photo {
+  height: auto;
+  aspect-ratio: auto;
+}
+
+.rf-frame .wf-article-detail :is(.wf-article-photo, .wf-article-inline-image) img.tnt-media[data-media-kind],
+.rf-frame .wf-project-detail :is(.wf-split > .wf-photo, .wf-gallery > .wf-photo, .project-story-figure) img.tnt-media[data-media-kind] {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 600px;
+  aspect-ratio: auto;
+  object-fit: contain;
+  margin-inline: auto;
+}
+
+.rf-frame .wf-article-related-links {
+  display: grid;
+  gap: 14px;
+  padding: 0;
+  margin: 32px 0;
+  list-style: none;
+}
+
+.rf-frame .wf-gallery-source {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+  align-items: start;
+}
+
+.rf-frame .wf-gallery-source > .wf-photo {
+  aspect-ratio: auto;
+  max-width: 100%;
+  height: auto;
+}
+
+.rf-frame .wf-gallery-source img.tnt-media {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 720px;
+  aspect-ratio: auto;
+  object-fit: contain;
+}
+
+.rf-frame .wf-feature-card[id] {
+  scroll-margin-top: 130px;
+}
+
+.rf-frame .rf-footer-grid p a {
+  display: inline;
+  overflow-wrap: anywhere;
+}
+
+.rf-frame .wf-topics {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 190px), 1fr));
+}
+
+/* Read-more cards also appear outside the unified Blog page frame. */
+.rf-frame .wf-related-articles .wf-section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+.rf-frame .wf-related-articles .wf-section-heading > p {
+  margin: 0;
+  color: #607694;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.rf-frame .wf-related-articles .wf-kicker {
+  display: block;
+  margin-bottom: 10px;
+  color: var(--brand-link);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .1em;
+  line-height: 1.6;
+}
+
+@media (max-width: 760px) {
+  .rf-frame .wf-related-articles .wf-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* The desktop flex-basis becomes a 600px height in this column layout. */
+  .rf-frame .wf-related-articles .wf-section-heading > p {
+    flex: none;
+  }
+}

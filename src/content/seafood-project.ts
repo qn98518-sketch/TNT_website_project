@@ -21,7 +21,6 @@ export const seafoodProject: ProjectRecord = {
   imageAlt: "Quy trình chế biến thủy sản và kiểm soát chất lượng tại nhà máy",
   sourceLabel: "Case study mô phỏng",
   isSimulation: true,
-  disclosure: "Bản demo nội dung website. Dự án, khách hàng và kết quả dưới đây là tình huống minh họa, không phải dự án thực tế đã được TNT xác nhận.",
   status: "pending-review",
   relatedProjectSlugs: ["kala", "wood"],
 };

@@ -2,7 +2,7 @@ import type { IconName } from "@/components/ui/icon";
 
 export type ContentStatus = "approved" | "pending-review";
 
-export type ContentTopic = "ERP" | "Sản xuất" | "Outsourcing" | "Body Shop" | "Khác";
+export type ContentTopic = "ERP" | "Sản xuất" | "Outsourcing" | "Body Shop" | "Giáo dục" | "Khác";
 
 export interface ContentRecord {
   slug: string;
@@ -11,6 +11,7 @@ export interface ContentRecord {
   topic: ContentTopic;
   status: ContentStatus;
   sourceLabel?: string;
+  sourceUrl?: string;
   image?: string;
   imageAlt?: string;
 }
@@ -57,6 +58,7 @@ export interface ProjectStory {
 export interface ArticleSection {
   heading: string;
   paragraphs: string[];
+  image?: { src: string; alt: string; width: number; height: number };
 }
 
 export interface ArticleRecord extends ContentRecord {
@@ -67,6 +69,8 @@ export interface ArticleRecord extends ContentRecord {
   thumbnail?: string;
   thumbnailAlt?: string;
   relatedArticleSlugs: readonly string[];
+  relatedProjectSlugs?: readonly string[];
+  relatedLinks?: readonly { href: string; label: string }[];
   sections: ArticleSection[];
   relatedServiceHref?: string;
   relatedServiceLabel?: string;
@@ -105,7 +109,7 @@ export type ServiceLandingSection =
       title: string;
       accent: string;
       summary: string;
-      cards: readonly { title: string; description: string; icon?: IconName }[];
+      cards: readonly { id?: string; title: string; description: string; icon?: IconName }[];
       disclosure?: string;
     }
   | {
@@ -167,6 +171,7 @@ export type ServiceLandingSection =
     };
 
 export interface ServiceLandingContent {
+  relatedArticleSlugs?: readonly string[];
   hero: {
     eyebrow: string;
     title: string;
@@ -203,6 +208,10 @@ export interface HomePageContent {
   featuredInsights: readonly {
     topic: string;
     title: string;
+    summary: string;
+    publishedAt: string;
+    dateLabel: string;
+    readingTime: string;
     href: string;
     image: string;
     imageAlt: string;

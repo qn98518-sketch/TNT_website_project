@@ -16,7 +16,7 @@ export default async function BlogPage(){
   const articles=await articleRepository.listForPreview();
   const featured=articles[0];
   if(!featured)throw new Error('Missing featured article');
-  return <PageFrame breadcrumbs={[{ label: 'Kiến thức', href: '/kien-thuc' }, { label: 'Blog' }]}><main className="wf-page">
+  return <PageFrame breadcrumbs={[{ label: 'Kiến thức', href: '/kien-thuc' }, { label: 'Blog' }]}><main className="wf-page wf-insights-page">
     <WireframeHero eyebrow="BLOG / KIẾN THỨC" title="Góc nhìn công nghệ" accent="gắn với vận hành." description="Bài viết về ERP, sản xuất, phát triển phần mềm và chuyển đổi số cho doanh nghiệp." image={media.technology} action={{href:'#blog-list',label:'Khám phá bài viết'}} />
     <section className="wf-section"><div className="container wf-split">
       <Link className="wf-photo" href={`/kien-thuc/blog/${featured.slug}`}><SiteImage src={articleMedia(featured.slug,featured.image)} alt={t(featured.imageAlt??featured.title)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 50vw" /></Link>

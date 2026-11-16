@@ -4,9 +4,11 @@ import { Icon, type IconName } from '@/components/ui/icon';
 import { SiteImage } from '@/components/site-image';
 import { LeadForm } from '@/components/lead-form';
 import { articleMedia, projectMedia } from '@/lib/media';
+import { ContentCard } from '@/components/content-card';
 import type { ArticleRecord, ProjectRecord } from '@/content/models';
 import type { LeadContext } from '@/server/leads/contract';
 import { ResponsiveActions } from '@/components/responsive-actions';
+import { ContentCarousel } from '@/components/content-carousel';
 
 type Action = { href: string; label: string };
 
@@ -57,24 +59,26 @@ export async function WireframeCta({ title, description, href = '/#contact', lab
   return <section className="wf-small-cta"><div className="container"><div><h2 className="tnt-section-title">{t(title)}</h2><p>{t(description)}</p></div><Link className="rf-button" href={href}>{t(label)}<Icon name="arrowRight" size={18} /></Link></div></section>;
 }
 
-export async function ProjectCards({ projects, compact = false, showImageArrows = true }: { projects: readonly ProjectRecord[]; compact?: boolean; showImageArrows?: boolean }) {
+export async function ProjectCards({ projects, showImageArrows = true }: { projects: readonly ProjectRecord[]; showImageArrows?: boolean }) {
   const { t } = await getI18n();
-  return <div className={`wf-card-grid${projects.length === 2 ? ' wf-columns-2' : ''}${compact ? ' wf-project-cards-compact' : ''}`}>{projects.map(project => <article className="wf-content-card" key={project.slug}>
-    <Link className="wf-photo" href={`/du-an/${project.slug}`}><SiteImage src={projectMedia(project.slug,project.image)} alt={t(project.imageAlt ?? project.title)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 33vw" />{showImageArrows && <span className="wf-image-arrow"><Icon name="arrowRight" size={20} /></span>}</Link>
-    <div className="wf-card-copy"><span className="wf-meta">{t(project.service ?? project.topic)} · {t(project.industry)}</span>{project.isSimulation && <span className="project-simulation-label">{t(project.sourceLabel ?? 'Case study mô phỏng')}</span>}<h3><Link href={`/du-an/${project.slug}`}>{t(project.title)}</Link></h3><p>{t(project.summary)}</p><Link className="wf-text-link" href={`/du-an/${project.slug}`}>{t('Xem câu chuyện dự án')}<Icon name="arrowRight" size={16} /></Link></div>
-  </article>)}</div>;
+  return <ContentCarousel label={t('Dự án liên quan')} className="content-card-grid">{projects.map(project => <ContentCard key={project.slug}
+    href={`/du-an/${project.slug}`} title={t(project.title)} summary={t(project.summary)}
+    image={projectMedia(project.slug,project.image)} imageAlt={t(project.imageAlt ?? project.title)} imageArrow={showImageArrows}
+    metadata={<>{t(project.service ?? project.topic)} · {t(project.industry)}{project.isSimulation && <> · <span className="project-simulation-label">{t(project.sourceLabel ?? 'Case study mô phỏng')}</span></>}</>}
+    linkLabel={t('Xem câu chuyện dự án')} />)}</ContentCarousel>;
 }
 
 export async function ArticleCards({ articles }: { articles: readonly ArticleRecord[] }) {
   const { t } = await getI18n();
-  return <div className={`wf-card-grid${articles.length === 2 ? ' wf-columns-2' : ''}`}>{articles.map(article => <article className="wf-content-card" key={article.slug}>
-    <Link className="wf-photo" href={`/kien-thuc/blog/${article.slug}`}><SiteImage src={articleMedia(article.slug,article.image)} alt={t(article.imageAlt ?? article.title)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 33vw" /></Link>
-    <div className="wf-card-copy"><span className="wf-meta">{t(article.topic)} · <time dateTime={article.publishedAt}>{article.dateLabel}</time> · {t(article.readingTime)}</span><h3><Link href={`/kien-thuc/blog/${article.slug}`}>{t(article.title)}</Link></h3><p>{t(article.summary)}</p><Link className="wf-text-link" href={`/kien-thuc/blog/${article.slug}`}>{t('Đọc bài viết')}<Icon name="arrowRight" size={16} /></Link></div>
-  </article>)}</div>;
+  return <ContentCarousel label={t('Bài viết liên quan')} className="content-card-grid">{articles.map(article => <ContentCard key={article.slug}
+    href={`/kien-thuc/blog/${article.slug}`} title={t(article.title)} summary={t(article.summary)}
+    image={articleMedia(article.slug,article.image)} imageAlt={t(article.imageAlt ?? article.title)}
+    metadata={<>{t(article.topic)} · <time dateTime={article.publishedAt}>{article.dateLabel}</time> · {t(article.readingTime)}</>}
+    linkLabel={t('Đọc bài viết')} />)}</ContentCarousel>;
 }
 
-export async function FeatureCards({ cards, icons = ['data','box','activity','chart','code','people','shield','briefcase'] }: { cards: readonly {title:string;description:string;icon?:IconName}[]; icons?: readonly IconName[] }) {
+export async function FeatureCards({ cards, icons = ['data','box','activity','chart','code','people','shield','briefcase'] }: { cards: readonly {id?:string;title:string;description:string;icon?:IconName}[]; icons?: readonly IconName[] }) {
   const { t } = await getI18n();
   const columns = cards.length === 5 ? 3 : Math.min(cards.length,4);
-  return <div className={`wf-feature-grid wf-columns-${columns}`}>{cards.map((card,index) => <article className="wf-feature-card" key={card.title}><span className="wf-icon-tile"><Icon name={card.icon ?? icons[index] ?? 'document'} purpose="content" size={30} /></span><h3>{t(card.title)}</h3><p>{t(card.description)}</p></article>)}</div>;
+  return <div className={`wf-feature-grid wf-columns-${columns}`}>{cards.map((card,index) => <article className="wf-feature-card" id={card.id} key={card.title}><span className="wf-icon-tile"><Icon name={card.icon ?? icons[index] ?? 'document'} purpose="content" size={30} /></span><h3>{t(card.title)}</h3><p>{t(card.description)}</p></article>)}</div>;
 }

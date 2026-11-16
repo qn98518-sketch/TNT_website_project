@@ -1,0 +1,32 @@
+/* Let phone layouts shrink to the viewport instead of their children's intrinsic widths. */
+@media (max-width: 760px) {
+  .rf-frame,
+  .rf-frame .site-page-content {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .rf-frame :is(.rf-container, .container, .content-small-layout, .lead-card, .form-grid > *) {
+    min-width: 0;
+  }
+
+  .rf-frame .rf-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .rf-frame .rf-footer-grid > div {
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .rf-frame .wf-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .rf-frame .wf-split > * {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+}

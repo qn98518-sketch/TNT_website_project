@@ -32,6 +32,7 @@
 }
 
 .rf-frame .home-statistics .rf-statistics strong {
+  position: relative;
   display: block;
   min-inline-size: 4ch;
   color: var(--brand-link);

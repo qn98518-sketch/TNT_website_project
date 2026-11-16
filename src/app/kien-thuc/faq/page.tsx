@@ -9,7 +9,7 @@ export async function generateMetadata(){return createPageMetadata({title:'Câu 
 export default async function FaqPage(){
   const faqs=await faqRepository.listForPreview();
   return <PageFrame breadcrumbs={[{ label: 'Kiến thức', href: '/kien-thuc' }, { label: 'FAQ' }]}><main className="wf-page">
-    <WireframeHero compact eyebrow="FAQ TNT" title="Những câu hỏi" accent="thường gặp." description="Tìm câu trả lời theo nhóm chủ đề hoặc từ khóa." image={media.technology} />
+    <WireframeHero eyebrow="FAQ TNT" title="Những câu hỏi" accent="thường gặp." description="Tìm câu trả lời theo nhóm chủ đề hoặc từ khóa." image={media.technology} />
     <section className="wf-section"><div className="container wf-faq-intro">
       <WireframeHeading eyebrow="FAQ TNT" title="Bạn đang quan tâm" accent="vấn đề nào?" description="Các câu hỏi được nhóm theo nội dung quan tâm để bạn dễ tìm kiếm." />
       <FaqBrowser items={faqs} />

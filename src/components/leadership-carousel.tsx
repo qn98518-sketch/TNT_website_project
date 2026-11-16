@@ -69,11 +69,12 @@ export function LeadershipCarousel({ members }: { members: readonly LeadershipPr
       if (!viewport || !track) return;
       const visible = Math.min(count, Math.max(1, parseInt(getComputedStyle(viewport).getPropertyValue("--leaders-visible"), 10) || 3));
       const gap = parseFloat(getComputedStyle(track).columnGap) || 0;
-      if (viewport.clientWidth && visible) {
-        const next = { visible, step: (viewport.clientWidth + gap) / visible };
+      const width = viewport.getBoundingClientRect().width;
+      if (width && visible) {
+        const next = { visible, step: (width + gap) / visible };
         // Image/font loading can resize height without changing the slide width.
         // Ignore those notifications instead of interrupting an active slide.
-        if (next.visible === geometryRef.current.visible && Math.abs(next.step - geometryRef.current.step) < 0.5) return;
+        if (next.visible === geometryRef.current.visible && Math.abs(next.step - geometryRef.current.step) < 0.01) return;
         geometryRef.current = next;
         finishMove();
         setGeometry(next);
@@ -95,7 +96,10 @@ export function LeadershipCarousel({ members }: { members: readonly LeadershipPr
     updateVisibility();
     document.addEventListener("visibilitychange", updateVisibility);
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const updateMotion = () => { reducedMotionRef.current = media.matches; };
+    const updateMotion = () => {
+      reducedMotionRef.current = media.matches;
+      if (media.matches) finishMove();
+    };
     updateMotion();
     media.addEventListener("change", updateMotion);
     return () => {
@@ -118,7 +122,7 @@ export function LeadershipCarousel({ members }: { members: readonly LeadershipPr
     // Decreasing the index moves the visible strip from LEFT to RIGHT.
     // Keep one clock alive; transient layout/interaction state cannot reset it.
     const timer = setInterval(() => {
-      if (!autoplayBlockedRef.current) move(-1);
+      if (!reducedMotionRef.current && !autoplayBlockedRef.current) move(-1);
     }, AUTO_ADVANCE_MS);
     return () => clearInterval(timer);
   }, [count, move]);
@@ -168,7 +172,7 @@ export function LeadershipCarousel({ members }: { members: readonly LeadershipPr
             role="group" aria-roledescription={t("Hồ sơ")} aria-label={`${index % count + 1} / ${count}: ${member.name}`}
             onPointerEnter={event => { if (event.pointerType === "mouse" && window.matchMedia("(hover: hover)").matches) setHoveredIndex(index); }}
             onPointerLeave={() => setHoveredIndex(current => current === index ? null : current)}>
-            <div className="leader-card-media"><SiteImage src={member.image} alt={`${member.name} — ${t(member.role)}`} width={1024} height={1280} sizes="(max-width: 639px) 100vw, (max-width: 1399px) 50vw, 33vw" mediaKind="background" draggable={false} /></div>
+            <div className="leader-card-media"><SiteImage src={member.image} alt={`${member.name} — ${t(member.role)}`} width={1024} height={1280} sizes="(max-width: 599px) 100vw, (max-width: 1100px) 50vw, 33vw" mediaKind="background" draggable={false} /></div>
             <div className="leader-card-summary">
               <h3>{member.name}</h3><p className="leader-role">{t(member.role)}</p><p className="leader-brief">{t(member.summary)}</p>
               <button className="leader-details-toggle" type="button" data-open-profile aria-controls={detailId} aria-expanded={expanded} tabIndex={visible && !expanded ? 0 : -1} onClick={() => setOpenIndex(index)}>{t("Xem hồ sơ")}<Icon name="arrowUp" size={16} /></button>

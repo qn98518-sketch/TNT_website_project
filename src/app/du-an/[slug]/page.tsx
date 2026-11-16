@@ -28,11 +28,11 @@ export default async function ProjectDetailPage({params}:Props) {
   const photo=projectMedia(project.slug,project.image);
   const story = project.slug === seafoodProject.slug ? seafoodProjectStory : null;
   const gallery=project.gallery?.length ? project.gallery : [
-    {src:photo,alt:project.imageAlt??project.title},
-    {src:media.consulting,alt:'Tư vấn giải pháp tại nhà máy'},
-    {src:project.topic==='ERP'?media.warehouse:media.team,alt:'Đội ngũ dự án trao đổi cùng nhau'},
+    {src:photo,alt:project.imageAlt??project.title,width:1600,height:1000},
+    {src:media.consulting,alt:'Tư vấn giải pháp tại nhà máy',width:1600,height:1000},
+    {src:project.topic==='ERP'?media.warehouse:media.team,alt:'Đội ngũ dự án trao đổi cùng nhau',width:1600,height:1000},
   ];
-  return <PageFrame breadcrumbs={[{ label: 'Dự án', href: '/du-an' }, { label: project.title }]}><main className={story ? 'wf-page wf-project-story' : 'wf-page'}>
+  return <PageFrame breadcrumbs={[{ label: 'Dự án', href: '/du-an' }, { label: project.title }]}><main className={`wf-page wf-project-detail${story ? ' wf-project-story' : ''}`}>
     <WireframeHero eyebrow={story ? 'NGÀNH CHẾ BIẾN THỦY SẢN' : project.topic} title={project.detailTitle??project.title} description={project.summary} image={photo} action={{href:'#project-story',label:'Xem câu chuyện dự án'}} secondary={{href:'/#contact',label:'Liên hệ tư vấn'}} />
     <section className="wf-section" id="project-story"><div className="container">
       {!story && project.disclosure && <aside className="project-disclosure" role="note">{t(project.disclosure)}</aside>}
@@ -56,7 +56,7 @@ export default async function ProjectDetailPage({params}:Props) {
     <section className="wf-section wf-navy"><div className="container wf-outcome"><span className="wf-kicker">{t('GIÁ TRỊ HƯỚNG TỚI')}</span><h2 className="tnt-section-title">{t('Giá trị mang lại')}</h2><p>{t(project.outcome)}</p></div></section>
     <section className="wf-section"><div className="container">
       <WireframeHeading eyebrow="DỰ ÁN & MINH CHỨNG" title="Hình ảnh dự án" />
-      <div className="wf-gallery">{gallery.map((image,index)=><div className="wf-photo" key={`${image.src}-${index}`}><SiteImage src={image.src} alt={t(image.alt)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 33vw" /></div>)}</div>
+      <div className={`wf-gallery${project.sourceUrl ? ' wf-gallery-source' : ''}`}>{gallery.map((image,index)=><div className="wf-photo" key={`${image.src}-${index}`}><SiteImage src={image.src} alt={t(image.alt)} width={image.width} height={image.height} sizes="(max-width:760px) 100vw, 50vw" /></div>)}</div>
     </div></section>
     </>}
     {related.length>0&&<section className="wf-section wf-soft"><div className="container"><WireframeHeading eyebrow="DỰ ÁN LIÊN QUAN" title="Dự án liên quan" /><ProjectCards projects={related} /></div></section>}

@@ -1,0 +1,45 @@
+/* Progressive enhancement: server-rendered content is visible without JS.
+ * Animate only opacity and the independent translate property; hover transforms
+ * and the existing carousel/accordion animations keep their own behavior. */
+@media (prefers-reduced-motion: no-preference) {
+  .rf-frame [data-reveal="pending"] {
+    opacity: 0;
+  }
+
+  .rf-frame [data-reveal="pending"][data-reveal-effect="fade-up"] {
+    translate: 0 14px;
+  }
+
+  .rf-frame [data-reveal="visible"][data-reveal-effect] {
+    animation: tnt-reveal-fade-in 400ms cubic-bezier(.2, .7, .2, 1) var(--reveal-delay, 0ms) both;
+  }
+
+  .rf-frame [data-reveal="visible"][data-reveal-effect="fade-up"] {
+    animation-name: tnt-reveal-fade-up;
+  }
+
+  @media (max-width: 760px), (hover: none) and (pointer: coarse) {
+    .rf-frame [data-reveal="visible"][data-reveal-effect] {
+      animation-duration: 320ms;
+      animation-delay: 0ms;
+    }
+  }
+}
+
+@keyframes tnt-reveal-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes tnt-reveal-fade-up {
+  from { opacity: 0; translate: 0 14px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rf-frame [data-reveal] {
+    opacity: 1 !important;
+    translate: none !important;
+    animation: none !important;
+  }
+}

@@ -1,0 +1,46 @@
+/* Preserve the existing cards, grid and arrows. Motion is progressive enhancement. */
+.rf-frame .rf-food-implementation .rf-food-steps > li {
+  --process-delay: 0ms;
+}
+
+.rf-frame .rf-food-implementation .rf-food-steps > li:nth-child(2) { --process-delay: 110ms; }
+.rf-frame .rf-food-implementation .rf-food-steps > li:nth-child(3) { --process-delay: 220ms; }
+.rf-frame .rf-food-implementation .rf-food-steps > li:nth-child(4) { --process-delay: 330ms; }
+.rf-frame .rf-food-implementation .rf-food-steps > li:nth-child(5) { --process-delay: 440ms; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .rf-frame .rf-food-implementation[data-process-reveal="pending"] .rf-food-steps > li {
+    opacity: 0;
+    translate: 0 16px;
+  }
+
+  .rf-frame .rf-food-implementation[data-process-reveal="running"] .rf-food-steps > li {
+    animation: food-process-fade-up 550ms ease-out var(--process-delay) backwards;
+  }
+
+  .rf-frame .rf-food-implementation[data-process-reveal="running"] .rf-food-steps > li > .rf-step-arrow {
+    animation: food-process-arrow-in 550ms ease-out var(--process-delay) backwards;
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .rf-frame .rf-food-implementation .rf-food-steps > li {
+      transition: transform 250ms ease-out, box-shadow 250ms ease-out;
+    }
+
+    .rf-frame .rf-food-implementation .rf-food-steps > li:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgb(20 44 84 / 12%);
+    }
+  }
+}
+
+/* Independent translate lets the reveal compose with hover without moving the grid. */
+@keyframes food-process-fade-up {
+  from { opacity: 0; translate: 0 16px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes food-process-arrow-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}

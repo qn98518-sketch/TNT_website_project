@@ -44,5 +44,6 @@ export function articleMedia(slug: string, fallback?: string) {
 }
 
 export function projectMedia(slug: string, fallback?: string) {
+  if (fallback?.startsWith('/images/legacy/')) return fallback;
   return ({ kala: media.glass, wood: media.wood, recruitment: media.software, elearning: media.learning } as Record<string,string>)[slug] ?? resolveMedia(fallback ?? media.technology);
 }

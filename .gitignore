@@ -36,7 +36,7 @@ yarn-error.log*
 !/backend/.env.example
 /backend/storage/*
 !/backend/storage/.gitkeep
-/tmp/cms-integration-*/
+/tmp/
 
 # vercel
 .vercel

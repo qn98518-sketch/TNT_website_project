@@ -40,7 +40,7 @@ export default async function ServicesPage() {
     </div></section>
     <section className="wf-section wf-soft"><div className="container">
       <WireframeHeading eyebrow="DỰ ÁN THAM KHẢO" title="Năng lực được thể hiện" accent="qua dự án tham khảo" description="Tìm hiểu các bài toán công nghệ và hướng tiếp cận giải pháp cho hoạt động doanh nghiệp." />
-      <ProjectCards projects={projects.slice(0,3)} compact showImageArrows={false} /><div className="wf-center-action"><Link className="rf-button" href="/du-an">{t('Xem tất cả dự án')}<Icon name="arrowRight" size={18} /></Link></div>
+      <ProjectCards projects={projects.slice(0,3)} showImageArrows={false} /><div className="wf-center-action"><Link className="rf-button" href="/du-an">{t('Xem tất cả dự án')}<Icon name="arrowRight" size={18} /></Link></div>
     </div></section>
     <section className="wf-section"><div className="container">
       <WireframeHeading eyebrow="QUY TRÌNH HỢP TÁC" title="Từ nhu cầu đến" accent="giải pháp phù hợp" description="Các bước phối hợp từ tìm hiểu nhu cầu đến triển khai giải pháp." />

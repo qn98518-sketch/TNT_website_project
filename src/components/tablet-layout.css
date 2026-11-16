@@ -1,0 +1,137 @@
+/* The original artboard scale makes body copy smaller than 10px on tablets.
+ * Keep a readable scale and reflow the dense groups before the phone rules. */
+@media (min-width: 761px) and (max-width: 1100px) {
+  .rf-frame {
+    --u: .75px;
+    font-size: 16px;
+  }
+
+  .rf-frame .rf-container {
+    width: calc(100% - 64px);
+    min-width: 0;
+  }
+
+  .rf-frame .rf-heading {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 18px;
+  }
+
+  .rf-frame .rf-service-subheading {
+    display: block;
+  }
+
+  .rf-frame .rf-service-subheading p {
+    margin-top: 12px;
+  }
+
+  .rf-frame .rf-erp-panel {
+    margin-inline: 0;
+  }
+
+  .rf-frame .rf-about-method li {
+    min-width: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .rf-frame .rf-about-method li > span {
+    width: 80px;
+    height: 80px;
+  }
+
+  .rf-frame .rf-about-method li > span svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .rf-frame .rf-about-method h3 {
+    font-size: 24px;
+  }
+
+  .rf-frame .rf-about-method li p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .rf-frame :is(.rf-service-grid, .rf-reasons-grid, .rf-food-card-grid, .rf-food-steps) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .rf-frame .rf-service-grid article:last-child,
+  .rf-frame .rf-reasons-grid > div {
+    grid-column: 1 / -1;
+  }
+
+  .rf-frame .rf-reasons img {
+    width: 150px;
+    height: 140px;
+  }
+
+  .rf-frame .rf-workflow-nodes {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .rf-frame .rf-workflow-nodes li:nth-child(3n) > .rf-step-arrow,
+  .rf-frame .rf-food-steps li:nth-child(2n) > .rf-step-arrow {
+    display: none;
+  }
+
+  .rf-frame .rf-food-steps .rf-step-arrow,
+  .rf-frame .rf-workflow-nodes .rf-step-arrow {
+    width: 18px;
+    right: -22px;
+  }
+
+  .rf-frame .rf-food-fit > .rf-container,
+  .rf-frame .rf-food-faq > .rf-container,
+  .rf-frame .rf-contact-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .rf-frame .rf-food-fit-copy > img {
+    max-width: 560px;
+  }
+
+  .rf-frame .rf-fit-options {
+    padding-top: 0;
+  }
+
+  .rf-frame .rf-contact .lead-card {
+    width: 100%;
+    max-width: 760px;
+  }
+
+  .rf-frame .rf-food-hero .rf-food-hero-copy > p {
+    width: 100%;
+  }
+
+  .rf-frame .rf-food-faq .lead-form input:not([type=checkbox]),
+  .rf-frame .rf-home-contact .lead-form input:not([type=checkbox]) {
+    font-size: 16px;
+  }
+
+  .rf-frame .rf-footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+  }
+
+  .rf-frame .rf-footer-grid > div {
+    min-width: 0;
+    padding-right: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .rf-frame .rf-footer {
+    min-height: 0;
+    padding-block: 48px 28px;
+  }
+
+  .rf-frame .rf-footer-bottom {
+    flex-wrap: wrap;
+    font-size: 12px;
+  }
+}

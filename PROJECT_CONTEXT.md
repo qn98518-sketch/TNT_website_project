@@ -67,12 +67,10 @@ src/
   components/             Shared shells, interactive browsers/forms, service renderer
     ui/icon.tsx           Iconsax abstraction
   content/                Models, local fixture data, repository adapters
-    reference-assets/     Reference images and provenance manifest
   lib/                    Metadata and article-anchor helpers
   server/leads/           Submission contract, validation, delivery boundary
 public/
   images/                 Images actively referenced by application source
-  demo/                   Copies of prototype/reference imagery
 docs/                     Product brief, deadlines, historical reviews, visual prompt
 ```
 
@@ -102,7 +100,7 @@ flowchart TD
 ```
 
 - `src/app/layout.tsx` supplies the Vietnamese HTML root, global stylesheet, font variables, and site metadata. It does **not** include navigation itself.
-- Each page composes `PageFrame` from `src/components/site-shell.tsx`, or uses `ContentPageShell`, which includes `PageFrame` internally.
+- Pages compose `PageFrame` or `ReferenceFrame`; the unused `ContentPageShell` implementation was removed during responsive cleanup.
 - Pages are server components. Six components explicitly declare `"use client"`: `site-header`, `catalog-browser`, `faq-browser`, `home-project-showcase`, `lead-form`, and `scroll-reveal`.
 - Server pages pass serializable catalog/FAQ records into browser components. Filtering and selection use local React state; there is no global state library or content-fetching API.
 - The repository abstraction is asynchronous despite reading in-memory arrays, providing a possible seam for a future content backend. The seam is incomplete: Home, About, Food, `ServiceLanding`, and the client-side project showcase import fixtures directly.
@@ -128,10 +126,10 @@ flowchart TD
 | Catalog browsing | `catalog-browser.tsx`: title/summary/topic/industry substring search, topic filter, project-only industry filter, counts/reset/empty states. Filtering is case-insensitive using Vietnamese locale, but does not strip accents. |
 | Project tabs | `home-project-showcase.tsx`: imports project fixtures, selects by slug, updates image/copy/detail link. |
 | Motion | `scroll-reveal.tsx`: IntersectionObserver reveals immediate `main > section` children once, disconnects on cleanup, skips reduced motion or unsupported browsers. |
-| Shared presentation | `content-page.tsx`: `EditorialHero`, `ContentPageShell`; also exports `CatalogPage` and `LinkCards`, with no callers found in this checkout. |
+| Shared presentation | `wireframe-sections.tsx`, `ContentCard` and `ContentCarousel`; see `docs/RESPONSIVE_LAYOUT.md` for card ownership and regression checks. |
 | Utilities | `src/lib/metadata.ts`: canonical/Open Graph metadata; `src/lib/anchor-id.ts`: accent normalization and ASCII anchor generation. |
 
-`src/app/globals.css` contains the visual system: 6,004 lines, 930 parsed rules, navy/blue tokens, forms, editorial layouts, responsive grids, focus styles, and motion. The current container cap is **1,230px** with 42px desktop side gutters; mobile navigation begins at **1,120px**. Blog cards use two desktop columns and one column at widths <=760px. Later CSS overrides matter when changing layouts.
+`src/app/globals.css` contains shared tokens, controls and CMS styles. Page and component styles live under `src/components`. Article/project cards use three columns above 1100px, two at 600–1100px, and one below 600px, regardless of input type. Retired catalog/editorial styles were removed; the card component's own stylesheet owns its appearance. See `docs/RESPONSIVE_LAYOUT.md`.
 
 ## 7. Data Architecture and Database Design
 
@@ -276,7 +274,7 @@ The current unavailable adapter limits downstream data handling, but a completed
 - The first ERP article includes near-duplicate paragraph pairs. Several project detail fields still contain editorial instructions rather than finished narratives.
 - `.env.example` is missing despite README references. `README.md` mentions local `doc/` and `Demo html/` directories that are absent here. Relative links in `docs/` point outside this repository; their target contents were not inspected.
 - Existing reviews describe empty collections, older hero layouts, and a 1,520px container, while current source has populated collections, photographic sections, service-specific data, and a 1,230px cap. Older English route proposals in `WEBSITE_BRIEF.md` are not implemented routes.
-- Twenty-one reference WebP files under `src/content/reference-assets/` are byte-identical to counterparts under `public/demo/`. Current source image literals use `/images/`; prototype copies and starter SVG assets warrant an ownership/use review before cleanup.
+- Unreferenced prototype copies under `src/content/reference-assets/` and `public/demo/`, plus unused starter SVGs, were removed after source and runtime reference checks. Active `/images/` assets and CMS/migration resources remain.
 
 **Unverified risks:** long non-article catalog cards retain an absolutely positioned link rule, so project/guide text and preview lists require overlap checks. Reveal effects cover only immediate section children, not the Home contact wrapper; visual behavior after client navigation remains **UNKNOWN**. Actual visual fidelity to the missing prototype is **UNKNOWN**.
 

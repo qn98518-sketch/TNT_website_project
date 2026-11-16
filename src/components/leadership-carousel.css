@@ -215,14 +215,15 @@
   background: var(--brand-action);
 }
 
-@media (max-width: 1399px) {
+/* Match the site's card breakpoints; input type and height do not select columns. */
+@media (max-width: 1100px) {
   .rf-frame .leadership-carousel {
     --leaders-visible: 2;
     --leaders-gap: 20px;
   }
 }
 
-@media (max-width: 639px), (hover: none) and (pointer: coarse) and (max-height: 500px) and (orientation: landscape) {
+@media (max-width: 599px) {
   .rf-frame .leadership-carousel {
     --leaders-visible: 1;
     --leaders-gap: 16px;

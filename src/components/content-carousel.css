@@ -1,0 +1,81 @@
+﻿/* Layout and navigation only; ContentCard owns card appearance.
+ * Width alone selects columns; touch emulation must not change desktop layout.
+ * Keep the activation query in content-carousel.tsx in sync. */
+.rf-frame .content-carousel { min-width: 0; }
+.rf-frame .content-carousel-controls,
+.rf-frame .content-small-layout { display: none; }
+.rf-frame .content-desktop-layout { display: block; }
+
+@media (max-width: 1100px) {
+  .rf-frame .content-desktop-layout { display: none; }
+  .rf-frame .content-small-layout { display: block; min-width: 0; max-width: 100%; }
+  .rf-frame .content-carousel {
+    --carousel-gap: 24px;
+    --carousel-visible: var(--carousel-tablet, 2);
+    width: 100%;
+    min-width: 0;
+    max-width: var(--carousel-max-width, 920px);
+    margin-inline: auto;
+  }
+  .rf-frame .content-carousel .content-carousel-track {
+    display: grid;
+    grid-template-columns: none;
+    grid-template-rows: auto;
+    grid-auto-flow: column;
+    grid-auto-columns: calc((100% - (var(--carousel-visible) - 1) * var(--carousel-gap)) / var(--carousel-visible));
+    gap: var(--carousel-gap);
+    align-items: stretch;
+    width: 100%;
+    min-width: 0;
+    contain: inline-size;
+    max-width: none;
+    margin: 0;
+    padding: 0 0 12px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    scroll-snap-type: x mandatory;
+    overscroll-behavior-x: contain;
+    scrollbar-width: thin;
+    scrollbar-color: var(--brand-line) transparent;
+  }
+  .rf-frame .content-carousel-track > * { min-width: 0; scroll-snap-align: start; }
+  .rf-frame .content-carousel .content-carousel-track:focus-visible { outline: 2px solid var(--brand-action); outline-offset: 4px; }
+  .rf-frame .content-carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .rf-frame .content-carousel-position { margin-right: auto; color: #607694; font: 600 13px/1.5 Arial, sans-serif; font-variant-numeric: tabular-nums; }
+  .rf-frame .content-carousel .content-carousel-control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 44px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 1px solid var(--brand-line);
+    border-radius: 50%;
+    background: #fff;
+    color: var(--brand-link);
+    cursor: pointer;
+  }
+  .rf-frame .content-carousel-control:disabled { opacity: .35; cursor: default; }
+  .rf-frame .content-carousel-control:focus-visible { outline: 2px solid var(--brand-action); outline-offset: 3px; }
+}
+
+@media (max-width: 599px) {
+  .rf-frame .content-carousel { --carousel-gap: 16px; --carousel-visible: 1; }
+}
+
+/* Reserve room for mouse lift without changing the cards' resting positions. */
+@media (max-width: 1100px) and (hover: hover) and (pointer: fine) {
+  .rf-frame .content-carousel .content-carousel-track {
+    margin-top: -8px;
+    margin-bottom: -24px;
+    padding-top: 8px;
+    padding-bottom: 36px;
+  }
+}

@@ -2,11 +2,13 @@ import Link from 'next/link';
 import { getI18n } from '@/i18n/server';
 import { SiteImage } from '@/components/site-image';
 import { Icon, type IconName } from '@/components/ui/icon';
-import { serviceLandingContent } from '@/content/local-data';
+import { articles, serviceLandingContent } from '@/content/local-data';
 import type { ServiceLandingSection, ServiceRecord } from '@/content/models';
 import { media, projectMedia } from '@/lib/media';
-import { FeatureCards, WireframeContact, WireframeHeading, WireframeHero } from '@/components/wireframe-sections';
+import { ArticleCards, FeatureCards, WireframeContact, WireframeHeading, WireframeHero } from '@/components/wireframe-sections';
 import { Accordion } from '@/components/accordion';
+import { ContentCarousel } from '@/components/content-carousel';
+import { ContentCard } from '@/components/content-card';
 
 const beforeIcons: readonly IconName[] = ['data', 'documentCopy', 'monitor'];
 const afterIcons: readonly IconName[] = ['link', 'taskSquare', 'chartSuccess'];
@@ -56,10 +58,10 @@ async function ServiceSection({ section, index, service }: { section: ServiceLan
   </div></section>;
   if (section.kind === 'projects') return <section className="wf-section wf-soft" id={id}><div className="container">
     <WireframeHeading eyebrow={section.eyebrow} title={section.title} description={section.summary} />
-    <div className={section.projects.length === 1 ? 'wf-single-project' : 'wf-card-grid'}>{section.projects.map(project => <article className={section.projects.length === 1 ? 'wf-split' : 'wf-content-card'} key={project.href}>
-      <Link className="wf-photo" href={project.href}><SiteImage src={projectMedia(project.href.split('/').pop() ?? '', project.image)} alt={t(project.imageAlt)} width={1600} height={1000} sizes="(max-width:760px) 100vw, 50vw" /></Link>
-      <div className="wf-card-copy"><span className="wf-meta">{t(project.category)}</span>{project.disclosure && <span className="project-simulation-label">{t(project.disclosure)}</span>}<h3><Link href={project.href}>{t(project.title)}</Link></h3><p>{t(project.description)}</p><Link className="wf-text-link" href={project.href}>{t('Xem câu chuyện dự án')}<Icon name="arrowRight" size={18} /></Link></div>
-    </article>)}</div>
+    <ContentCarousel enabled={section.projects.length > 1} label={t(section.title)} className="content-card-grid">{section.projects.map(project => <ContentCard key={project.href}
+      href={project.href} title={t(project.title)} summary={t(project.description)} image={projectMedia(project.href.split('/').pop() ?? '', project.image)} imageAlt={t(project.imageAlt)}
+      metadata={<>{t(project.category)}{project.disclosure && <> · <span className="project-simulation-label">{t(project.disclosure)}</span></>}</>}
+      linkLabel={t('Xem câu chuyện dự án')} />)}</ContentCarousel>
   </div></section>;
   return <section className="wf-section wf-service-faq" id={id}><div className="container">
     <WireframeHeading eyebrow={section.eyebrow} title={section.title} description={section.summary} />
@@ -71,9 +73,14 @@ export function ServiceLanding({ service, leadContext }: { service: ServiceRecor
   const content = serviceLandingContent[service.slug];
   if (!content) throw new Error(`Missing service landing content for ${service.slug}`);
   const image = service.slug === 'erp' ? media.food : service.slug === 'outsourcing' ? media.technology : media.team;
-  return <main className="wf-page">
+  const relatedArticles = articles.filter(article => content.relatedArticleSlugs?.includes(article.slug));
+  return <main className="wf-page" data-service={service.slug}>
     <WireframeHero eyebrow={content.hero.eyebrow} title={content.hero.title} accent={content.hero.accent} description={content.hero.summary} image={image} action={{href:'#service-contact',label:content.hero.ctaLabel}} secondary={{href:'#service-section-0',label:content.hero.secondaryLabel}} />
     {content.sections.map((section,index) => <ServiceSection key={index} section={section} index={index} service={service.slug} />)}
+    {relatedArticles.length > 0 && <section className="wf-section wf-related-articles"><div className="container">
+      <WireframeHeading eyebrow="ĐỌC TIẾP" title="Bài viết liên quan" description="Những nội dung có thể bạn quan tâm." />
+      <ArticleCards articles={relatedArticles} />
+    </div></section>}
     <WireframeContact id="service-contact" title={content.contact.title} description={content.contact.description} pagePath={service.href} leadContext={leadContext} />
   </main>;
 }

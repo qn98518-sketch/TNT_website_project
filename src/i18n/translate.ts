@@ -2,10 +2,11 @@ import english from './en.json';
 import seafoodEnglish from './seafood-en.json';
 import leadershipEnglish from './leadership-en.json';
 import formEnglish from './form-en.json';
+import { migratedEnglish } from '@/content/migrated-content';
 
 export type Locale = 'vi' | 'en';
 export const localeCookie = 'tnt-locale';
-const dictionary: Record<string, string> = { ...english, ...seafoodEnglish, ...leadershipEnglish, ...formEnglish };
+const dictionary: Record<string, string> = { ...english, ...seafoodEnglish, ...leadershipEnglish, ...formEnglish, ...migratedEnglish };
 
 export function translate<T>(value: T, locale: Locale): T {
   if (typeof value !== 'string' || locale === 'vi') return value;

@@ -8,6 +8,10 @@
     "start": "next start",
     "lint": "eslint src",
     "test:cms": "node scripts/test-cms.cjs",
+    "test:responsive": "node scripts/check-responsive-cards.cjs",
+    "test:hover": "node scripts/check-card-hover.cjs",
+    "test:leadership": "node scripts/check-leadership.cjs",
+    "test:structure": "node scripts/check-source-imports.cjs",
     "cms:setup": "node scripts/cms-local-postgres.cjs setup",
     "cms:start": "node scripts/cms-local-postgres.cjs start",
     "cms:status": "node scripts/cms-local-postgres.cjs status",
@@ -33,6 +37,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.4.6",
+    "playwright-core": "^1.65.1",
     "tailwindcss": "4.3.3",
     "typescript": "^5"
   }

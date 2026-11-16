@@ -1,13 +1,13 @@
 "use client";
 import { useI18n } from "@/i18n/provider";
-import Link from "next/link";
-import { SiteImage as Image } from "@/components/site-image";
+import { ContentCard } from "@/components/content-card";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Icon } from "@/components/ui/icon";
 import type { ContentTopic } from "@/content/models";
 import { SelectBox } from "@/components/select-box";
 import { GuideCard } from "@/components/guide-card";
+import { ContentCarousel } from "@/components/content-carousel";
 export interface CatalogEntry {
     slug: string;
     title: string;
@@ -30,6 +30,7 @@ const topics: readonly ContentTopic[] = [
     "Sản xuất",
     "Outsourcing",
     "Body Shop",
+    "Giáo dục",
     "Khác",
 ];
 type Props = {
@@ -91,39 +92,13 @@ export function CatalogBrowser({ entries, kind }: Props) {
             : `${result.length} kết quả`)}
       </p>
 
-      {t(result.length > 0 ? (<div className={kind === "guide" ? "guide-card-grid" : kind === "article" ? "catalog-grid catalog-grid-article" : "catalog-grid"}>
-          {t(result.map((entry) => (kind === "guide" ? <GuideCard guide={entry} key={entry.slug} /> : <article className={`catalog-card catalog-card-${kind}`} key={entry.slug}>
-              {t(entry.image && (<Link aria-label={t(entry.title)} className="catalog-card-image" href={entry.href} tabIndex={-1}>
-                  <Image alt={t(entry.imageAlt ?? "")} fill sizes={kind === "article"
-                        ? "(max-width: 760px) 100vw, 50vw"
-                        : "(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 33vw"} src={entry.image}/>
-                </Link>))}
-              <div className="catalog-card-content">
-                <div className="catalog-card-tags">
-                  <span className="catalog-tag">{t(entry.topic)}</span>
-                  {entry.isSimulation && <span className="catalog-tag">{t("Case study mô phỏng")}</span>}
-                  {t(entry.industry && (<span className="catalog-tag catalog-industry">
-                      {t(entry.industry)}
-                    </span>))}
-                </div>
-                {kind === "article" ? <h3>{t(entry.title)}</h3> : <h2>{t(entry.title)}</h2>}
-                {t(entry.publishedAt && (<p className="catalog-meta">
-                    <time dateTime={entry.publishedAt}>
-                      {t(entry.dateLabel ?? entry.publishedAt)}
-                    </time>
-                    {t(entry.readingTime && <span>{t(entry.readingTime)}</span>)}
-                  </p>))}
-
-                <p>{t(entry.summary)}</p>
-                <Link className="text-link" href={entry.href}>
-                  {t(kind === "article"
-                        ? "Đọc bài viết"
-                        : "Xem câu chuyện dự án")}
-                  <Icon name="arrowRight" size={16}/>
-                </Link>
-              </div>
-            </article>)))}
-        </div>) : (<div className="catalog-empty">
+      {t(result.length > 0 ? (<ContentCarousel enabled={kind !== "guide"} label={t(kind === "article" ? "Blog" : "Dự án")} resetKey={`${kind}:${topic}:${industry}:${needle}`} className={kind === "guide" ? "guide-card-grid" : "content-card-grid"}>
+          {t(result.map((entry) => (kind === "guide" ? <GuideCard guide={entry} key={entry.slug} /> : <ContentCard key={entry.slug}
+            href={entry.href} title={t(entry.title)} summary={t(entry.summary)} image={entry.image} imageAlt={t(entry.imageAlt ?? entry.title)}
+            heading={kind === "article" ? "h3" : "h2"}
+            metadata={<>{t(entry.topic)}{entry.isSimulation && <> · <span className="project-simulation-label">{t("Case study mô phỏng")}</span></>}{entry.industry && <> · {t(entry.industry)}</>}{entry.publishedAt && <> · <time dateTime={entry.publishedAt}>{t(entry.dateLabel ?? entry.publishedAt)}</time></>}{entry.readingTime && <> · {t(entry.readingTime)}</>}</>}
+            linkLabel={t(kind === "article" ? "Đọc bài viết" : "Xem câu chuyện dự án")} />)))}
+        </ContentCarousel>) : (<div className="catalog-empty">
           <span className="catalog-empty-icon">
             <Icon name={kind === "guide" ? "document" : "info"} size={25}/>
           </span>

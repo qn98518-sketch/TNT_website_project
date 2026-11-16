@@ -15,7 +15,11 @@ import "./responsive-actions.css";
 import "./site-header.css";
 import "./leadership-carousel.css";
 import "./dropdowns.css";
+import "./editorial-content.css";
 import "./home-statistics.css";
+import "./mobile-layout.css";
+import "./tablet-layout.css";
+import "./scroll-reveal.css";
 /** Shared navigation and footer, with a matching content style for the other pages. */
 export async function ReferenceFrame({ children, variant, breadcrumbs }: {
     children: React.ReactNode;
@@ -36,7 +40,7 @@ export async function ReferenceFrame({ children, variant, breadcrumbs }: {
           <p>{t("Kiến tạo hạ tầng công nghệ")}<br />{t("cho tăng trưởng doanh nghiệp.")}</p>
           <div className="rf-socials" aria-label={t("Trí Nghĩa Tech")}>
             <span>{t("in")}</span>
-            <span><Icon name="facebook" size={18}/></span>
+            <a href="https://www.facebook.com/profile.php?id=100057386293839" target="_blank" rel="noopener noreferrer" aria-label="Facebook TNT Trí Nghĩa Tech"><Icon name="facebook" size="100%"/></a>
             <Icon name="monitor" size={18}/>
           </div>
         </div>
@@ -57,17 +61,17 @@ export async function ReferenceFrame({ children, variant, breadcrumbs }: {
         <div>
           <h2>{t("Liên hệ")}</h2>
           <p>
-            <Icon name="building"/>{t(" TP. Hồ Chí Minh, Việt Nam")}</p>
+            <Icon name="building"/>{t(" Tầng 4, tòa nhà LeBuilding, 342 Mỹ Đình, phường Từ Liêm, Hà Nội")}</p>
           <p>
-            <Icon name="call"/>{t(" +84 28 1234 5678")}</p>
+            <Icon name="call"/><a href="tel:0889889788">0889 889 788</a></p>
           <p>
-            <Icon name="message"/>{t(" info@tnt-tech.vn")}</p>
+            <Icon name="message"/><a href="mailto:info@tringhiatech.vn">info@tringhiatech.vn</a></p>
 
         </div>
       </div>
       <div className="rf-container rf-footer-bottom">
-        <span>{t("© 2025 TNT Trí Nghĩa Tech. All rights reserved.")}</span>
-        <span>{t("Chính sách bảo mật ")}<i />{t(" Điều khoản sử dụng ")}<i />{t(" Tuyển dụng")}</span>
+        <span>© {new Date().getFullYear()} TNT Trí Nghĩa Tech. All rights reserved.</span>
+        <div className="rf-footer-policies"><span>{t("Chính sách bảo mật ")}</span><span>{t(" Điều khoản sử dụng ")}</span><span>{t(" Tuyển dụng")}</span></div>
       </div>
     </footer>
   </div>;

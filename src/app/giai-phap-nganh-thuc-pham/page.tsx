@@ -3,11 +3,13 @@ import Link from "next/link";
 import { LeadForm } from "@/components/lead-form";
 import { ReferenceFrame, ReferenceImage } from "@/components/reference-frame";
 import { Icon, type IconName } from "@/components/ui/icon";
-import { foodSolutionPageContent } from "@/content/local-data";
+import { articles, foodSolutionPageContent } from "@/content/local-data";
+import { ArticleCards, WireframeHeading } from "@/components/wireframe-sections";
 import { seafoodProject } from "@/content/seafood-project";
 import { ResponsiveActions } from "@/components/responsive-actions";
 import { Accordion } from "@/components/accordion";
 import { createPageMetadata } from "@/lib/metadata";
+import { FoodImplementationSection } from "@/components/food-implementation-section";
 export async function generateMetadata() { return createPageMetadata({ title: "Giải pháp ERP ngành thực phẩm", description: "Cùng làm rõ nhu cầu quản lý nguyên vật liệu, kho, sản xuất, chất lượng và thành phẩm trong nhà máy thực phẩm.", path: "/giai-phap-nganh-thuc-pham" }); }
 const challengeIcons: IconName[] = ["boxSearch", "timer", "money", "scan"];
 const workflowIcons: IconName[] = ["layer", "box", "activity", "shield", "boxTick", "chart"];
@@ -120,7 +122,7 @@ export default async function FoodSolutionPage() {
           </article>
         </div>
       </section>
-      <section className="rf-food-implementation">
+      <FoodImplementationSection>
         <div className="rf-container">
           <span className="rf-rule"/>
           <h2 className="tnt-section-title">{t("Quy trình đánh giá và triển khai")}</h2>
@@ -130,7 +132,11 @@ export default async function FoodSolutionPage() {
               <h3>{t(s.title)}</h3>
               <p>{t(s.description)}</p>{t(i < 4 && <Icon className="rf-step-arrow" name="arrowRight"/>)}</li>))}</ol>
         </div>
-      </section>
+      </FoodImplementationSection>
+      <section className="wf-section wf-related-articles"><div className="rf-container">
+        <WireframeHeading eyebrow="ĐỌC TIẾP" title="Bài viết liên quan" description="Những nội dung có thể bạn quan tâm." />
+        <ArticleCards articles={articles.filter(article => ['quan-ly-kho', 'erp-du-lieu'].includes(article.slug))} />
+      </div></section>
       <section className="rf-food-faq">
         <div className="rf-container">
           <div>

@@ -123,3 +123,11 @@ data during migration and for rollback; deployed APIs never call it.
 
 See [`.env.example`](./.env.example) for the local template. Do not put
 provider secrets in `NEXT_PUBLIC_*` variables.
+
+## Responsive card checks
+
+Run `npm.cmd run test:responsive` against a running production build. This checks
+all public routes and requires two fully visible article/project cards at 600–1100px,
+including landscape. Columns depend on viewport width, not input/touch emulation.
+Run `npm.cmd run test:hover` to verify mouse lift/reset, touch and reduced motion.
+See [layout ownership and regression checks](./docs/RESPONSIVE_LAYOUT.md).

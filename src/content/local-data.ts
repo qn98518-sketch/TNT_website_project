@@ -1,5 +1,6 @@
 import { seafoodProject } from "@/content/seafood-project";
 import { leadershipTeam } from "@/content/leadership";
+import { migratedArticles, migratedProjects } from "@/content/migrated-content";
 import type {
   ArticleRecord,
   FaqRecord,
@@ -47,6 +48,7 @@ export const services: readonly ServiceRecord[] = [
 
 export const serviceLandingContent: Record<string, ServiceLandingContent> = {
   erp: {
+    relatedArticleSlugs: migratedArticles.slice(0, 3).map(article => article.slug),
     hero: {
       eyebrow: "GIẢI PHÁP ERP / TNT",
       title: "Kết nối dữ liệu.",
@@ -107,9 +109,9 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         summary:
           "Các phân hệ TNM giúp kết nối dữ liệu và quy trình quản trị doanh nghiệp.",
         cards: [
-          { icon: "profile", title: "Khách hàng / CRM", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến khách hàng / CRM." },
-          { icon: "bag", title: "Mua hàng", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến mua hàng." },
-          { icon: "box", title: "Kho / WMS", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến kho / WMS." },
+          { id: "erp-crm", icon: "profile", title: "Khách hàng / CRM", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến khách hàng / CRM." },
+          { id: "erp-mua-hang", icon: "bag", title: "Mua hàng", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến mua hàng." },
+          { id: "erp-kho", icon: "box", title: "Kho / WMS", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến kho / WMS." },
           { icon: "settings", title: "Sản xuất / MES", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến sản xuất / MES." },
           { icon: "shoppingCart", title: "Bán hàng", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến bán hàng." },
           { icon: "wallet", title: "Tài chính", description: "Hỗ trợ tổ chức thông tin và nghiệp vụ liên quan đến tài chính." },
@@ -155,15 +157,15 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         summary:
           "Tìm hiểu bài toán kết nối dữ liệu và quản lý quy trình sản xuất.",
         projects: [
+          ...migratedProjects.filter(project => ["kala", "kova"].includes(project.slug)).map(project => ({
+            title: project.title, category: `${project.industry} · TNM ERP`,
+            description: project.summary, image: project.image!, imageAlt: project.imageAlt!,
+            href: `/du-an/${project.slug}`,
+          })),
           {
-            title: seafoodProject.title,
-            category: "CHẾ BIẾN THỦY SẢN • TNM ERP",
-            description: seafoodProject.summary,
-            image: seafoodProject.image!,
-            imageAlt: seafoodProject.imageAlt!,
-            href: `/du-an/${seafoodProject.slug}`,
-            disclosure: seafoodProject.sourceLabel,
-
+            title: seafoodProject.title, category: "CHẾ BIẾN THỦY SẢN • TNM ERP",
+            description: seafoodProject.summary, image: seafoodProject.image!, imageAlt: seafoodProject.imageAlt!,
+            href: `/du-an/${seafoodProject.slug}`, disclosure: seafoodProject.sourceLabel,
           },
         ],
       },
@@ -185,6 +187,7 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
     },
   },
   outsourcing: {
+    relatedArticleSlugs: ["chuyen-doi-so-truong-pho-thong", "khi-nao-outsourcing"],
     hero: {
       eyebrow: "DỊCH VỤ PHÁT TRIỂN PHẦN MỀM",
       title: "Từ ý tưởng đến",
@@ -228,7 +231,7 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         eyebrow: "FIT / BUILD / DELIVER",
         title: "Quy trình rõ ràng.",
         accent: "Phối hợp minh bạch.",
-        summary: "Đề xuất sáu giai đoạn triển khai phần mềm theo nhu cầu doanh nghiệp.",
+        summary: "Sáu giai đoạn triển khai phần mềm theo nhu cầu doanh nghiệp.",
         steps: [
           { title: "Khảo sát", description: "Làm rõ mục tiêu và hiện trạng.", icon: "search" },
           { title: "Phân tích", description: "Xác định yêu cầu và phạm vi.", icon: "chart" },
@@ -244,7 +247,7 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         title: "Năng lực triển khai",
         accent: "gắn với hợp tác thực tế",
         summary:
-          "Đề xuất thể hiện nhóm kỹ năng Frontend, Backend, Mobile và Data/Integration, cùng hình ảnh hoặc minh chứng được TNT cung cấp.",
+          "Đội ngũ TNT phối hợp từ phân tích nghiệp vụ đến phát triển Frontend, Backend, Mobile, tích hợp dữ liệu và kiểm thử phần mềm.",
         image: "/images/solution.webp",
         imageAlt: "Đội ngũ trao đổi trong buổi tư vấn",
         points: ["Backend", "Frontend", "Mobile", "Data & API", "QA"],
@@ -254,27 +257,11 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
         kind: "projects",
         eyebrow: "DỰ ÁN LIÊN QUAN",
         title: "Sản phẩm đã triển khai",
-        summary: "Khám phá các bài toán phát triển phần mềm trong tuyển dụng và đào tạo trực tuyến.",
-        projects: [
-          {
-            title: "Website tuyển dụng cho thị trường Nhật Bản",
-            category: "OUTSOURCING · NHÂN SỰ",
-            description: "Phát triển hệ thống tuyển dụng dựa trên nhu cầu và nghiệp vụ khách hàng.",
-            image: "/images/ai_usage.webp",
-            imageAlt: "Dự án phần mềm tuyển dụng",
-            href: "/du-an",
-
-          },
-          {
-            title: "Nền tảng đào tạo trực tuyến cho khách hàng quốc tế",
-            category: "OUTSOURCING · GIÁO DỤC",
-            description: "Xây dựng giải pháp e-Learning phù hợp với mô hình vận hành đào tạo.",
-            image: "/images/education.webp",
-            imageAlt: "Dự án đào tạo trực tuyến",
-            href: "/du-an",
-
-          },
-        ],
+        summary: "Tìm hiểu các hệ thống TNT đã xây dựng cho giáo dục và hỗ trợ doanh nghiệp.",
+        projects: migratedProjects.filter(project => ["cong-thong-tin-doanh-nghiep-ha-noi", "lomonoxop-my-dinh"].includes(project.slug)).map(project => ({
+          title: project.title, category: project.industry, description: project.summary,
+          image: project.image!, imageAlt: project.imageAlt!, href: `/du-an/${project.slug}`,
+        })),
       },
     ],
     contact: {
@@ -369,52 +356,7 @@ export const serviceLandingContent: Record<string, ServiceLandingContent> = {
 
 export const projects: readonly ProjectRecord[] = [
   seafoodProject,
-  {
-    slug: "kala",
-    detailTitle: "Triển khai TNM MES cho nhà máy kính KALA",
-    title: "Giải pháp quản lý sản xuất cho nhà máy kính KALA",
-    summary:
-      "Kết nối dữ liệu sản xuất, theo dõi công đoạn và hỗ trợ vận hành nhà máy.",
-    topic: "ERP",
-    industry: "Sản xuất",
-    service: "ERP",
-    client: "KALA",
-    scope: "Quản trị sản xuất / MES",
-    challengeTitle: "Dữ liệu sản xuất chưa liên thông",
-    challenge:
-      "Theo dõi tiến độ lệnh sản xuất, kết nối thông tin công đoạn và tổng hợp dữ liệu phục vụ quản trị nhà máy.",
-    solutionTitle: "Giải pháp quản trị sản xuất TNM MES",
-    solution:
-      "Kết nối dữ liệu giữa các công đoạn và tổ chức thông tin sản xuất theo quy trình vận hành của nhà máy.",
-    approach:
-      "Kết nối dữ liệu giữa các công đoạn và tổ chức thông tin sản xuất theo quy trình vận hành của nhà máy.",
-    outcome:
-      "Hướng tới dữ liệu sản xuất tập trung, tiến độ dễ theo dõi và thông tin quản trị nhất quán.",
-    image: "/images/glass_factory.webp",
-    imageAlt: "Dự án quản lý sản xuất nhà máy kính KALA",
-    status: "pending-review",
-    gallery: [
-      {
-        src: "/images/glass_factory.webp",
-        alt: "Nhà máy kính KALA",
-        width: 949,
-        height: 410,
-      },
-      {
-        src: "/images/work_factory.webp",
-        alt: "Quy trình sản xuất kính",
-        width: 708,
-        height: 271,
-      },
-      {
-        src: "/images/solution.webp",
-        alt: "Hoạt động tại nhà máy",
-        width: 828,
-        height: 680,
-      },
-    ],
-    relatedProjectSlugs: ["wood", "recruitment"],
-  },
+  ...migratedProjects,
   {
     slug: "wood",
     title: "Hệ thống quản trị cho doanh nghiệp sản xuất gỗ",
@@ -486,6 +428,7 @@ export const projects: readonly ProjectRecord[] = [
 ];
 
 export const articles: readonly ArticleRecord[] = [
+  ...migratedArticles,
   {
     slug: "erp-du-lieu",
     title: "ERP giúp doanh nghiệp sản xuất kết nối dữ liệu như thế nào?",
@@ -590,7 +533,7 @@ export const articles: readonly ArticleRecord[] = [
     imageAlt: "Hoạt động nhà máy",
     thumbnail: "/images/work_factory.webp",
     thumbnailAlt: "Nhà máy sản xuất",
-    relatedArticleSlugs: ["erp-du-lieu", "chuan-bi-erp"],
+    relatedArticleSlugs: ["erp-du-lieu", "chuan-bi-erp", "chuyen-doi-so-nha-may-co-khi"],
     sections: [
       {
         heading: "Nhà máy cần nhìn thấy quy trình tổng thể",
@@ -676,7 +619,7 @@ export const articles: readonly ArticleRecord[] = [
     imageAlt: "Quản lý kho",
     thumbnail: "/images/glass_factory.webp",
     thumbnailAlt: "Không gian nhà xưởng",
-    relatedArticleSlugs: ["erp-du-lieu", "chuan-bi-erp"],
+    relatedArticleSlugs: ["erp-du-lieu", "chuan-bi-erp", "quan-ly-kho-logistics"],
     sections: [
       {
         heading: "Thông tin kho cần được thống nhất",
@@ -850,11 +793,17 @@ export const homePageContent: HomePageContent = {
     { icon: "cloud", title: "Hạ tầng Cloud & Hosting", description: "Hỗ trợ vận hành hạ tầng và hệ thống theo nhu cầu doanh nghiệp.", href: "/dich-vu" },
     { icon: "designTools", title: "Thiết kế UI/UX & Website", description: "Thiết kế trải nghiệm giao diện trực quan, dễ sử dụng.", href: "/dich-vu/outsourcing" },
   ],
-  featuredInsights: [
-    { topic: "GÓC NHÌN CÔNG NGHỆ", title: "5 xu hướng công nghệ sẽ định hình doanh nghiệp trong 2025", href: "/kien-thuc/blog", image: "/images/ai_usage.webp", imageAlt: "Ứng dụng công nghệ AI trong doanh nghiệp" },
-    { topic: "CHUYỂN ĐỔI SỐ", title: "Tối ưu hạ tầng đám mây cho doanh nghiệp vừa và nhỏ", href: "/kien-thuc/blog", image: "/images/cloud_computing.webp", imageAlt: "Hạ tầng điện toán đám mây" },
-    { topic: "ERP", title: "5 bước tăng cường bảo mật dữ liệu doanh nghiệp", href: "/kien-thuc/blog", image: "/images/cyber_shield.webp", imageAlt: "Bảo mật dữ liệu doanh nghiệp" },
-  ],
+  featuredInsights: migratedArticles.slice(0, 3).map(article => ({
+    topic: article.topic,
+    title: article.title,
+    summary: article.summary,
+    publishedAt: article.publishedAt,
+    dateLabel: article.dateLabel,
+    readingTime: article.readingTime,
+    href: `/kien-thuc/blog/${article.slug}`,
+    image: article.image!,
+    imageAlt: article.imageAlt!,
+  })),
   introduction: {
     eyebrow: "GIẢI PHÁP & DỊCH VỤ",
     title: "Công nghệ toàn diện",

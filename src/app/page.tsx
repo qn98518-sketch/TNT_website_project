@@ -3,12 +3,13 @@ import Link from "next/link";
 import { LeadForm } from "@/components/lead-form";
 import { ReferenceFrame, ReferenceHeading, ReferenceImage } from "@/components/reference-frame";
 import { Icon, type IconName } from "@/components/ui/icon";
-import { homePageContent } from "@/content/local-data";
+import { articles, homePageContent } from "@/content/local-data";
 import { HomeProjectShowcase } from "@/components/home-project-showcase";
 import { ResponsiveActions } from "@/components/responsive-actions";
 import { HomeStatistics } from "@/components/home-statistics";
 import { SiteImage } from "@/components/site-image";
 import { ProcessGrid } from "@/components/process-grid";
+import { ArticleCards } from "@/components/wireframe-sections";
 const processImages = [
   { src: "/images/process/process-1-requirements-natural.webp", alt: "Bộ giấy và bút ghi nhận yêu cầu" },
   { src: "/images/process/process-2-analysis-natural.webp", alt: "Tài liệu phân tích và kính lúp" },
@@ -18,6 +19,7 @@ const processImages = [
 export default async function Home() {
     const { t } = await getI18n();
     const content = homePageContent;
+    const insightArticles = articles.filter(article => content.featuredInsights.some(insight => insight.href === `/kien-thuc/blog/${article.slug}`));
     return <ReferenceFrame>
     <main className="rf-home">
       <section className="rf-home-hero">
@@ -126,29 +128,7 @@ export default async function Home() {
           </ReferenceHeading>
           <Link className="rf-all-posts" href="/kien-thuc/blog">{t("Xem tất cả bài viết ")}<Icon name="arrowRight"/>
           </Link>
-          <div className="rf-insight-grid">
-            <article className="rf-feature-insight">
-              <div>
-                <span className="rf-pill">{t("CHUYỂN ĐỔI SỐ")}</span>
-                <h3>{t("5 xu hướng công nghệ")}<br />{t("sẽ định hình doanh nghiệp")}<br />{t("trong 2025")}</h3>
-                <p>{t("Khám phá những xu hướng công nghệ quan trọng mà doanh nghiệp không thể bỏ qua trong năm tới.")}</p>
-                <small>{t("12/03/2025　 ·　5 phút đọc")}</small>
-                <Link className="rf-button rf-outline" href="/kien-thuc/blog">{t("Đọc bài viết ")}<Icon name="arrowRight"/>
-                </Link>
-              </div>
-            </article>
-            <div className="rf-small-insights">{t(content.featuredInsights.slice(1).map((a, i) => <article key={a.title}>
-              <div>
-                <span className="rf-pill">{t(i === 0 ? "HẠ TẦNG CNTT" : "BẢO MẬT")}</span>
-                <h3>{t(a.title)}</h3>
-                <small>{t(i === 0 ? "08/03/2025" : "03/03/2025")}{t("　·　")}{t(i + 3)}{t(" phút đọc")}</small>
-              </div>
-              <ReferenceImage src={a.image} alt={t(a.imageAlt)}/>
-              <Link href={a.href} aria-label={t(a.title)}>
-                <Icon name="arrowRight"/>
-              </Link>
-            </article>))}</div>
-          </div>
+          <ArticleCards articles={insightArticles} />
         </div>
       </section>
       <section className="rf-contact rf-home-contact">
